@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {app_rountig} from './app.routes';
 
 import { AppComponent } from './app.component';
 
@@ -22,7 +23,8 @@ import 'hammerjs';
     NoopAnimationsModule,
     MdButtonModule,
     MdCheckboxModule,
-    MaterialModule
+    MaterialModule,
+    app_rountig
   ],
   providers: [],
   bootstrap: [AppComponent]
