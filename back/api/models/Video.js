@@ -51,16 +51,16 @@ module.exports = {
 	      columnName: 'date_create'
 	    },
 	    participation: {
-	      model: 'competition'
-	      columnName: 'competition_id',
+	      model: 'competition',
+	      columnName: 'competition_id'
 	    },
 	    state: {
 	      model: 'state',
-	      columnName: 'state_id',
+	      columnName: 'state_id'
 	    },
 	    competitor: {
-	      model: 'user'
-	      columnName: 'user_id',
+	      model: 'user',
+	      columnName: 'user_id'
 	    }
     }
 };

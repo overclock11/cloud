@@ -70,8 +70,8 @@ module.exports = {
 	      via: 'participation'
 	    },
 	    maker: {
-	      model: 'user'
-	      columnName: 'user_id',
+	      model: 'user',
+	      columnName: 'user_id'
 	    }
   	}
 };

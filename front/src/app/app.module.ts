@@ -11,11 +11,17 @@ import {MaterialModule} from '@angular/material';
 
 import { HomeComponent } from './home/home.component';
 import 'hammerjs';
+import { CompetitionComponent } from './competition/competition.component';
+import { DetailcompetitionComponent } from './detailcompetition/detailcompetition.component';
+import { RegistervideoComponent } from './registervideo/registervideo.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    CompetitionComponent,
+    DetailcompetitionComponent,
+    RegistervideoComponent
   ],
   imports: [
     BrowserModule,
