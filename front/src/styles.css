@@ -5,3 +5,14 @@
 @import "assets/estilos/preset2.css";
 @import "assets/estilos/responsive.css";
 @import "assets/estilos/style.css";
+@import url('https://fonts.googleapis.com/css?family=Encode+Sans+Semi+Condensed');
+
+.button-full-width{
+  width: 100%
+}
+.card-background-color{
+  background-color: #eaeaea;
+}
+p,h1,h2,h3,h4,h5,h6,label,button,strong,legend,md-card-title,input,md-raised-button{
+  font-family: 'Encode Sans Semi Condensed', sans-serif;
+}

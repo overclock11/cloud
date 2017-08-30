@@ -3,6 +3,7 @@ import {HomeComponent} from './home/home.component';
 import {CompetitionComponent} from './competition/competition.component';
 import {DetailcompetitionComponent} from './detailcompetition/detailcompetition.component';
 import {RegistervideoComponent} from './registervideo/registervideo.component';
+import {RegisterUserComponent} from './register-user/register-user.component';
 
 
 
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'concurso', component: CompetitionComponent },
   { path: 'concurso/:id', component: DetailcompetitionComponent },
   { path: 'concurso/:id/registro', component: RegistervideoComponent },
+  { path: 'sing-up', component: RegisterUserComponent },
 
   { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];

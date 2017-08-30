@@ -1,0 +1,53 @@
+<div class="container margin-header-footer">
+  <div class="row">
+    <div class="col-md-6">
+      <md-progress-bar mode="indeterminate" *ngIf="creacion"></md-progress-bar>
+      <md-card class="card-background-color">
+        <form (ngSubmit)="registrarUsuario()">
+          <md-card-title>
+            Formulario de registro
+          </md-card-title>
+          <md-card-content>
+            <div class="col-md-6">
+              <md-form-field class="example-full-width">
+                <input mdInput placeholder="Nombre de usuario" name="username" type="text" [(ngModel)]="nuevoUsuario.username">
+                <md-icon mdSuffix><i class="fa fa-address-book" aria-hidden="true"></i></md-icon>
+              </md-form-field>
+            </div>
+
+            <div class="col-md-6">
+              <md-form-field class="example-full-width">
+                <input mdInput placeholder="Contraseña" name="password" type="password" [(ngModel)]="nuevoUsuario.password">
+                <md-icon mdSuffix ><i class="fa fa-key" aria-hidden="true"></i></md-icon>
+              </md-form-field>
+            </div>
+            <div class="col-md-6">
+              <md-form-field class="example-full-width">
+                <input mdInput placeholder="Nombre" name="name" type="text"  [(ngModel)]="nuevoUsuario.name">
+                <md-icon mdSuffix ><i class="fa fa-user" aria-hidden="true"></i></md-icon>
+              </md-form-field>
+            </div>
+            <div class="col-md-6">
+              <md-form-field class="example-full-width">
+                <input mdInput placeholder="Apellido" name="surname"  type="text" [(ngModel)]="nuevoUsuario.surname">
+                <md-icon mdSuffix ><i class="fa fa-user" aria-hidden="true"></i></md-icon>
+              </md-form-field>
+            </div>
+            <div class="col-md-6">
+              <md-form-field class="example-full-width">
+                <input mdInput placeholder="Email" name="email" type="email" [(ngModel)]="nuevoUsuario.email">
+                <md-icon mdSuffix ><i class="fa fa-envelope-o" aria-hidden="true"></i></md-icon>
+              </md-form-field>
+            </div>
+            <button md-raised-button color="primary" class="btn-block">Registrar</button>
+            <p *ngIf="sesion" class="animated fadeInUp">Ya puedes <a [routerLink]="['/home']">iniciar sesión</a></p>
+          </md-card-content>
+        </form>
+      </md-card>
+    </div>
+
+    <div class="col-md-6">
+      <img src="assets/images/login.gif" alt="login gif" class="img-responsive animated bounceInUp">
+    </div>
+  </div>
+</div>
