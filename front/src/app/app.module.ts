@@ -16,11 +16,12 @@ import 'hammerjs';
 import { CompetitionComponent } from './competition/competition.component';
 import { DetailcompetitionComponent } from './detailcompetition/detailcompetition.component';
 import { RegistervideoComponent } from './registervideo/registervideo.component';
-
+import { RegisterUserComponent } from './register-user/register-user.component';
 
 //servicios
 import {LoginService} from './login.service';
-import { RegisterUserComponent } from './register-user/register-user.component';
+import {ConcursosService} from './services/concursos.service';
+
 
 @NgModule({
   declarations: [
@@ -43,7 +44,7 @@ import { RegisterUserComponent } from './register-user/register-user.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [LoginService],
+  providers: [LoginService,ConcursosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
