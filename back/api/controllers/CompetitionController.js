@@ -6,7 +6,14 @@
  */
 
 module.exports = {
-	
+	"url":function(req,res){
+		Competition.find({url:req.params.id}).exec(function (err, competition){
+		  if (err) {
+		    return res.serverError(err);
+		  }
+		  return res.json(competition);
+		});
+	}
 };
 /**
 module.exports = {

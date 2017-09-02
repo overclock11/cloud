@@ -1,53 +1,47 @@
-<!-- About Start -->
-<section id="about">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-12">
-          <div class="col-sm-8">
-            <img src="assets/images/nosotrosGif.gif" alt="gir" class="img-responsive">
-          </div>
-          <div class="col-sm-4">
-            <div class="about-company">
-            <h2>Concursos</h2>
-            <p>
-              Descripcion del concurso 0011
-            </p>
-          </div>
-            
-          </div>
+registroVideo<md-progress-bar mode="indeterminate" *ngIf="creacion"></md-progress-bar>
+<md-card class="card-background-color animated rubberBand">
+  <form (ngSubmit)="registrarVideo()" >
+    <md-card-title>
+      Cargar un video
+    </md-card-title>
+    <md-card-content>
+      <div class="col-md-4">
+        <md-form-field class="example-full-width">
+          <input mdInput placeholder="Nombre de usuario" required  name="username" type="text" [(ngModel)]="registroVideo.username">
+          <md-icon mdSuffix><i class="fa fa-address-book" aria-hidden="true"></i></md-icon>
+        </md-form-field>
       </div>
-    </div>
-    <div class="row">
-      <div class="title text-center col-sm-12">
-        <h2>¿Quieres ser participar de este concurso?</h2>
+      <div class="col-md-4">
+        <md-form-field class="example-full-width">
+          <input mdInput placeholder="Apellido" name="surname" required  type="text" [(ngModel)]="registroVideo.surname">
+          <md-icon mdSuffix ><i class="fa fa-user" aria-hidden="true"></i></md-icon>
+        </md-form-field>
+      </div>
+      <div class="col-md-4">
+        <md-form-field class="example-full-width">
+          <input mdInput placeholder="Email" name="email" type="email"  required [(ngModel)]="registroVideo.email">
+          <md-icon mdSuffix ><i class="fa fa-envelope-o" aria-hidden="true"></i></md-icon>
+        </md-form-field>
+      </div>
+      <div class="col-md-12">
+        <label>Mensaje</label>
+        <br>
+        <textarea name="name" style="width:100%;" name="mensaje" [(ngModel)]="registroVideo.description"></textarea>
+        <br>
       </div>
 
-          <div class="col-sm-12">
-            <form id="contact-form" name="contact-form" method="post" action="#">
-              <div class="row">
-                <div class="col-sm-6">
-                  <div class="form-group">
-                    <input type="text" name="name" class="form-control" placeholder="Name" required="required">
-                  </div>
-                </div>
-                <div class="col-sm-6">
-                  <div class="form-group">
-                    <input type="email" name="email" class="form-control" placeholder="Email Address" required="required">
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <input type="text" name="subject" class="form-control" placeholder="Subject" required="required">
-              </div>
-              <div class="form-group">
-                <textarea name="message" id="message" class="form-control" rows="4" placeholder="Enter your message" required="required"></textarea>
-              </div>                        
-              <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-lg btn-block">Enviar video</button>
-              </div>
-            </form>
-          </div>
-    </div>
-  </div>
-</section>
-<!-- About End -->
+      <div class="col-md-6">
+        <input type="file" name="video" value="video" style="display:none;" #cargarVideo (change)="archivoSeleccionado($event);">
+        <button  class="btn-block" md-raised-button color="accent" (click)="cargarVideo.click();false">
+          <i class="fa fa-film" aria-hidden="true"></i>
+          Elegir video
+        </button>
+        <br>
+      </div>
+      <div class="col-md-6">
+        <button md-raised-button color="primary" class="btn-block">Enviar</button>
+      </div>
+      <button md-raised-button color="primary" class="btn-block" disabled style="visibility: hidden;">Enviar</button>
+    </md-card-content>
+  </form>
+</md-card>

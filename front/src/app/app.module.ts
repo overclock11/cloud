@@ -21,6 +21,7 @@ import { RegisterUserComponent } from './register-user/register-user.component';
 //servicios
 import {LoginService} from './login.service';
 import {ConcursosService} from './services/concursos.service';
+import {CargarVideosService} from './services/cargar-videos.service';
 
 
 @NgModule({
@@ -30,7 +31,7 @@ import {ConcursosService} from './services/concursos.service';
     CompetitionComponent,
     DetailcompetitionComponent,
     RegistervideoComponent,
-    RegisterUserComponent,
+    RegisterUserComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +45,11 @@ import {ConcursosService} from './services/concursos.service';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [LoginService,ConcursosService],
+  // lleva todas las ventanas modales
+  entryComponents: [
+    RegistervideoComponent,
+  ],
+  providers: [LoginService,ConcursosService,CargarVideosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
