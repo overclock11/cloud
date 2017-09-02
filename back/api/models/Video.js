@@ -8,12 +8,6 @@
 module.exports = {
 	connection: 'mysql',
  	attributes: {
- 		id: {
-	      type: 'integer',
-	      unique: true,
-	      primaryKey: true,
-	      columnName: 'id'
-	    },
 	    name: {
 	      type: 'string',
 	      columnName: 'name'
@@ -32,23 +26,25 @@ module.exports = {
 	      columnName: 'description'
 	    },
 	    showHome: {
-	      type: 'float',
+	      type: 'boolean',
 	      columnName: 'show_home',
-	      default: false
+          defaultsTo: 'false',
+      	  size: 1,
+      	  boolean: true
 	    },
 	    notify: {
-	      type: 'float',
-	      columnName: 'show_home',
-	      default: false
+	      type: 'boolean',
+	      columnName: 'notify',
+          defaultsTo: 'false',
+      	  size: 1,
+      	  boolean: true
 	    },
 	    active: {
-	      type: 'float',
+	      type: 'boolean',
 	      columnName: 'active',
-	      default: false
-	    },
-	    dateCreate: {
-	      type: 'datetime',
-	      columnName: 'date_create'
+          defaultsTo: 'true',
+      	  size: 1,
+      	  boolean: true
 	    },
 	    participation: {
 	      model: 'competition',

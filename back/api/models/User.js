@@ -8,12 +8,6 @@
 module.exports = {
 	connection: 'mysql',
  	attributes: {
-	    id: {
-	      type: 'integer',
-	      unique: true,
-	      primaryKey: true,
-	      columnName: 'id'
-	    },
 	    username: {
 	      type: 'string',
 	      unique: true,
@@ -42,13 +36,11 @@ module.exports = {
 	      default: false
 	    },
 	    active: {
-	      type: 'float',
+	      type: 'boolean',
 	      columnName: 'active',
-	      default: false
-	    },
-	    dateCreate: {
-	      type: 'datetime',
-	      columnName: 'date_create'
+          defaultsTo: 'true',
+      	  size: 1,
+      	  boolean: true
 	    },
 	    participations: {
 	      collection: 'video',
