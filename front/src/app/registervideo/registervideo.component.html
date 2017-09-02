@@ -1,4 +1,4 @@
-<md-progress-bar mode="indeterminate" *ngIf="creacion"></md-progress-bar>
+registroVideo<md-progress-bar mode="indeterminate" *ngIf="creacion"></md-progress-bar>
 <md-card class="card-background-color animated rubberBand">
   <form (ngSubmit)="registrarVideo()" >
     <md-card-title>
@@ -7,26 +7,26 @@
     <md-card-content>
       <div class="col-md-4">
         <md-form-field class="example-full-width">
-          <input mdInput placeholder="Nombre de usuario" required  name="username" type="text" [(ngModel)]="nuevoUsuario.username">
+          <input mdInput placeholder="Nombre de usuario" required  name="username" type="text" [(ngModel)]="registroVideo.username">
           <md-icon mdSuffix><i class="fa fa-address-book" aria-hidden="true"></i></md-icon>
         </md-form-field>
       </div>
       <div class="col-md-4">
         <md-form-field class="example-full-width">
-          <input mdInput placeholder="Apellido" name="surname" required  type="text" [(ngModel)]="nuevoUsuario.surname">
+          <input mdInput placeholder="Apellido" name="surname" required  type="text" [(ngModel)]="registroVideo.surname">
           <md-icon mdSuffix ><i class="fa fa-user" aria-hidden="true"></i></md-icon>
         </md-form-field>
       </div>
       <div class="col-md-4">
         <md-form-field class="example-full-width">
-          <input mdInput placeholder="Email" name="email" type="email"  required [(ngModel)]="nuevoUsuario.email">
+          <input mdInput placeholder="Email" name="email" type="email"  required [(ngModel)]="registroVideo.email">
           <md-icon mdSuffix ><i class="fa fa-envelope-o" aria-hidden="true"></i></md-icon>
         </md-form-field>
       </div>
       <div class="col-md-12">
         <label>Mensaje</label>
         <br>
-        <textarea name="name" style="width:100%;" name="mensaje" [(ngModel)]="nuevoUsuario.mensaje"></textarea>
+        <textarea name="name" style="width:100%;" name="mensaje" [(ngModel)]="registroVideo.description"></textarea>
         <br>
       </div>
 

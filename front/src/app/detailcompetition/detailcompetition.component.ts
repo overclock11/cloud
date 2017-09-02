@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ConcursosService} from '../services/concursos.service';
-import { RouterLink } from '@angular/router';
+import { RouterLink,ActivatedRoute } from '@angular/router';
 import {RegistervideoComponent} from '../registervideo/registervideo.component';
 import { Injectable,Inject } from '@angular/core';
 import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
@@ -12,12 +12,17 @@ import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
 })
 export class DetailcompetitionComponent implements OnInit {
   public listOfCompetitions;
-  public animal: string;
+  public url: string;
   public name: string;
-  constructor(private concursosService:ConcursosService,public dialog: MdDialog) { }
+  constructor(private concursosService:ConcursosService,public dialog: MdDialog,private ruta:ActivatedRoute) { }
 
   ngOnInit() {
-    this.concursosService.getCompetitions().subscribe(
+    this.ruta.params.subscribe( params =>{
+        this.url = params['id']
+        console.log(this.url)
+      }
+    );
+    this.concursosService.getCompetitionByUrl(this.url).subscribe(
       respuesta =>{
           respuesta = respuesta.json();
           console.log(respuesta);
@@ -31,12 +36,11 @@ export class DetailcompetitionComponent implements OnInit {
     let dialogRef = this.dialog.open(RegistervideoComponent, {
       width: '80%',
       height:'70%',
-      data: { name: this.name, animal: this.animal }
+      data: { url: this.url }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      this.animal = result;
     });
   }
 

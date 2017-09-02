@@ -10,6 +10,6 @@ export class ConcursosService {
     return this.http.get(this.base).catch((err)=>Observable.throw("Algo salio mal",err));
   }
   getCompetitionByUrl(url:string): Observable<Response>{
-    return this.http.get(this.base+"/"+url).catch((err)=>Observable.throw("Algo salio mal",err));
+    return this.http.get(this.base+"/url/"+url).catch((err)=>Observable.throw("Algo salio mal",err));
   }
 }
