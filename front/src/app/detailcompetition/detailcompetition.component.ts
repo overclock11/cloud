@@ -13,7 +13,8 @@ import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
 export class DetailcompetitionComponent implements OnInit {
   public listOfCompetitions;
   public url: string;
-  public name: string;
+  public id: string;
+  public creadoConExito;
   constructor(private concursosService:ConcursosService,public dialog: MdDialog,private ruta:ActivatedRoute) { }
 
   ngOnInit() {
@@ -36,11 +37,14 @@ export class DetailcompetitionComponent implements OnInit {
     let dialogRef = this.dialog.open(RegistervideoComponent, {
       width: '80%',
       height:'70%',
-      data: { url: this.url }
+      data: { url: this.url, id: this.listOfCompetitions[0].id }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      console.log(result);
+      if (result) {
+        this.creadoConExito = true;
+      }
     });
   }
 

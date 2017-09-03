@@ -1,4 +1,4 @@
-registroVideo<md-progress-bar mode="indeterminate" *ngIf="creacion"></md-progress-bar>
+<md-progress-bar mode="indeterminate" *ngIf="creacion"></md-progress-bar>
 <md-card class="card-background-color animated rubberBand">
   <form (ngSubmit)="registrarVideo()" >
     <md-card-title>
@@ -23,6 +23,12 @@ registroVideo<md-progress-bar mode="indeterminate" *ngIf="creacion"></md-progres
           <md-icon mdSuffix ><i class="fa fa-envelope-o" aria-hidden="true"></i></md-icon>
         </md-form-field>
       </div>
+      <div class="col-md-4">
+        <md-form-field class="example-full-width">
+          <input mdInput placeholder="Titulo del video" name="name" type="text"  required [(ngModel)]="registroVideo.name">
+          <md-icon mdSuffix ><i class="fa fa-envelope-o" aria-hidden="true"></i></md-icon>
+        </md-form-field>
+      </div>
       <div class="col-md-12">
         <label>Mensaje</label>
         <br>
@@ -31,8 +37,8 @@ registroVideo<md-progress-bar mode="indeterminate" *ngIf="creacion"></md-progres
       </div>
 
       <div class="col-md-6">
-        <input type="file" name="video" value="video" style="display:none;" #cargarVideo (change)="archivoSeleccionado($event);">
-        <button  class="btn-block" md-raised-button color="accent" (click)="cargarVideo.click();false">
+        <input type="file" name="video" value="video" style="display:none;" #cargarVideov>
+        <button  class="btn-block" md-raised-button color="accent" (click)="cargarVideov.click();false">
           <i class="fa fa-film" aria-hidden="true"></i>
           Elegir video
         </button>

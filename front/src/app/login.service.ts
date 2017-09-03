@@ -14,4 +14,9 @@ export class LoginService {
     let base = "http://localhost:1337/user";
     return this.http.post(base,usuario).catch((err)=>Observable.throw("Algo salio mal",err));
   }
+  registrarParticipante(usuario:any):Observable<Response>{
+    let base = "http://localhost:1337/user/crear";
+    return this.http.post(base,usuario).catch((err)=>Observable.throw("Algo salio mal",err));
+  }
+
 }
