@@ -47,7 +47,7 @@ export class RegistervideoComponent implements OnInit {
     this.creacion = true;
     this.loginService.registrarParticipante(this.registroVideo).subscribe(respuesta=>{
       console.log(respuesta);
-      this.cargarVideo(respuesta);
+      this.cargarVideo(respuesta.json());
     },error=>{
       console.log(error);
     });
@@ -62,14 +62,15 @@ export class RegistervideoComponent implements OnInit {
       this.videoService.uploadVideo(formData).subscribe(res => {
         let respuesta =res.json();
         console.log(respuesta);
-        this.crearRegistro(respuesta,fileBrowser.files[0].name);
+        this.crearRegistro(respuesta,fileBrowser.files[0].name,usuarioId);
       },error =>{
         console.log(error);
       });
     }
   }
-  crearRegistro(ruta,name){
+  crearRegistro(ruta,name,usuarioId){
     this.registroVideo.url=ruta.ruta;
+    this.registroVideo.user_id=usuarioId;
     this.videoService.registrarVideo(this.registroVideo).subscribe(respuesta=>{
       this.creacion = false;
       this.dialogRef.close(true);
