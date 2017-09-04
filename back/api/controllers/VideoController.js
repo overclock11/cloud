@@ -11,13 +11,18 @@ module.exports = {
 		req.file('video').upload(
 			{
 				maxBytes: 100000000,
-				dirname: require('path').resolve(sails.config.appPath, 'C:/nmp-server-2.1/nginx-1.2.5/html/cloud/front/src/assets/videos'
+				dirname: require('path').resolve(sails.config.appPath, '/Users/fredygonzalocaptuayonovoa/OneDrive - Universidad de Los Andes/project/Cloud/cloud/source/cloud/front/src/assets/videos'
 			)},function (err, uploadedFiles) {
 		  if (err){
 				return res.send(500, err);
 			}
 			else{
-				res.json({"ruta": uploadedFiles[0].fd});
+				console.log('video');
+				console.log(uploadedFiles);
+				var urlFinal = uploadedFiles[0].fd.replace('/Users/fredygonzalocaptuayonovoa/OneDrive - Universidad de Los Andes/project/Cloud/cloud/source/cloud/front/src', '');
+				console.log('url final');
+				console.log(urlFinal);
+				res.json({"ruta": urlFinal});
 			}
 		});
 

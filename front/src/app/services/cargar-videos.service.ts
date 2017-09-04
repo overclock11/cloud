@@ -14,4 +14,8 @@ export class CargarVideosService {
   registrarVideo(participante:any): Observable<Response>{
     return this.http.post(this.base+"registrar-participante",participante).catch((err)=>Observable.throw("Algo salio mal",err));
   }
+
+  getVideoById(id:number): Observable<Response>{
+    return this.http.get(this.base+""+id).catch((err)=>Observable.throw("Algo salio mal",err));
+  }
 }

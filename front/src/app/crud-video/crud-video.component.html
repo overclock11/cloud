@@ -23,13 +23,15 @@
                 <tr>
                   <th>#</th>
                   <th>Nombre</th>
+                  <th>Fecha creacion</th>
                   <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let video of listOfvideos">
                   <td>{{video.id}}</td>        
-                  <td>{{video.surname}}</td>      
+                  <td>{{video.name}}</td> 
+                  <td>{{video.createdAt}}</td>      
                   <a [routerLink]="['/crud-detail-video/'+video.id]" rel="prettyPhoto[gallery]">
                     <i class="fa fa-video-camera"></i>
                   </a>
