@@ -25,12 +25,35 @@
                       Formulario de vizualizacion de video
                     </md-card-title>
                     <md-card-content>
-                      <div class="col-md-6">
-                        <md-form-field class="example-full-width">
-                          <input mdInput placeholder="Nombre de video" name="surname" type="text" [(ngModel)]="video.surname">
-                          <md-icon mdSuffix><i class="fa fa-address-book" aria-hidden="true"></i></md-icon>
-                        </md-form-field>
-                      </div>
+                    
+                      <div class="about-team-person text-center">
+                          <div class="about-team-person-image">
+                            <video width="640" height="360" controls>
+                               <source  [src]="video.url" 
+                               src="assets/videos/descarga.mp4" type="video/mp4">
+                               Tu navegador no soporta HTML5 video.
+                            </video>              
+                            <!-- <video [src]="enlaces(video.url)" autoplay poster="posterimage.jpg">
+                            </video> -->
+                            <!-- <img class="img-responsive" src="assets/images/team/1.jpg" alt="Team1"> -->
+                          </div>
+                          <div class="about-team-person-info">
+                            <h3> {{video.name}}</h3>
+                            <h4>{{video.updatedAt}}</h4>
+                          </div>
+
+                          <div class="about-team-person-info">
+                            <h3> {{competitor.surname}}</h3>
+                            <h4> {{competitor.email}}</h4>
+                          </div>
+
+                          <div class="form-group">
+                            <a href="/concurso/11">
+                              <button type="submit" class="btn btn-danger btn-lg btn-block">Ver ...</button>
+                            </a>
+                          </div>
+                        </div>
+
                     </md-card-content>
                   </form>
                 </md-card>

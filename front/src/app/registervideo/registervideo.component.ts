@@ -62,7 +62,9 @@ export class RegistervideoComponent implements OnInit {
       this.videoService.uploadVideo(formData).subscribe(res => {
         let respuesta =res.json();
         console.log(respuesta);
+
         this.crearRegistro(respuesta,fileBrowser.files[0].name,usuarioId);
+
       },error =>{
         console.log(error);
       });

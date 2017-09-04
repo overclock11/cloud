@@ -13,7 +13,7 @@ export class CrudVideoComponent implements OnInit {
 
 
   public listOfvideos;
-  public id: string;
+  public id: number;
   
   constructor(private concursosService:ConcursosService, private ruta:ActivatedRoute, private router: Router) { }
 
@@ -26,14 +26,13 @@ export class CrudVideoComponent implements OnInit {
       }
     );
 
-    this.concursosService.getCompetitions().subscribe(
-      respuesta =>{
-          respuesta = respuesta.json();
-          console.log(respuesta);
-          this.listOfvideos = respuesta;
-      },
-      error=>console.log(error)
-    )
+    this.concursosService.getCompetitionById(this.id).subscribe(respuesta=>{
+      let videos = respuesta.json();
+      this.listOfvideos = videos.videos;
+      console.log(this.listOfvideos);
+    },error=>{
+      console.log(error);
+    });
   }
 
 }

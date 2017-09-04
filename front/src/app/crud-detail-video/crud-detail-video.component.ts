@@ -1,6 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
-import { ConcursosService} from '../services/concursos.service';
+import { CargarVideosService} from '../services/cargar-videos.service';
 import { RouterLink,ActivatedRoute } from '@angular/router';
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { Router } from '@angular/router'; 
@@ -12,12 +12,13 @@ import { Router } from '@angular/router';
 })
 export class CrudDetailVideoComponent implements OnInit {
 
-constructor(private concursosService:ConcursosService, private ruta:ActivatedRoute, private router: Router) { }
+constructor(private cargarVideosService:CargarVideosService, private ruta:ActivatedRoute, private router: Router) { }
 
   public video ={};
+  public competitor ={};
   public update = false;
   public sesion = false;
-  public id: string;
+  public id: number;
 
 ngOnInit() {
     this.ruta.params.subscribe( params =>{
@@ -25,12 +26,15 @@ ngOnInit() {
         console.log(this.id)
       }
     );
-    this.concursosService.getCompetitionByIdString(this.id).subscribe(
+    this.cargarVideosService.getVideoById(this.id).subscribe(
       respuesta =>{
           respuesta = respuesta.json();
           console.log(respuesta);
+          this.competitor = respuesta["competitor"];
           this.video = respuesta;
+          
           console.log(this.video);
+          console.log(this.competitor);
       },
       error=>console.log(error)
     )
