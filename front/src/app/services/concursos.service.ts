@@ -12,4 +12,13 @@ export class ConcursosService {
   getCompetitionByUrl(url:string): Observable<Response>{
     return this.http.get(this.base+"/url/"+url).catch((err)=>Observable.throw("Algo salio mal",err));
   }
+  getCompetitionByID(id:string): Observable<Response>{
+    return this.http.get(this.base+"/"+id).catch((err)=>Observable.throw("Algo salio mal",err));
+  }
+  updateCompetitionByID(concurso:any): Observable<Response>{
+    return this.http.post(this.base+"/"+concurso.id,concurso).catch((err)=>Observable.throw("Algo salio mal",err));
+  }
+  registerCompetition(concurso:any):Observable<Response>{
+    return this.http.post(this.base,concurso).catch((err)=>Observable.throw("Algo salio mal",err));
+  }
 }
