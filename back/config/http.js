@@ -8,6 +8,9 @@
  * For more information on configuration, check out:
  * http://sailsjs.org/#!/documentation/reference/sails.config/sails.config.http.html
  */
+ var express = require('express')
+
+
 
 module.exports.http = {
 
@@ -23,12 +26,14 @@ module.exports.http = {
 
   middleware: {
 
+
   /***************************************************************************
   *                                                                          *
   * The order in which middleware should be run for HTTP request. (the Sails *
   * router is invoked by the "router" middleware below.)                     *
   *                                                                          *
   ***************************************************************************/
+
 
     // order: [
     //   'startRequestTimer',
@@ -54,10 +59,10 @@ module.exports.http = {
   *                                                                           *
   ****************************************************************************/
 
-    // myRequestLogger: function (req, res, next) {
-    //     console.log("Requested :: ", req.method, req.url);
-    //     return next();
-    // }
+    myRequestLogger: function (app) {
+        console.log("Requested :: ", req.method, req.url);
+        return next();
+    }
 
 
   /***************************************************************************
@@ -76,8 +81,8 @@ module.exports.http = {
   ***************************************************************************/
 
     // bodyParser: require('skipper')({strict: true})
-
   },
+
 
   /***************************************************************************
   *                                                                          *

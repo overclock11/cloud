@@ -4,6 +4,8 @@ import { RouterLink,ActivatedRoute } from '@angular/router';
 import {RegistervideoComponent} from '../registervideo/registervideo.component';
 import { Injectable,Inject } from '@angular/core';
 import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
+import { DomSanitizer } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-detailcompetition',
@@ -15,7 +17,11 @@ export class DetailcompetitionComponent implements OnInit {
   public url: string;
   public id: string;
   public creadoConExito;
-  constructor(private concursosService:ConcursosService,public dialog: MdDialog,private ruta:ActivatedRoute) { }
+  public listaVideos;
+  constructor(private concursosService:ConcursosService,
+    public dialog: MdDialog,
+    private ruta:ActivatedRoute,
+    private sanitizer:DomSanitizer) { }
 
   ngOnInit() {
     this.ruta.params.subscribe( params =>{
@@ -28,11 +34,14 @@ export class DetailcompetitionComponent implements OnInit {
           respuesta = respuesta.json();
           console.log(respuesta);
           this.listOfCompetitions = respuesta;
+          this.cargarVideosConcurso(this.listOfCompetitions[0].id);
       },
       error=>console.log(error)
     )
   }
-
+  enlaces(enlace) {
+    return this.sanitizer.bypassSecurityTrustUrl(enlace);
+  }
   openDialog(): void {
     let dialogRef = this.dialog.open(RegistervideoComponent, {
       width: '80%',
@@ -45,6 +54,15 @@ export class DetailcompetitionComponent implements OnInit {
       if (result) {
         this.creadoConExito = true;
       }
+    });
+  }
+  cargarVideosConcurso(id){
+    this.concursosService.getCompetitionById(id).subscribe(respuesta=>{
+      let videos = respuesta.json();
+      this.listaVideos = videos.videos;
+      console.log(this.listaVideos);
+    },error=>{
+      console.log(error);
     });
   }
 

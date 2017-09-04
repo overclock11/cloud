@@ -12,15 +12,22 @@
     <p *ngIf="creadoConExito" class="animated fadeIn">¡Tu video fue cargado con exito!</p>
     <div class="about-team">
       <div class="row">
-        <div class="col-sm-6 col-md-3">
+
+        <div class="col-sm-6 col-md-3" *ngFor="let video of listaVideos">
           <div class="about-team-person text-center">
             <div class="about-team-person-image">
-              <img class="img-responsive" src="assets/images/team/1.jpg" alt="Team1">
+              <video width="640" height="360" controls>
+            	   <source  src="assets/videos/descarga.mp4" type="video/mp4">
+            	   Tu navegador no soporta HTML5 video.
+              </video>              
+              <!-- <video [src]="enlaces(video.url)" autoplay poster="posterimage.jpg">
+              </video> -->
+              <!-- <img class="img-responsive" src="assets/images/team/1.jpg" alt="Team1"> -->
             </div>
             <div class="about-team-person-info">
-              <h3> video 1</h3>
-              <h4>Física</h4>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+              <h3> {{video.name}}</h3>
+              <h4>{{video.updatedAt}}</h4>
+              <p>{{video.description}}</p>
             </div>
             <div class="form-group">
               <a href="/concurso/11">
@@ -29,57 +36,7 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-6 col-md-3">
-          <div class="about-team-person text-center">
-            <div class="about-team-person-image">
-              <img class="img-responsive" src="assets/images/team/2.jpg" alt="Team1">
-            </div>
-            <div class="about-team-person-info">
-              <h3> video 2</h3>
-              <h4>Diseño</h4>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-            </div>
-            <div class="form-group">
-              <a href="/concurso/11">
-                <button type="submit" class="btn btn-success  btn-lg btn-block">Ver ...</button>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-3">
-          <div class="about-team-person text-center">
-            <div class="about-team-person-image">
-              <img class="img-responsive" src="assets/images/team/3.jpg" alt="Team1">
-            </div>
-            <div class="about-team-person-info">
-              <h3> video 3</h3>
-              <h4>Culinaria</h4>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-            </div>
-            <div class="form-group">
-              <a href="/concurso/11">
-                <button type="submit" class="btn btn-success  btn-lg btn-block">Ver ...</button>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-3">
-          <div class="about-team-person text-center">
-            <div class="about-team-person-image">
-              <img class="img-responsive" src="assets/images/team/4.jpg" alt="Team1">
-            </div>
-            <div class="about-team-person-info">
-              <h3> video 4</h3>
-              <h4>Lego</h4>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-            </div>
-            <div class="form-group">
-              <a href="/concurso/11">
-                <button type="submit" class="btn btn-success  btn-lg btn-block">Ver ...</button>
-              </a>
-            </div>
-          </div>
-        </div>
+
       </div>
     </div>
   </div>

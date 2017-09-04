@@ -5,6 +5,7 @@
   "description": "a Sails application",
   "keywords": [],
   "dependencies": {
+    "express": "^4.15.4",
     "exec": "^0.2.1",
     "include-all": "^1.0.0",
     "node-schedule": "^1.2.4",

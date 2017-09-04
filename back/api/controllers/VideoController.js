@@ -8,7 +8,11 @@
 module.exports = {
 	upload: function  (req, res) {
 		console.log(req.file('video'));
-		req.file('video').upload({maxBytes: 100000000},function (err, uploadedFiles) {
+		req.file('video').upload(
+			{
+				maxBytes: 100000000,
+				dirname: require('path').resolve(sails.config.appPath, 'C:/nmp-server-2.1/nginx-1.2.5/html/cloud/front/src/assets/videos'
+			)},function (err, uploadedFiles) {
 		  if (err){
 				return res.send(500, err);
 			}
@@ -16,6 +20,7 @@ module.exports = {
 				res.json({"ruta": uploadedFiles[0].fd});
 			}
 		});
+
 	},
 	"registrar-participante":function (req,res){
 		Video.create(req.body, function userCreated(err, video) {
