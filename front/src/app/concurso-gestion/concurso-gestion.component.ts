@@ -25,7 +25,7 @@ export class ConcursoGestionComponent implements OnInit {
         console.log(this.id)
       }
     );
-    this.concursosService.getCompetitionByID(this.id).subscribe(
+    this.concursosService.getCompetitionByIdString(this.id).subscribe(
       respuesta =>{
           respuesta = respuesta.json();
           console.log(respuesta);

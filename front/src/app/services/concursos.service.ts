@@ -15,6 +15,9 @@ export class ConcursosService {
   getCompetitionById(id:number): Observable<Response>{
     return this.http.get(this.base+"/"+id).catch((err)=>Observable.throw("Algo salio mal",err));
   }
+  getCompetitionByIdString(id:string): Observable<Response>{
+    return this.http.get(this.base+"/"+id).catch((err)=>Observable.throw("Algo salio mal",err));
+  }
   updateCompetitionByID(concurso:any): Observable<Response>{
     return this.http.post(this.base+"/"+concurso.id,concurso).catch((err)=>Observable.throw("Algo salio mal",err));
   }
