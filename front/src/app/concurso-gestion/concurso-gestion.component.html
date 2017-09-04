@@ -1,0 +1,72 @@
+
+<div class="container margin-header-footer">
+    <div class="row">
+
+        <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
+          <ul class="nav nav-pills flex-column">
+            <li class="nav-item">
+              <a class="nav-link active" href="home-admin">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="crud-competition">CRUD Concursos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="create-competition">Crear Concursos</a>
+            </li>
+          </ul>
+
+        </nav>
+        <main class="col-sm-9 ml-sm-auto col-md-10 pt-3" role="main">
+              <div class="col-md-12">
+                <md-progress-bar mode="indeterminate" *ngIf="update"></md-progress-bar>
+                <md-card class="card-background-color animated rubberBand">
+                  <form (ngSubmit)="actualizarCompetitions()">
+                    <md-card-title>
+                      Formulario de actualización
+                    </md-card-title>
+                    <md-card-content>
+                      <div class="col-md-6">
+                        <md-form-field class="example-full-width">
+                          <input mdInput placeholder="Nombre de concurso" name="surname" type="text" [(ngModel)]="competition.surname">
+                          <md-icon mdSuffix><i class="fa fa-address-book" aria-hidden="true"></i></md-icon>
+                        </md-form-field>
+                      </div>
+
+                      <div class="col-md-6">
+                        <md-form-field class="example-full-width">
+                          <input mdInput placeholder="Nombre de Compañia impulsadora" name="company" type="text" [(ngModel)]="competition.company">
+                          <md-icon mdSuffix><i class="fa fa-address-book" aria-hidden="true"></i></md-icon>
+                        </md-form-field>
+                      </div>
+
+                      <div class="col-md-6">
+                        <md-form-field class="example-full-width">
+                          <input mdInput placeholder="URL concurso" name="url" type="text" [(ngModel)]="competition.url">
+                          <md-icon mdSuffix><i class="fa fa-address-book" aria-hidden="true"></i></md-icon>
+                        </md-form-field>
+                      </div>
+
+                      <div class="col-md-6">
+                        <md-form-field class="example-full-width">
+                          <input mdInput placeholder="URL baner" name="urlImageBanner" type="text" [(ngModel)]="competition.urlImageBanner">
+                          <md-icon mdSuffix><i class="fa fa-address-book" aria-hidden="true"></i></md-icon>
+                        </md-form-field>
+                      </div>
+
+                      <div class="col-md-6">
+                        <md-form-field class="example-full-width">
+                          <input mdInput placeholder="Description" name="description" type="text" [(ngModel)]="competition.description">
+                          <md-icon mdSuffix><i class="fa fa-address-book" aria-hidden="true"></i></md-icon>
+                        </md-form-field>
+                      </div>
+                      
+                      <button md-raised-button color="primary" class="btn-block">Actualizar</button>
+                    </md-card-content>
+                  </form>
+                </md-card>
+              </div>
+        </main>
+      </div>
+</div>
+
+

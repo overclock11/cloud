@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {LoginService} from '../login.service';
+import { LoginService} from '../login.service';
 import { RouterLink } from '@angular/router';
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 

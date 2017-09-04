@@ -22,6 +22,12 @@ import { RegisterUserComponent } from './register-user/register-user.component';
 import {LoginService} from './login.service';
 import {ConcursosService} from './services/concursos.service';
 import {CargarVideosService} from './services/cargar-videos.service';
+import { CrudCompetitionComponent } from './crud-competition/crud-competition.component';
+import { HomeAdminComponent } from './home-admin/home-admin.component';
+import { ConcursoGestionComponent } from './concurso-gestion/concurso-gestion.component';
+import { CreateCompetitionComponent } from './create-competition/create-competition.component';
+import { CrudVideoComponent } from './crud-video/crud-video.component';
+import { CrudDetailVideoComponent } from './crud-detail-video/crud-detail-video.component';
 
 
 @NgModule({
@@ -31,7 +37,13 @@ import {CargarVideosService} from './services/cargar-videos.service';
     CompetitionComponent,
     DetailcompetitionComponent,
     RegistervideoComponent,
-    RegisterUserComponent
+    RegisterUserComponent,
+    CrudCompetitionComponent,
+    HomeAdminComponent,
+    ConcursoGestionComponent,
+    CreateCompetitionComponent,
+    CrudVideoComponent,
+    CrudDetailVideoComponent
   ],
   imports: [
     BrowserModule,
