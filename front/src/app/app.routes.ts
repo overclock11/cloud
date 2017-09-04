@@ -10,6 +10,7 @@ import { ConcursoGestionComponent} from './concurso-gestion/concurso-gestion.com
 import { CreateCompetitionComponent} from './create-competition/create-competition.component';
 import { CrudVideoComponent} from './crud-video/crud-video.component';
 import { CrudDetailVideoComponent} from './crud-detail-video/crud-detail-video.component';
+import {LoginComponent} from './login/login.component';
 
 
 
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'concursos', component: CompetitionComponent },
   { path: 'concurso/:id/registro', component: RegistervideoComponent },
   { path: 'sing-up', component: RegisterUserComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'crud-competition', component: CrudCompetitionComponent },
   { path: 'home-admin', component: HomeAdminComponent },
   { path: 'concurso-gestion/:id', component: ConcursoGestionComponent },
@@ -28,7 +30,7 @@ const routes: Routes = [
   { path: 'crud-video/:id', component: CrudVideoComponent },
   { path: 'crud-detail-video/:id', component: CrudDetailVideoComponent },
 
-  
+
 
   { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];

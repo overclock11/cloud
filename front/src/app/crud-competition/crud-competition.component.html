@@ -4,19 +4,19 @@
         <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
           <ul class="nav nav-pills flex-column">
             <li class="nav-item">
-              <a class="nav-link active" href="home-admin">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link active" [routerLink]="['/home-admin']">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="crud-competition">CRUD Concursos</a>
+              <a class="nav-link" [routerLink]="['/crud-competition']">CRUD Concursos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="create-competition">Crear Concursos</a>
+              <a class="nav-link" [routerLink]="['/create-competition']">Crear Concursos</a>
             </li>
           </ul>
 
         </nav>
         <main class="col-sm-9 ml-sm-auto col-md-10 pt-3" role="main">
-    
+
 <div class="table-responsive">
             <table class="table table-striped">
               <thead>
@@ -35,7 +35,7 @@
                   <td>{{competition.surname}}</td>
                   <td>{{competition.company}}</td>
                   <td>{{competition.url}}</td>
-                  <td>{{competition.active}}</td>                 
+                  <td>{{competition.active}}</td>
                   <a [routerLink]="['/concurso-gestion/'+competition.id]" rel="prettyPhoto[gallery]">
                     <i class="fa fa-address-card"></i>
                   </a>

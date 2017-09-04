@@ -17,17 +17,19 @@ import { CompetitionComponent } from './competition/competition.component';
 import { DetailcompetitionComponent } from './detailcompetition/detailcompetition.component';
 import { RegistervideoComponent } from './registervideo/registervideo.component';
 import { RegisterUserComponent } from './register-user/register-user.component';
-
-//servicios
-import {LoginService} from './login.service';
-import {ConcursosService} from './services/concursos.service';
-import {CargarVideosService} from './services/cargar-videos.service';
 import { CrudCompetitionComponent } from './crud-competition/crud-competition.component';
 import { HomeAdminComponent } from './home-admin/home-admin.component';
 import { ConcursoGestionComponent } from './concurso-gestion/concurso-gestion.component';
 import { CreateCompetitionComponent } from './create-competition/create-competition.component';
 import { CrudVideoComponent } from './crud-video/crud-video.component';
 import { CrudDetailVideoComponent } from './crud-detail-video/crud-detail-video.component';
+import { LoginComponent } from './login/login.component';
+
+//servicios
+import {LoginService} from './login.service';
+import {ConcursosService} from './services/concursos.service';
+import {CargarVideosService} from './services/cargar-videos.service';
+import {LocalStorageService,SessionStorageService} from 'ng2-webstorage';
 
 
 @NgModule({
@@ -43,7 +45,8 @@ import { CrudDetailVideoComponent } from './crud-detail-video/crud-detail-video.
     ConcursoGestionComponent,
     CreateCompetitionComponent,
     CrudVideoComponent,
-    CrudDetailVideoComponent
+    CrudDetailVideoComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +64,7 @@ import { CrudDetailVideoComponent } from './crud-detail-video/crud-detail-video.
   entryComponents: [
     RegistervideoComponent,
   ],
-  providers: [LoginService,ConcursosService,CargarVideosService],
+  providers: [LoginService,ConcursosService,CargarVideosService,SessionStorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
