@@ -18,5 +18,9 @@ export class LoginService {
     let base = "http://localhost:1337/user/crear";
     return this.http.post(base,usuario).catch((err)=>Observable.throw("Algo salio mal",err));
   }
+  login(usuario:any):Observable<Response>{
+    let base = "http://localhost:1337/user/login";
+    return this.http.post(base,usuario).catch((err)=>Observable.throw("Algo salio mal",err));
+  }
 
 }

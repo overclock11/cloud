@@ -11,7 +11,7 @@ module.exports = {
 		req.file('video').upload(
 			{
 				maxBytes: 100000000,
-				dirname: require('path').resolve(sails.config.appPath, '/Users/fredygonzalocaptuayonovoa/OneDrive - Universidad de Los Andes/project/Cloud/cloud/source/cloud/front/src/assets/videos'
+				dirname: require('path').resolve(sails.config.appPath, 'C:/AppServ/www/cloud/front/src/assets/videos'
 			)},function (err, uploadedFiles) {
 		  if (err){
 				return res.send(500, err);

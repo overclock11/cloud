@@ -1,0 +1,34 @@
+<div class="container margin-header-footer">
+  <div class="row">
+    <div class="col-md-6">
+      <!-- <md-progress-bar mode="indeterminate" *ngIf="creacion"></md-progress-bar> -->
+      <md-card class="card-background-color animated rubberBand">
+        <form (ngSubmit)="iniciarSesion()">
+          <md-card-title>
+            Iniciar sesión
+          </md-card-title>
+          <md-card-content>
+            <div class="col-md-6">
+              <md-form-field class="example-full-width">
+                <input mdInput placeholder="Nombre de usuario" name="username" type="text" [(ngModel)]="login.username">
+                <md-icon mdSuffix><i class="fa fa-address-book" aria-hidden="true"></i></md-icon>
+              </md-form-field>
+            </div>
+            <div class="col-md-6">
+              <md-form-field class="example-full-width">
+                <input mdInput placeholder="Contraseña" name="password" type="password" [(ngModel)]="login.password">
+                <md-icon mdSuffix ><i class="fa fa-key" aria-hidden="true"></i></md-icon>
+              </md-form-field>
+            </div>
+            <button md-raised-button color="accent" class="btn-block">Iniciar sesión</button>
+            <p *ngIf="mensaje">{{mensaje}}</p>
+          </md-card-content>
+        </form>
+      </md-card>
+    </div>
+
+    <div class="col-md-6">
+      <img src="assets/images/login.gif" alt="login gif" class="img-responsive animated bounceInUp">
+    </div>
+  </div>
+</div>

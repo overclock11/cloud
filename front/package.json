@@ -30,6 +30,7 @@
     "ng-jwplayer": "^0.2.3",
     "ng2-file-upload": "^1.2.1",
     "ng2-uploader": "^2.0.0",
+    "ng2-webstorage": "^1.8.0",
     "rxjs": "^5.4.2",
     "zone.js": "^0.8.14"
   },

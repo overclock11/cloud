@@ -40,6 +40,8 @@ export class DetailcompetitionComponent implements OnInit {
     )
   }
   enlaces(enlace) {
+    enlace = enlace.replace(/\\/g,"/");
+    enlace = enlace.substring(enlace.indexOf("/assets"));
     return this.sanitizer.bypassSecurityTrustUrl(enlace);
   }
   openDialog(): void {

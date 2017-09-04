@@ -17,11 +17,16 @@
           <div class="about-team-person text-center">
             <div class="about-team-person-image">
               <video width="640" height="360" controls>
-            	   <source  [src]="video.url" 
-                 src="assets/videos/descarga.mp4" type="video/mp4">
+            	   <source [src]="enlaces(video.url)" type="video/mp4">
+            	   Tu navegador no soporta HTML5 video.
+              </video>
+              <!--
+              <video width="640" height="360" controls>
+            	   <source
+                 src="assets/videos/1743f5e9-38c4-42a3-a044-7b79347a02d6.mp4" type="video/mp4">
             	   Tu navegador no soporta HTML5 video.
               </video>              
-              <!-- <video [src]="enlaces(video.url)" autoplay poster="posterimage.jpg">
+              <video [src]="enlaces(video.url)" autoplay poster="posterimage.jpg">
               </video> -->
               <!-- <img class="img-responsive" src="assets/images/team/1.jpg" alt="Team1"> -->
             </div>
@@ -29,11 +34,6 @@
               <h3> {{video.name}}</h3>
               <h4>{{video.updatedAt}}</h4>
               <p>{{video.description}}</p>
-            </div>
-            <div class="form-group">
-              <a href="/concurso/11">
-                <button type="submit" class="btn btn-danger btn-lg btn-block">Ver ...</button>
-              </a>
             </div>
           </div>
         </div>
