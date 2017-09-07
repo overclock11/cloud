@@ -54,6 +54,7 @@ export class RegistervideoComponent implements OnInit {
   }
 
   cargarVideo(usuarioId){
+    //segundo - carga el video y retorna la ruta para insertar en el registro de la base
     let fileBrowser = this.cargarVideov.nativeElement;
     if (fileBrowser.files && fileBrowser.files[0]) {
       const formData = new FormData();
@@ -71,8 +72,9 @@ export class RegistervideoComponent implements OnInit {
     }
   }
   crearRegistro(ruta,name,usuarioId){
+    //crea registro en tabla video
     this.registroVideo.url=ruta.ruta;
-    this.registroVideo.user_id=usuarioId;
+    this.registroVideo.user_id=usuarioId.id;
     this.videoService.registrarVideo(this.registroVideo).subscribe(respuesta=>{
       this.creacion = false;
       this.dialogRef.close(true);

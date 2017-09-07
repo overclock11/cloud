@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { CargarVideosService} from '../services/cargar-videos.service';
 import { RouterLink,ActivatedRoute } from '@angular/router';
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
-import { Router } from '@angular/router'; 
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-crud-detail-video',
@@ -29,12 +29,8 @@ ngOnInit() {
     this.cargarVideosService.getVideoById(this.id).subscribe(
       respuesta =>{
           respuesta = respuesta.json();
-          console.log(respuesta);
-          this.competitor = respuesta["competitor"];
-          this.video = respuesta;
-          
+          this.video = respuesta[0];
           console.log(this.video);
-          console.log(this.competitor);
       },
       error=>console.log(error)
     )

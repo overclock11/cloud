@@ -4,7 +4,7 @@ connection = mysql.createConnection(
     {
         host: 'localhost',
         user: 'root',
-        password: 'administrador',
+        password: 'root',
         database: 'cloud'
     }
 );
@@ -22,7 +22,7 @@ VideoModel.getVideoByCompetition = function(id,callback){
         {
             if(error)
             {
-                throw error;
+                callback(error, result);
             }
             else
             {
@@ -31,5 +31,40 @@ VideoModel.getVideoByCompetition = function(id,callback){
         });
     }
 }
+VideoModel.getVideoById = function(id,callback){
+  console.log(id);
+    if (connection)
+    {
+      var sql ="select * from video as v join user as u on(v.user_id=u.id) where v.id="+ connection.escape(id.id);
+        connection.query(sql, function(error, row)
+        {
+            if(error)
+            {
+                callback(error, result);
+            }
+            else
+            {
+                callback(null, row);
+            }
+        });
+    }
+}
+
+VideoModel.insertVideo = function(videoData,callback){
+    if (connection)
+    {
+      connection.query('INSERT INTO video SET ?', videoData, function(error, result) {
+        if(error)
+        {
+            callback(error, result);
+        }
+        else
+        {
+            callback(null, result);
+        }
+      });
+    }
+}
+
 //exportamos el objeto para tenerlo disponible en la zona de rutas
 module.exports = VideoModel;

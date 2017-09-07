@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ConcursosService} from '../services/concursos.service';
 import { RouterLink,ActivatedRoute } from '@angular/router';
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
-import { Router } from '@angular/router'; 
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-competition',
@@ -22,6 +22,7 @@ export class CreateCompetitionComponent implements OnInit {
 
   registerCompetition(){
     this.creacion = true;
+    console.log(this.competition);
     this.concursosService.registerCompetition(this.competition).subscribe(
       respuesta =>{
           respuesta = respuesta.json()

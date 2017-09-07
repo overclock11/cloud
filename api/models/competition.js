@@ -4,7 +4,7 @@ connection = mysql.createConnection(
     {
         host: 'localhost',
         user: 'root',
-        password: 'administrador',
+        password: 'root',
         database: 'cloud'
     }
 );
@@ -50,6 +50,24 @@ competitionModel.getByUrl = function(url,callback)
         });
     }
 }
+competitionModel.getCompetitionsById = function(competitionId,callback)
+{
+    if (connection)
+    {
+        var sql = 'SELECT * FROM competition WHERE id = ' + connection.escape(competitionId.id);
+        connection.query(sql, function(error, row)
+        {
+            if(error)
+            {
+                throw error;
+            }
+            else
+            {
+                callback(null, row);
+            }
+        });
+    }
+}
 competitionModel.getAllCompetitions = function(callback){
   if (connection)
   {
@@ -65,6 +83,39 @@ competitionModel.getAllCompetitions = function(callback){
               callback(null, row);
           }
       });
+  }
+}
+competitionModel.updateCompetition = function(id,datos,callback){
+  if (connection)
+  {
+      connection.query('update competition set name= ?, company=? ,url=? , url_image_banner=?, description=? where id=?',
+      [datos.name,datos.company,datos.url,datos.url_image_banner,datos.description,id.id],
+      function(error, row)
+      {
+          if(error)
+          {
+              throw error;
+          }
+          else
+          {
+              callback(null, row);
+          }
+      });
+  }
+}
+competitionModel.registerCompetition = function(datosCreacion,callback){
+  if (connection)
+  {
+    connection.query('INSERT INTO competition SET ?', datosCreacion, function(error, result) {
+      if(error)
+      {
+          callback(error, result);
+      }
+      else
+      {
+          callback(error, result);
+      }
+    });
   }
 }
 

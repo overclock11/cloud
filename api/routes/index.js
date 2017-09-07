@@ -11,20 +11,23 @@ router.get('/', function(req, res)
   res.render('index', { title: 'Servicio rest con nodejs, express 4 y mysql'});
 });
 
-router.route("/crear").post(UserController.crear);
-router.route("/login").post(UserController.login);
+router.route("/usuario/crear").post(UserController.crear);
+router.route("/usuario/login").post(UserController.login);
 
 
-router.route("/url/:id").get(CompetitionController.url);
-router.route("/competitions").get(CompetitionController.getCompetitions);
-router.route("/competitions").get(CompetitionController.getCompetitions);
+router.route("/competition/url/:id").get(CompetitionController.url);
+router.route("/competition/competitions").get(CompetitionController.getCompetitions);
+router.route("/competition/id/:id").get(CompetitionController.getCompetitionsById);
+router.route("/competition/update/:id").put(CompetitionController.updateCompetition);
+router.route("/competition/crear").post(CompetitionController.registerCompetition);
 
 
 router.route("/videos/competition/:id").get(VideoController.getVideoByCompetition);
-
+router.route("/videos/:id").get(VideoController.getVideoById);
+router.route("/videos/upload").post(VideoController.upload);
+router.route("/videos/crear").post(VideoController.registrarVideo);
 
 
 
 router.use('/api', router);
-
 module.exports = router;

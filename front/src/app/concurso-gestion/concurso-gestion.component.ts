@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ConcursosService} from '../services/concursos.service';
 import { RouterLink,ActivatedRoute } from '@angular/router';
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
-import { Router } from '@angular/router'; 
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -16,20 +16,18 @@ export class ConcursoGestionComponent implements OnInit {
   public sesion = false;
   public id: string;
   public creadoConExito;
-  
+
   constructor(private concursosService:ConcursosService, private ruta:ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.ruta.params.subscribe( params =>{
         this.id = params['id']
-        console.log(this.id)
       }
     );
     this.concursosService.getCompetitionByIdString(this.id).subscribe(
       respuesta =>{
           respuesta = respuesta.json();
-          console.log(respuesta);
-          this.competition = respuesta;
+          this.competition = respuesta[0];
           console.log(this.competition);
       },
       error=>console.log(error)
@@ -42,12 +40,11 @@ export class ConcursoGestionComponent implements OnInit {
     this.concursosService.updateCompetitionByID(this.competition).subscribe(
       respuesta =>{
           respuesta = respuesta.json()
-          console.log("fredy");
           console.log(respuesta);
       },
       error=>console.log(error)
     )
-    this.router.navigate(['crud-competition']);
+    this.router.navigate(['/crud-competition']);
   }
 
 }

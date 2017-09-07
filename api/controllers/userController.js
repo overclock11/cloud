@@ -17,12 +17,14 @@ exports.crear =function(req,res){
   UserModel.insertUser(userData,function(error, data)
   {
       //si el usuario se ha insertado correctamente mostramos su info
-      if(data && data.insertId)
+      console.log(data);
+      if(data)
       {
-          res.json(200,data);
+          res.json(200,{id:data.insertId});
       }
       else
       {
+        console.log("se fue por error",data);
           res.json(500,{"msg":error});
       }
   });
@@ -37,7 +39,7 @@ exports.login = function(req,res){
       res.json(200,data);
     }
     else{
-      res.json(500,error);
+      res.json(401);
     }
   })
 }

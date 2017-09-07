@@ -12,15 +12,6 @@ export class HomeComponent implements OnInit {
   constructor(private service:LoginService) { }
 
   ngOnInit() {
-    this.service.getUsers().subscribe(
-      respuesta =>{
-          respuesta = respuesta.json()
-          console.log(respuesta)
-      },
-      error=>console.log(error)
-    )
+
   }
-
-
-
 }

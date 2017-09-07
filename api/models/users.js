@@ -4,7 +4,7 @@ connection = mysql.createConnection(
     {
         host: 'localhost',
         user: 'root',
-        password: 'administrador',
+        password: 'root',
         database: 'cloud'
     }
 );
@@ -20,7 +20,7 @@ userModel.getUsers = function(callback)
         connection.query('SELECT * FROM user ORDER BY id', function(error, rows) {
             if(error)
             {
-                throw error;
+                callback(error, result);
             }
             else
             {
@@ -30,23 +30,42 @@ userModel.getUsers = function(callback)
     }
 }
 
-//obtenemos un usuario por su id
+//obtenemos un usuario por su usuarioi y contraseña
 userModel.getUser = function(id,callback)
 {
     if (connection)
     {
-        var sql = 'SELECT * FROM user WHERE username = ' + connection.escape(id.username)+' and password='+connection.escape(id.password);
+        var sql = 'SELECT username,name,email,id FROM user WHERE username = ' + connection.escape(id.username)+' and password='+connection.escape(id.password);
         connection.query(sql, function(error, row)
         {
-            if(error)
+            if(error || row.length==0)
             {
-                throw error;
+                callback(error, null);
             }
             else
             {
                 callback(null, row);
             }
         });
+    }
+}
+
+//Insertando un usuario
+userModel.insertUser = function(userData,callback)
+{
+    if (connection)
+    {
+      connection.query('INSERT INTO user SET ?', userData, function(error, result) {
+        console.log("error msqll----->",error);
+        if(error)
+        {
+            callback(error, null);
+        }
+        else
+        {
+            callback(null, result);
+        }
+      });
     }
 }
 //exportamos el objeto para tenerlo disponible en la zona de rutas

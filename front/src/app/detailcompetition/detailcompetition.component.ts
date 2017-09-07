@@ -59,9 +59,8 @@ export class DetailcompetitionComponent implements OnInit {
     });
   }
   cargarVideosConcurso(id){
-    this.concursosService.getCompetitionById(id).subscribe(respuesta=>{
-      let videos = respuesta.json();
-      this.listaVideos = videos.videos;
+    this.concursosService.getVideosByCompetitionID(id).subscribe(respuesta=>{
+      this.listaVideos = respuesta.json();
       console.log(this.listaVideos);
     },error=>{
       console.log(error);
