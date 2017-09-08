@@ -24,7 +24,8 @@ export class RegistervideoComponent implements OnInit {
     "competition_id":"",
     "video":  new FormData(),
     "name":"",
-    "url":""
+    "url":"",
+    "createdAt": new Date()
   };
   public creacion;
 
@@ -75,6 +76,7 @@ export class RegistervideoComponent implements OnInit {
     //crea registro en tabla video
     this.registroVideo.url=ruta.ruta;
     this.registroVideo.user_id=usuarioId.id;
+    this.registroVideo.createdAt=new Date();
     this.videoService.registrarVideo(this.registroVideo).subscribe(respuesta=>{
       this.creacion = false;
       this.dialogRef.close(true);

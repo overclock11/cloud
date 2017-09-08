@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ConcursosService} from '../services/concursos.service';
 import { RouterLink,ActivatedRoute } from '@angular/router';
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
+import {SessionStorageService} from 'ng2-webstorage';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,10 +12,16 @@ import { Router } from '@angular/router';
 })
 export class CreateCompetitionComponent implements OnInit {
 
-  public competition ={};
+  public competition ={
+    "user_id":"",
+    "createdAt":new Date()
+  };
   public creacion = false;
   public sesion = false;
-  constructor(private concursosService:ConcursosService, private ruta:ActivatedRoute, private router: Router) { }
+  constructor(private concursosService:ConcursosService,
+     private ruta:ActivatedRoute, private router: Router,
+     private storage:SessionStorageService
+   ) { }
 
 
   ngOnInit() {
@@ -22,6 +29,10 @@ export class CreateCompetitionComponent implements OnInit {
 
   registerCompetition(){
     this.creacion = true;
+    let usuario = this.storage.retrieve("usuario")
+    usuario = JSON.parse(usuario);
+    this.competition.user_id = usuario[0].id;
+    this.competition.createdAt = new Date();
     console.log(this.competition);
     this.concursosService.registerCompetition(this.competition).subscribe(
       respuesta =>{
@@ -31,7 +42,7 @@ export class CreateCompetitionComponent implements OnInit {
       },
       error=>console.log(error)
     )
-    this.router.navigate(['crud-competition']);
+    this.router.navigate(['/crud-competition']);
   }
 
 }

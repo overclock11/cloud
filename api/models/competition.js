@@ -68,10 +68,29 @@ competitionModel.getCompetitionsById = function(competitionId,callback)
         });
     }
 }
-competitionModel.getAllCompetitions = function(callback){
+
+competitionModel.getAllCompetitionsAdmin = function(adminId,callback){
   if (connection)
   {
-      var sql = 'SELECT * FROM competition';
+      var sql = 'SELECT * FROM competition where user_id=?';
+      connection.query(sql,[adminId.id], function(error, row)
+      {
+          if(error)
+          {
+              throw error;
+          }
+          else
+          {
+              callback(null, row);
+          }
+      });
+  }
+}
+
+competitionModel.getAllCompetitionsHome = function(callback){
+  if (connection)
+  {
+      var sql = 'SELECT * FROM competition where active=1';
       connection.query(sql, function(error, row)
       {
           if(error)
@@ -85,6 +104,24 @@ competitionModel.getAllCompetitions = function(callback){
       });
   }
 }
+
+competitionModel.deleteCompetition = function(id,callback){
+  if (connection)
+  {
+      connection.query("update competition set active=0 where id=?",[id.id], function(error, row)
+      {
+          if(error)
+          {
+              throw error;
+          }
+          else
+          {
+              callback(null, row);
+          }
+      });
+  }
+}
+
 competitionModel.updateCompetition = function(id,datos,callback){
   if (connection)
   {

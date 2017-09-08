@@ -14,6 +14,7 @@ export class CrudVideoComponent implements OnInit {
 
   public listOfvideos;
   public id: number;
+  public p:number=1;
 
   constructor(private concursosService:ConcursosService, private ruta:ActivatedRoute, private router: Router) { }
 

@@ -17,7 +17,7 @@ VideoModel.getVideoByCompetition = function(id,callback){
   console.log(id);
     if (connection)
     {
-        var sql = 'SELECT * FROM video WHERE competition_id = ' + connection.escape(id.id);
+        var sql = 'SELECT * FROM video WHERE competition_id = ' + connection.escape(id.id)+" order by createdAt desc;";
         connection.query(sql, function(error, row)
         {
             if(error)

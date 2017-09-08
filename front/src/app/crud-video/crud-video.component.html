@@ -24,20 +24,29 @@
                   <th>#</th>
                   <th>Nombre</th>
                   <th>Fecha creacion</th>
+                  <th>Estado</th>
                   <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let video of listOfvideos">
+                <tr *ngFor="let video of listOfvideos "><!--| paginate: { itemsPerPage: 10, currentPage: p } -->
                   <td>{{video.id}}</td>
                   <td>{{video.name}}</td>
                   <td>{{video.createdAt}}</td>
+                  <td>{{video.notify ==null || video.notify ==0 ?"En proceso":"Convertido"}}</td>
                   <a [routerLink]="['/crud-detail-video/'+video.id]" rel="prettyPhoto[gallery]">
                     <i class="fa fa-video-camera"></i>
                   </a>
                 </tr>
               </tbody>
             </table>
+            <!-- <tfoot>
+              <tr>
+                <td colspan="5">
+                  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                </td>
+              </tr>
+            </tfoot> -->
           </div>
       </main>
       </div>

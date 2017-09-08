@@ -8,8 +8,9 @@ import { AppComponent } from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {MdButtonModule, MdCheckboxModule} from '@angular/material';
-import {MaterialModule} from '@angular/material';
+import {MaterialModule,MdNativeDateModule} from '@angular/material';
 import { FormsModule , ReactiveFormsModule} from '@angular/forms';
+
 
 import { HomeComponent } from './home/home.component';
 import 'hammerjs';
@@ -30,7 +31,7 @@ import {LoginService} from './login.service';
 import {ConcursosService} from './services/concursos.service';
 import {CargarVideosService} from './services/cargar-videos.service';
 import {LocalStorageService,SessionStorageService} from 'ng2-webstorage';
-
+//import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import {LocalStorageService,SessionStorageService} from 'ng2-webstorage';
     CreateCompetitionComponent,
     CrudVideoComponent,
     CrudDetailVideoComponent,
-    LoginComponent
+    LoginComponent,
+    //NgxPaginationModule
   ],
   imports: [
     BrowserModule,
@@ -55,6 +57,7 @@ import {LocalStorageService,SessionStorageService} from 'ng2-webstorage';
     MdButtonModule,
     MdCheckboxModule,
     MaterialModule,
+    MdNativeDateModule,
     app_rountig,
     HttpModule,
     FormsModule,

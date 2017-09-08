@@ -16,10 +16,12 @@ router.route("/usuario/login").post(UserController.login);
 
 
 router.route("/competition/url/:id").get(CompetitionController.url);
-router.route("/competition/competitions").get(CompetitionController.getCompetitions);
+router.route("/competition/competitions/admin/:id").get(CompetitionController.getAllCompetitionsAdmin);
+router.route("/competition/competitions").get(CompetitionController.getAllCompetitionsHome);
 router.route("/competition/id/:id").get(CompetitionController.getCompetitionsById);
 router.route("/competition/update/:id").put(CompetitionController.updateCompetition);
 router.route("/competition/crear").post(CompetitionController.registerCompetition);
+router.route("/competition/eliminar/:id").delete(CompetitionController.deleteCompetition);
 
 
 router.route("/videos/competition/:id").get(VideoController.getVideoByCompetition);

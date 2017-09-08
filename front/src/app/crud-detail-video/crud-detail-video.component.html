@@ -21,39 +21,24 @@
                 <md-progress-bar mode="indeterminate" *ngIf="update"></md-progress-bar>
                 <md-card class="card-background-color animated rubberBand">
                   <form (ngSubmit)="actualizarVideo()">
-                    <md-card-title>
-                      Formulario de vizualizacion de video
-                    </md-card-title>
                     <md-card-content>
 
                       <div class="about-team-person text-center">
                           <div class="about-team-person-image">
-                            <video width="640" height="360" controls>
-                               <source  [src]="video.url"
-                               src="assets/videos/descarga.mp4" type="video/mp4">
+                            <video style="width:100%;" controls>
+                               <source  [src]="video.url" type="video/mp4">
                                Tu navegador no soporta HTML5 video.
                             </video>
-                            <!-- <video [src]="enlaces(video.url)" autoplay poster="posterimage.jpg">
-                            </video> -->
-                            <!-- <img class="img-responsive" src="assets/images/team/1.jpg" alt="Team1"> -->
+                          </div>
+                          <div class="about-team-person-info">
+                            <h3>{{video.username}} {{video.surname}}</h3>
+                            <h4> {{video.email}}</h4>
                           </div>
                           <div class="about-team-person-info">
                             <h3> {{video.name}}</h3>
                             <h4>{{video.updatedAt}}</h4>
                           </div>
-
-                          <div class="about-team-person-info">
-                            <h3> {{video.surname}}</h3>
-                            <h4> {{video.email}}</h4>
-                          </div>
-
-                          <!-- <div class="form-group">
-                            <a href="/concurso/11">
-                              <button type="submit" class="btn btn-danger btn-lg btn-block">Ver ...</button>
-                            </a>
-                          </div> -->
                         </div>
-
                     </md-card-content>
                   </form>
                 </md-card>

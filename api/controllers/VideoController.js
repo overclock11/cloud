@@ -45,7 +45,8 @@ exports.upload = function(req,res){
       res.json(500,err);
     }
     else{
-      res.json(200,{ruta:"http://"+ip.address()+":3000/public/videos/"+nombre});
+      res.json(200,{ruta:"http://localhost:3000/public/videos/"+nombre});
+      //res.json(200,{ruta:"http://"+ip.address()+":3000/public/videos/"+nombre});
     }
   });
 }
@@ -58,6 +59,7 @@ exports.registrarVideo = function(req,res){
     "state_id":req.body.state_id,
     "competition_id":req.body.competition_id,
     "user_id":req.body.user_id,
+    "createdAt":req.body.createdAt
   }
   VideoModel.insertVideo(videoData,function(error, data)
   {

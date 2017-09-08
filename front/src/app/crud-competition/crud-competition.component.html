@@ -42,6 +42,9 @@
                   <a [routerLink]="['/crud-video/'+competition.id]" rel="prettyPhoto[gallery]">
                     <i class="fa fa-video-camera"></i>
                   </a>
+                  <a (click)="eliminarConcurso(competition.id);">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                  </a>
                 </tr>
               </tbody>
             </table>

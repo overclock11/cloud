@@ -12,7 +12,7 @@ export class CompetitionComponent implements OnInit {
   constructor(private concursosService:ConcursosService) { }
 
   ngOnInit() {
-    this.concursosService.getCompetitions().subscribe(
+    this.concursosService.getCompetitionsHome().subscribe(
       respuesta =>{
           respuesta = respuesta.json();
           console.log(respuesta);

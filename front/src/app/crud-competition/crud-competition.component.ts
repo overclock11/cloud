@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ConcursosService} from '../services/concursos.service';
+import {SessionStorageService} from 'ng2-webstorage';
 
 @Component({
   selector: 'app-crud-competition',
@@ -10,10 +11,13 @@ import {ConcursosService} from '../services/concursos.service';
 export class CrudCompetitionComponent implements OnInit {
 
   public listOfCompetitions;
-  constructor(private concursosService:ConcursosService) { }
+  constructor(private concursosService:ConcursosService,private storage:SessionStorageService) { }
 
   ngOnInit() {
-    this.concursosService.getCompetitions().subscribe(
+    let usuarioId = this.storage.retrieve("usuario");
+    usuarioId= JSON.parse(usuarioId);
+
+    this.concursosService.getAllCompetitionsAdmin(usuarioId[0].id).subscribe(
       respuesta =>{
           respuesta = respuesta.json();
           console.log(respuesta);
@@ -21,6 +25,14 @@ export class CrudCompetitionComponent implements OnInit {
       },
       error=>console.log(error)
     )
+  }
+
+  eliminarConcurso(id){
+    this.concursosService.deleteCompetition(id).subscribe(respuesta=>{
+      this.ngOnInit();
+    },error=>{
+      console.log(error);
+    });
   }
 
 }

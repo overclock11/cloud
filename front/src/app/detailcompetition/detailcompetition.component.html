@@ -13,10 +13,10 @@
     <div class="about-team">
       <div class="row">
 
-        <div class="col-sm-12 col-md-12" *ngFor="let video of listaVideos">
+        <div class="col-sm-6 col-md-6" *ngFor="let video of listaVideos">
           <div class="about-team-person text-center">
             <div class="about-team-person-image">
-              <video width="640" height="360" controls>
+              <video style="width:100%;" controls>
             	   <source [src]="enlaces(video.url)" type="video/mp4">
             	   Tu navegador no soporta HTML5 video.
               </video>
@@ -25,14 +25,14 @@
             	   <source
                  src="assets/videos/1743f5e9-38c4-42a3-a044-7b79347a02d6.mp4" type="video/mp4">
             	   Tu navegador no soporta HTML5 video.
-              </video>              
+              </video>
               <video [src]="enlaces(video.url)" autoplay poster="posterimage.jpg">
               </video> -->
               <!-- <img class="img-responsive" src="assets/images/team/1.jpg" alt="Team1"> -->
             </div>
             <div class="about-team-person-info">
               <h3> {{video.name}}</h3>
-              <h4>{{video.updatedAt}}</h4>
+              <h4>{{video.createdAt}}</h4>
               <p>{{video.description}}</p>
             </div>
           </div>
