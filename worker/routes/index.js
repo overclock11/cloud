@@ -2,12 +2,14 @@ var express = require('express');
 var router = express.Router();
 var VideoController = require('../controllers/VideoController');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+
+/* Mostramos el formualario para crear usuarios nuevos */
+router.get('/', function(req, res)
+{
+  res.render('index', { title: 'Servicio rest con nodejs, express 4 y mysql'});
 });
 
 router.route("/videos/upload").post(VideoController.upload);
 
-router.use('/worker', router);
+router.use('/api', router);
 module.exports = router;

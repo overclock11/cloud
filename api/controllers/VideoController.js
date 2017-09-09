@@ -32,9 +32,13 @@ exports.registrarVideo = function(req,res){
     "name":req.body.name,
     "url":req.body.url,
     "description":req.body.description,
-    "state_id":req.body.state_id,
+    "state_id": 1,
     "competition_id":req.body.competition_id,
-    "user_id":req.body.user_id
+    "user_id":req.body.user_id,
+    "show_home":0,
+    "active":0,
+    "notify":0,
+    "url_master":null
   }
   VideoModel.insertVideo(videoData,function(error, data)
   {

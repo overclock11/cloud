@@ -10,7 +10,7 @@ export class CargarVideosService {
 
   uploadVideo(datos:FormData): Observable<Response>{
     let headers = {'Content-Type': 'multipart/form-data'};
-    return this.http.post("http://localhost:3000/api/videos/upload",datos,headers)
+    return this.http.post("http://localhost:3001/api/videos/upload",datos,headers)
     .catch((err)=>Observable.throw("Algo salio mal",err));
   }
   registrarVideo(participante:any): Observable<Response>{
