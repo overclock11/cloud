@@ -1,20 +1,11 @@
 var VideoModel = require('../models/video');
+var EmailController = require('../controllers/EmailController');
+var FfmpegController = require('../controllers/FfmpegController');
 var multer  = require('multer')
 var ip = require("ip");
 var cron = require('node-cron');
+var ffmpeg = require('ffmpeg');
 
-
-exports.getVideoByCompetition = function(req,res){
-  // recibe el id de la competencia y lista todos sus videos
-  VideoModel.getVideoByCompetition(req.params,function(error,data){
-    if (data) {
-      res.json(200,data);
-    }
-    else{
-      res.json(500,error);
-    }
-  })
-}
 
 exports.upload = function(req,res){
   var nombre;
@@ -35,19 +26,17 @@ exports.upload = function(req,res){
     }
     else{
       res.json(200,{ruta:"http://localhost:3001/public/videos/"+nombre});
-      //res.json(200,{ruta:"http://"+ip.address()+":3000/public/videos/"+nombre});
     }
   });
 }
  
 cron.schedule('* * * * *', function(){
   VideoModel.getVideoByNotProcess(function(error,data){
-    if (data) {
-      res.json(200,data);
-    }
-    else{
-      res.json(500,error);
-    }
+    data.forEach(function (item) {
+      console.log(item.url);
+        FfmpegController.convertVideoToMp4()
+    });
+    EmailController.sendEmail();
   })
 });
 
