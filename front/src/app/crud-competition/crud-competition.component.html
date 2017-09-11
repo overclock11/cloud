@@ -30,7 +30,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let competition of listOfCompetitions">
+                <tr *ngFor="let competition of listOfCompetitions  | paginate: { itemsPerPage: 10, currentPage: p } ">
                   <td>{{competition.id}}</td>
                   <td>{{competition.surname}}</td>
                   <td>{{competition.company}}</td>
@@ -47,6 +47,13 @@
                   </a>
                 </tr>
               </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="5">
+                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                  </td>
+                </tr>
+              </tfoot>
             </table>
           </div>
       </main>

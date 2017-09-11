@@ -29,7 +29,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let video of listOfvideos "><!--| paginate: { itemsPerPage: 10, currentPage: p } -->
+                <tr *ngFor="let video of listOfvideos | paginate: { itemsPerPage: 50, currentPage: p } ">
                   <td>{{video.id}}</td>
                   <td>{{video.name}}</td>
                   <td>{{video.createdAt}}</td>
@@ -39,14 +39,14 @@
                   </a>
                 </tr>
               </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="5">
+                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                  </td>
+                </tr>
+              </tfoot>
             </table>
-            <!-- <tfoot>
-              <tr>
-                <td colspan="5">
-                  <pagination-controls (pageChange)="p = $event"></pagination-controls>
-                </td>
-              </tr>
-            </tfoot> -->
           </div>
       </main>
       </div>

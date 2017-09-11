@@ -11,6 +11,7 @@ import {SessionStorageService} from 'ng2-webstorage';
 export class CrudCompetitionComponent implements OnInit {
 
   public listOfCompetitions;
+  public p:number=1;
   constructor(private concursosService:ConcursosService,private storage:SessionStorageService) { }
 
   ngOnInit() {

@@ -11,7 +11,7 @@
         <div class="col-sm-4" *ngFor="let competition of listOfCompetitions">
           <div class="portfolio-gallery-item">
             <h2>{{competition.surname}}</h2>
-            <img class="img-responsive" [src]="competition.urlImageBanner" alt="Image1">
+            <img class="img-responsive" [src]="competition.url_image_banner" alt="Image1">
             <a [routerLink]="['/concurso/'+competition.url]" rel="prettyPhoto[gallery]">
               <i class="fa fa-search-plus"></i>
             </a>
