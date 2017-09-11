@@ -1,4 +1,5 @@
 var VideoModel = require('../models/video');
+var config = require('../config');
 var multer  = require('multer')
 var ip = require("ip");
 

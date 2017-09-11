@@ -1,32 +1,36 @@
+var VideoModel = require('../models/video');
 var nodemailer = require('nodemailer');
+var config = require('../config');
 
 // email sender function
-exports.sendEmail = function(req, res){
+exports.sendEmail = function(id, emailUser, url_master){
 
-console.log("va a enviar correo");
-// Definimos el transporter
-    var transporter = nodemailer.createTransport({
-        service: 'Gmail',
-        auth: {
-            user: 'captuayonovoafredy@gmail.com',
-            pass: 'Ti94113010260'
+    console.log("va a enviar correo a " + emailUser);
+    // Definimos el transporter
+        var transporter = nodemailer.createTransport(config.configMail);
+    // Definimos el email
+    var mailOptions = {
+        from: config.configMailFrom.from ,
+        to: emailUser,
+        subject: config.configMailFrom.subject,
+        text: config.configMailFrom.text
+    };
+
+    // Enviamos el email
+    transporter.sendMail(mailOptions, function(error, info){
+        if (error){
+            console.log(error);
+        } else {
+            console.log("Email sent");
+
+            VideoModel.updateConvertVideo(id, url_master, function(error, data) {
+                if(data) {
+                   console.log("Update succes");
+                } else {
+                   console.log("Error update");
+
+                }
+              });
         }
     });
-// Definimos el email
-var mailOptions = {
-    from: 'FcaptuayoSabit@sabit.co',
-    to: 'jlian92@gmail.com',
-    subject: 'Correo cargado exitosamesnte prueba 001',
-    text: 'Correo convertido exitosamente, su video se encuentra disponible en la pagina oficial del concurso'
-};
-// Enviamos el email
-transporter.sendMail(mailOptions, function(error, info){
-    if (error){
-        console.log(error);
-        res.send(500, err.message);
-    } else {
-        console.log("Email sent");
-        res.status(200).jsonp(req.body);
-    }
-});
 };

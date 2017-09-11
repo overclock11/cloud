@@ -1,6 +1,6 @@
 var VideoModel = require('../models/video');
-var EmailController = require('../controllers/EmailController');
 var FfmpegController = require('../controllers/FfmpegController');
+var config = require('../config');
 var multer  = require('multer')
 var ip = require("ip");
 var cron = require('node-cron');
@@ -11,7 +11,7 @@ exports.upload = function(req,res){
   var nombre;
   let storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, './public/videos')
+      cb(null, config.pathVideo.pathLogic)
     },
     filename: function (req, file, cb) {
       nombre =Date.now()+file.originalname;
@@ -25,18 +25,19 @@ exports.upload = function(req,res){
       res.json(500,err);
     }
     else{
-      res.json(200,{ruta:"http://localhost:3001/public/videos/"+nombre});
+      res.json(200,{ruta:config.pathVideo.path+nombre});
     }
   });
 }
  
-cron.schedule('* * * * *', function(){
+cron.schedule('*/2 * * * *', function(){
   VideoModel.getVideoByNotProcess(function(error,data){
     data.forEach(function (item) {
       console.log(item.url);
-        FfmpegController.convertVideoToMp4()
+        urlOrigin = item.url.replace(config.pathVideo.path, '');
+        FfmpegController.convertVideoToMp4(item.id, urlOrigin, 'captuayonovoafredy@gmail.com');
     });
-    EmailController.sendEmail();
+    
   })
 });
 

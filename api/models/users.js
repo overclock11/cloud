@@ -1,13 +1,8 @@
+var config = require('../config');
+
 var mysql = require('mysql'),
 //creamos la conexion a nuestra base de datos con los datos de acceso de cada uno
-connection = mysql.createConnection(
-    {
-        host: 'localhost',
-        user: 'root',
-        password: 'root',
-        database: 'cloud'
-    }
-);
+connection = mysql.createConnection(config.databases);
 
 //creamos un objeto para ir almacenando todo lo que necesitemos
 var userModel = {};

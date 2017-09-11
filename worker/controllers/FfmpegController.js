@@ -1,17 +1,25 @@
+var EmailController = require('../controllers/EmailController');
 var ffmpeg = require('ffmpeg');
+var config = require('../config');
 
 // ffmpeg convert function
-exports.convertVideoToMp4 = function(req, res){
+exports.convertVideoToMp4 = function(id, urlOrigin, emailUser){
 
-console.log("va a convertir el video");
+console.log("va a convertir el video"+urlOrigin);
 	try {
-		var process = new ffmpeg('public/videos/1504968625555video001.mp4');
+		var process = new ffmpeg(config.pathVideo.pathLogicOrigin+urlOrigin);
 		process.then(function (video) {
 			video
 			.setVideoFormat('mp4')
-			.save('public/videos-render/1504968625555video001.mp4', function (error, file) {
+			.save(config.pathVideo.pathLogicConvert+urlOrigin, function (error, file) {
 			  if (!error)
 			    console.log('Video file: ' + file);
+				console.log("Video a convertido");
+				urlOrigin = urlOrigin.replace('.avi', '.mp4');
+				urlOrigin = urlOrigin.replace('.mov', '.mp4');
+				urlOrigin = urlOrigin.replace('.AVI', '.mp4');
+				urlOrigin = urlOrigin.replace('.MOV', '.mp4');
+				EmailController.sendEmail(id, emailUser, config.pathVideo.pathRender+urlOrigin);
 			});
 			}, function (err) {
 				console.log('Error: ' + err);
@@ -20,5 +28,5 @@ console.log("va a convertir el video");
 			console.log(e.code);
 			console.log(e.msg);
 		}
-	console.log("Video a convertido");
+
 };

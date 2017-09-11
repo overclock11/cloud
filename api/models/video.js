@@ -1,13 +1,8 @@
+var config = require('../config');
+
 var mysql = require('mysql'),
 //creamos la conexion a nuestra base de datos con los datos de acceso de cada uno
-connection = mysql.createConnection(
-    {
-        host: 'localhost',
-        user: 'root',
-        password: 'root',
-        database: 'cloud'
-    }
-);
+connection = mysql.createConnection(config.databases);
 
 //creamos un objeto para ir almacenando todo lo que necesitemos
 var VideoModel = {};
@@ -17,7 +12,7 @@ VideoModel.getVideoByCompetition = function(id,callback){
   console.log(id);
     if (connection)
     {
-        var sql = 'SELECT * FROM video WHERE competition_id = ' + connection.escape(id.id)+" order by createdAt desc;";
+        var sql = 'SELECT * FROM video WHERE url_master is not null and show_home = 1 and state_id = 1 and notify = 1 order by createdAt desc;';
         connection.query(sql, function(error, row)
         {
             if(error)
