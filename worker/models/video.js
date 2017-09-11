@@ -1,13 +1,8 @@
+var config = require('../config');
+
 var mysql = require('mysql'),
 //creamos la conexion a nuestra base de datos con los datos de acceso de cada uno
-connection = mysql.createConnection(
-    {
-        host: 'localhost',
-        user: 'root',
-        password: 'root',
-        database: 'cloud'
-    }
-);
+connection = mysql.createConnection(config.databases);
 
 //creamos un objeto para ir almacenando todo lo que necesitemos
 var VideoModel = {};
@@ -26,6 +21,25 @@ VideoModel.getVideoByNotProcess = function(callback){
             else
             {
                 callback(null, row);
+            }
+        });
+    }
+}
+
+VideoModel.updateConvertVideo = function(id,url_master,callback){
+    if (connection)
+    {
+        var sql = "UPDATE video SET url_master = '"+ url_master +"', show_home = 1, notify = 1 where id = " + id + ";";
+        console.log(sql);
+        connection.query(sql, function(error, result)
+        {
+            if(error)
+            {
+                callback(error, result);
+            }
+            else
+            {
+                callback(null, result);
             }
         });
     }
