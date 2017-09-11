@@ -5,6 +5,7 @@ import {RegistervideoComponent} from '../registervideo/registervideo.component';
 import { Injectable,Inject } from '@angular/core';
 import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
+import { AfterViewInit } from '@angular/core';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class DetailcompetitionComponent implements OnInit {
   public id: string;
   public creadoConExito;
   public listaVideos;
+  public p:number=1;
   constructor(private concursosService:ConcursosService,
     public dialog: MdDialog,
     private ruta:ActivatedRoute,
@@ -39,9 +41,10 @@ export class DetailcompetitionComponent implements OnInit {
       error=>console.log(error)
     )
   }
+
   enlaces(enlace) {
-    enlace = enlace.replace(/\\/g,"/");
-    enlace = enlace.substring(enlace.indexOf("/assets"));
+    // enlace = enlace.replace(/\\/g,"/");
+    // enlace = enlace.substring(enlace.indexOf("/assets"));
     return this.sanitizer.bypassSecurityTrustUrl(enlace);
   }
   openDialog(): void {

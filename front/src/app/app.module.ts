@@ -31,7 +31,7 @@ import {LoginService} from './login.service';
 import {ConcursosService} from './services/concursos.service';
 import {CargarVideosService} from './services/cargar-videos.service';
 import {LocalStorageService,SessionStorageService} from 'ng2-webstorage';
-//import {NgxPaginationModule} from 'ngx-pagination';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -47,8 +47,7 @@ import {LocalStorageService,SessionStorageService} from 'ng2-webstorage';
     CreateCompetitionComponent,
     CrudVideoComponent,
     CrudDetailVideoComponent,
-    LoginComponent,
-    //NgxPaginationModule
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +60,8 @@ import {LocalStorageService,SessionStorageService} from 'ng2-webstorage';
     app_rountig,
     HttpModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ],
   // lleva todas las ventanas modales
   entryComponents: [
