@@ -20,4 +20,7 @@ export class CargarVideosService {
   getVideoById(id:number): Observable<Response>{
     return this.http.get(this.base+""+id).catch((err)=>Observable.throw("Algo salio mal",err));
   }
+  desactivarVideo(id:number):Observable<Response>{
+    return this.http.delete(this.base+""+id).catch((err)=>Observable.throw("Algo salio mal",err));
+  }
 }

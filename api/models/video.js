@@ -12,7 +12,7 @@ VideoModel.getVideoByCompetition = function(id,callback){
   console.log(id);
     if (connection)
     {
-        var sql = 'SELECT * FROM video WHERE url_master is not null and show_home = 1 and state_id = 1 and notify = 1 order by createdAt desc;';
+        var sql = 'SELECT * FROM video WHERE url_master is not null and show_home = 1 and state_id = 1 and notify = 1  and active=0 order by createdAt desc;';
         connection.query(sql, function(error, row)
         {
             if(error)
@@ -30,12 +30,37 @@ VideoModel.getVideoById = function(id,callback){
   console.log(id);
     if (connection)
     {
-      var sql ="select * from video as v join user as u on(v.user_id=u.id) where v.id="+ connection.escape(id.id);
+      var sql ="select v.name as nombreVideo,v.url_master as urlVideoConvertido,v.url as urlVideoOriginal,"+
+                "v.id as idVideo, v.active as videoActivo, v.show_home as videoShowHome, v.createdAt as videoCreado,"+
+                "v.description as videoDescripcion,"+
+                "u.username as usuarioNombre, u.surname as usuarioApellido, u.email usuarioEmail, u.id as usuarioId"+
+                " from video as v "+
+                "join user as u "+
+                "on(v.user_id=u.id) where v.id="+ connection.escape(id.id);
         connection.query(sql, function(error, row)
         {
             if(error)
             {
-                callback(error, result);
+                callback(error, null);
+            }
+            else
+            {
+                callback(null, row);
+            }
+        });
+    }
+}
+VideoModel.desactivarVideo = function(id,callback){
+  console.log(id);
+    if (connection)
+    {
+      var sql ="update video set active=1, show_home = 1 where id="+ connection.escape(id.id);
+      console.log(sql);
+        connection.query(sql, function(error, row)
+        {
+            if(error)
+            {
+                callback(error, null);
             }
             else
             {
@@ -51,7 +76,7 @@ VideoModel.insertVideo = function(videoData,callback){
       connection.query('INSERT INTO video SET ?', videoData, function(error, result) {
         if(error)
         {
-            callback(error, result);
+            callback(error, null);
         }
         else
         {

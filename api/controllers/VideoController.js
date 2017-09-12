@@ -27,6 +27,17 @@ exports.getVideoById = function(req,res){
     }
   })
 }
+exports.desactivarVideo = function(req,res){
+  //recibe el id de del video para desactivarlo
+  VideoModel.desactivarVideo(req.params,function(error,data){
+    if (data) {
+      res.json(200,data);
+    }
+    else{
+      res.json(500,error);
+    }
+  })
+}
 
 exports.registrarVideo = function(req,res){
   let videoData ={

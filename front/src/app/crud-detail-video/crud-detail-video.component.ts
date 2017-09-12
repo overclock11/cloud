@@ -4,6 +4,7 @@ import { CargarVideosService} from '../services/cargar-videos.service';
 import { RouterLink,ActivatedRoute } from '@angular/router';
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { Router } from '@angular/router';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-crud-detail-video',
@@ -12,7 +13,10 @@ import { Router } from '@angular/router';
 })
 export class CrudDetailVideoComponent implements OnInit {
 
-constructor(private cargarVideosService:CargarVideosService, private ruta:ActivatedRoute, private router: Router) { }
+constructor(private cargarVideosService:CargarVideosService,
+  private ruta:ActivatedRoute,
+  private router: Router,
+  private sanitizer:DomSanitizer) { }
 
   public video ={};
   public competitor ={};
@@ -35,8 +39,17 @@ ngOnInit() {
       error=>console.log(error)
     )
   }
-
-   actualizarVideo(){
+  enlaces(enlace) {
+    // enlace = enlace.replace(/\\/g,"/");
+    // enlace = enlace.substring(enlace.indexOf("/assets"));
+    return this.sanitizer.bypassSecurityTrustUrl(enlace);
+  }
+  desactivarVideo(){
+    this.cargarVideosService.desactivarVideo(this.id).subscribe(respuesta =>{
+      console.log(respuesta);
+    },error=>{
+      console.log(error);
+    });
   }
 
 }

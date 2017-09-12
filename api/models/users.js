@@ -50,15 +50,24 @@ userModel.insertUser = function(userData,callback)
 {
     if (connection)
     {
-      connection.query('INSERT INTO user SET ?', userData, function(error, result) {
-        console.log("error msqll----->",error);
-        if(error)
-        {
-            callback(error, null);
+      sql="select * from user where email="+ connection.escape(userData.email);
+      connection.query(sql, function(error, row)
+      {
+        if (row.length>0) {
+          callback(null, row);
         }
-        else
-        {
-            callback(null, result);
+        else{
+          connection.query('INSERT INTO user SET ?', userData, function(error, result) {
+            console.log("error msqll----->",error);
+            if(error)
+            {
+                callback(error, null);
+            }
+            else
+            {
+                callback(null, result);
+            }
+          });
         }
       });
     }

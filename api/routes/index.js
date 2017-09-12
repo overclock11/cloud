@@ -25,8 +25,9 @@ router.route("/competition/eliminar/:id").delete(CompetitionController.deleteCom
 
 
 router.route("/videos/competition/:id").get(VideoController.getVideoByCompetition);
-router.route("/videos/:id").get(VideoController.getVideoById);
+router.route("/videos/:id").get(VideoController.getVideoById).delete(VideoController.desactivarVideo);
 router.route("/videos/crear").post(VideoController.registrarVideo);
+
 
 
 router.use('/api', router);

@@ -20,27 +20,39 @@
               <div class="col-md-12">
                 <md-progress-bar mode="indeterminate" *ngIf="update"></md-progress-bar>
                 <md-card class="card-background-color animated rubberBand">
-                  <form (ngSubmit)="actualizarVideo()">
                     <md-card-content>
-
+                      <p>{{video.urlVideoConvertido}}</p>
                       <div class="about-team-person text-center">
                           <div class="about-team-person-image">
                             <video style="width:100%;" controls>
-                               <source  [src]="video.url" type="video/mp4">
-                               Tu navegador no soporta HTML5 video.
+                          	   <source [src]="enlaces(video.urlVideoConvertido)" type="video/mp4">
+                               <source [src]="enlaces(video.urlVideoConvertido)" type="video/ogg">
+                               <source [src]="enlaces(video.urlVideoConvertido)" type="video/webm">
+                          	   Tu navegador no soporta HTML5 video.
                             </video>
                           </div>
                           <div class="about-team-person-info">
-                            <h3>{{video.username}} {{video.surname}}</h3>
-                            <h4> {{video.email}}</h4>
+                            <h3>{{video.usuarioNombre}} {{video.usuarioApellido}}</h3>
+                            <h4> {{video.usuarioEmail}}</h4>
                           </div>
                           <div class="about-team-person-info">
-                            <h3> {{video.name}}</h3>
-                            <h4>{{video.updatedAt}}</h4>
+                            <h3> {{video.nombreVideo}}</h3>
+                            <h4>{{video.videoCreado}}</h4>
+                            <p>{{video.videoDescripcion}}</p>
+                            <p>Estado: {{video.videoActivo ==null ||video.videoActivo==0 ? "Activo":"Inactivo" }}</p>
+                            <button md-icon-button color="accent" (click)="desactivarVideo()">
+                              <span mdTooltip="Eliminar del concurso!">
+                                <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
+                              </span>
+                            </button>
+                            <!-- <button md-icon-button color="accent" (click)="desactivarVideo()">
+                              <span mdTooltip="Descargar video original">
+                                <i class="fa fa-download fa-2x" aria-hidden="true"></i>
+                              </span>
+                            </button> -->
                           </div>
                         </div>
                     </md-card-content>
-                  </form>
                 </md-card>
               </div>
         </main>

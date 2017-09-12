@@ -11,7 +11,7 @@ exports.crear =function(req,res){
     manager:req.body.manager,
     active:req.body.active,
     id:req.body.id,
-    createdAt:null,
+    createdAt:new Date(),
     updatedAt:null
   };
   UserModel.insertUser(userData,function(error, data)
@@ -20,12 +20,12 @@ exports.crear =function(req,res){
       console.log(data);
       if(data)
       {
-          res.json(200,{id:data.insertId});
+          res.json(200,data);
       }
       else
       {
         console.log("se fue por error",data);
-          res.json(500,{"msg":error});
+        res.json(500,{"msg":error});
       }
   });
 }
