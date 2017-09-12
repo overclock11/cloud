@@ -9,17 +9,22 @@ console.log("va a convertir el video"+urlOrigin);
 	try {
 		var process = new ffmpeg(config.pathVideo.pathLogicOrigin+urlOrigin);
 		process.then(function (video) {
+      urlOrigin = urlOrigin.replace('.avi', '.mp4');
+      urlOrigin = urlOrigin.replace('.mov', '.mp4');
+      urlOrigin = urlOrigin.replace('.AVI', '.mp4');
+      urlOrigin = urlOrigin.replace('.MOV', '.mp4');
 			video
 			.setVideoFormat('mp4')
 			.save(config.pathVideo.pathLogicConvert+urlOrigin, function (error, file) {
-			  if (!error)
-			    console.log('Video file: ' + file);
-				console.log("Video a convertido");
-				urlOrigin = urlOrigin.replace('.avi', '.mp4');
-				urlOrigin = urlOrigin.replace('.mov', '.mp4');
-				urlOrigin = urlOrigin.replace('.AVI', '.mp4');
-				urlOrigin = urlOrigin.replace('.MOV', '.mp4');
-				EmailController.sendEmail(id, emailUser, config.pathVideo.pathRender+urlOrigin);
+        console.log(error);
+			  if (error){
+          console.log(error);
+        }
+        else {
+          console.log('Video file: ' + file);
+  				console.log("Video a convertido");
+  				EmailController.sendEmail(id, emailUser, config.pathVideo.pathRender+urlOrigin);
+        }
 			});
 			}, function (err) {
 				console.log('Error: ' + err);

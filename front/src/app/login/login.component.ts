@@ -18,10 +18,15 @@ export class LoginComponent implements OnInit {
   }
   iniciarSesion(){
     this.loginService.login(this.login).subscribe(respuesta =>{
-      this.storage.store('usuario', JSON.stringify(respuesta.json()));
-      let prueba = this.storage.retrieve("usuario")
-      console.log(JSON.parse(prueba));
-      this.router.navigate(['/home']);
+      if (respuesta.json().length>0) {
+        this.storage.store('usuario', JSON.stringify(respuesta.json()));
+        let prueba = this.storage.retrieve("usuario")
+        console.log(JSON.parse(prueba));
+        this.router.navigate(['/home']);          
+      }
+      else{
+        this.mensaje ="¡Verifica tus datos de acceso!";
+      }
     },error=>{
       this.mensaje ="¡Verifica tus datos de acceso!";
     });
