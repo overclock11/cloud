@@ -9,7 +9,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  public login={};
+  public login={
+    "username":"",
+    "password":""
+  };
   public mensaje:string="";
   constructor(private loginService:LoginService,private storage:SessionStorageService,private router:Router) { }
 
@@ -22,7 +25,7 @@ export class LoginComponent implements OnInit {
         this.storage.store('usuario', JSON.stringify(respuesta.json()));
         let prueba = this.storage.retrieve("usuario")
         console.log(JSON.parse(prueba));
-        this.router.navigate(['/home']);          
+        this.router.navigate(['/home']);
       }
       else{
         this.mensaje ="¡Verifica tus datos de acceso!";

@@ -64,6 +64,9 @@ export class DetailcompetitionComponent implements OnInit {
   cargarVideosConcurso(id){
     this.concursosService.getVideosByCompetitionID(id).subscribe(respuesta=>{
       this.listaVideos = respuesta.json();
+      this.listaVideos = this.listaVideos.sort(function(uno,dos){
+      	return new Date(uno.createdAt)< new Date(dos.createdAt);
+      });
       console.log(this.listaVideos);
     },error=>{
       console.log(error);

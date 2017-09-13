@@ -14,7 +14,14 @@ export class CreateCompetitionComponent implements OnInit {
 
   public competition ={
     "user_id":"",
-    "createdAt":new Date()
+    "createdAt":new Date(),
+    "name":"",
+    "company":"",
+    "url":"",
+    "url_image_banner":"",
+    "description":"",
+    "date_start":"",
+    "date_end":""
   };
   public creacion = false;
   public sesion = false;

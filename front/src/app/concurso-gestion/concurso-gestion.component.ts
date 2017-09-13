@@ -11,7 +11,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./concurso-gestion.component.css']
 })
 export class ConcursoGestionComponent implements OnInit {
-  public competition ={};
+  public competition ={
+    "name":"",
+    "company":"",
+    "url":"",
+    "url_image_banner":"",
+    "description":""
+  };
   public update = false;
   public sesion = false;
   public id: string;

@@ -56,6 +56,12 @@ export class RegistervideoComponent implements OnInit {
 
   cargarVideo(usuarioId){
     //segundo - carga el video y retorna la ruta para insertar en el registro de la base
+    if (usuarioId.insertId) {
+        usuarioId = usuarioId.insertId;
+    }
+    else{
+      usuarioId = usuarioId[0].id;
+    }
     let fileBrowser = this.cargarVideov.nativeElement;
     if (fileBrowser.files && fileBrowser.files[0]) {
       const formData = new FormData();
@@ -63,9 +69,9 @@ export class RegistervideoComponent implements OnInit {
       formData.append("video", fileBrowser.files[0]);
       this.videoService.uploadVideo(formData).subscribe(res => {
         let respuesta =res.json();
-        console.log(usuarioId[0].id);
+        console.log(usuarioId);
 
-        this.crearRegistro(respuesta,fileBrowser.files[0].name,usuarioId[0].id);
+        this.crearRegistro(respuesta,fileBrowser.files[0].name,usuarioId);
 
       },error =>{
         console.log(error);

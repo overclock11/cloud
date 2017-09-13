@@ -31,6 +31,9 @@ export class ConcursosService {
   getVideosByCompetitionID(id:number):Observable<Response>{
     return this.http.get("http://localhost:3000/api/videos/competition/"+id).catch((err)=>Observable.throw("Algo salio mal",err));
   }
+  getVideosByCompetitionIDAdmin(id:number):Observable<Response>{
+    return this.http.get("http://localhost:3000/api/videos/competition/admin/"+id).catch((err)=>Observable.throw("Algo salio mal",err));
+  }
 
   deleteCompetition(id:number):Observable<Response>{
     return this.http.delete(this.base+"eliminar/"+id).catch((err)=>Observable.throw("Algo salio mal",err));

@@ -18,28 +18,26 @@
         </nav>
         <main class="col-sm-9 ml-sm-auto col-md-10 pt-3" role="main">
               <div class="col-md-12">
-                <md-progress-bar mode="indeterminate" *ngIf="update"></md-progress-bar>
-                <md-card class="card-background-color animated rubberBand">
+                <md-card class="card-background-color animated rubberBand" *ngFor="let vi of video">
                     <md-card-content>
-                      <p>{{video.urlVideoConvertido}}</p>
                       <div class="about-team-person text-center">
                           <div class="about-team-person-image">
                             <video style="width:100%;" controls>
-                          	   <source [src]="enlaces(video.urlVideoConvertido)" type="video/mp4">
-                               <source [src]="enlaces(video.urlVideoConvertido)" type="video/ogg">
-                               <source [src]="enlaces(video.urlVideoConvertido)" type="video/webm">
+                          	   <source [src]="enlaces(vi.urlVideoConvertido)" type="video/mp4">
+                          	   <source [src]="enlaces(vi.urlVideoConvertido)" type="video/ogg">
+                          	   <source [src]="enlaces(vi.urlVideoConvertido)" type="video/webm">
                           	   Tu navegador no soporta HTML5 video.
                             </video>
                           </div>
                           <div class="about-team-person-info">
-                            <h3>{{video.usuarioNombre}} {{video.usuarioApellido}}</h3>
-                            <h4> {{video.usuarioEmail}}</h4>
+                            <h3>{{vi.usuarioNombre}} {{video.usuarioApellido}}</h3>
+                            <h4> {{vi.usuarioEmail}}</h4>
                           </div>
                           <div class="about-team-person-info">
-                            <h3> {{video.nombreVideo}}</h3>
-                            <h4>{{video.videoCreado}}</h4>
-                            <p>{{video.videoDescripcion}}</p>
-                            <p>Estado: {{video.videoActivo ==null ||video.videoActivo==0 ? "Activo":"Inactivo" }}</p>
+                            <h3> {{vi.nombreVideo}}</h3>
+                            <h4>{{vi.videoCreado}}</h4>
+                            <p>{{vi.videoDescripcion}}</p>
+                            <p>Estado: {{vi.videoActivo ==null ||vi.videoActivo==0 ? "Activo":"Inactivo" }}</p>
                             <button md-icon-button color="accent" (click)="desactivarVideo()">
                               <span mdTooltip="Eliminar del concurso!">
                                 <i class="fa fa-trash fa-2x" aria-hidden="true"></i>

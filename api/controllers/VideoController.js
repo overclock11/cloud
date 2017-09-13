@@ -16,6 +16,17 @@ exports.getVideoByCompetition = function(req,res){
     }
   })
 }
+exports.getVideoByCompetitionAdmin = function(req,res){
+  // recibe el id de la competencia y lista todos sus videos para el administrador
+  VideoModel.getVideoByCompetitionAdmin(req.params,function(error,data){
+    if (data) {
+      res.json(200,data);
+    }
+    else{
+      res.json(500,error);
+    }
+  })
+}
 exports.getVideoById = function(req,res){
   // recibe el id de del video
   VideoModel.getVideoById(req.params,function(error,data){

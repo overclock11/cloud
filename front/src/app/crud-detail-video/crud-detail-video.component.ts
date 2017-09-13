@@ -18,8 +18,18 @@ constructor(private cargarVideosService:CargarVideosService,
   private router: Router,
   private sanitizer:DomSanitizer) { }
 
-  public video ={};
-  public competitor ={};
+   public video = new Array();
+  //{
+  //   "urlVideoConvertido":"",
+  //   "usuarioNombre":"",
+  //   "usuarioApellido":"",
+  //   "usuarioEmail":"",
+  //   "nombreVideo":"",
+  //   "videoCreado":"",
+  //   "videoDescripcion":"",
+  //   "videoActivo":""
+  // };
+
   public update = false;
   public sesion = false;
   public id: number;
@@ -33,7 +43,7 @@ ngOnInit() {
     this.cargarVideosService.getVideoById(this.id).subscribe(
       respuesta =>{
           respuesta = respuesta.json();
-          this.video = respuesta[0];
+          this.video.push(respuesta[0]);
           console.log(this.video);
       },
       error=>console.log(error)

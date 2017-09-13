@@ -32,7 +32,7 @@
               <tbody>
                 <tr *ngFor="let competition of listOfCompetitions  | paginate: { itemsPerPage: 10, currentPage: p } ">
                   <td>{{competition.id}}</td>
-                  <td>{{competition.surname}}</td>
+                  <td>{{competition.name}}</td>
                   <td>{{competition.company}}</td>
                   <td>{{competition.url}}</td>
                   <td>{{competition.active}}</td>

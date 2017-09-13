@@ -9,7 +9,13 @@ import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
   styleUrls: ['./register-user.component.css']
 })
 export class RegisterUserComponent implements OnInit {
-  public nuevoUsuario ={};
+  public nuevoUsuario ={
+    "username":"",
+    "password":"",
+    "name":"",
+    "surname":"",
+    "email":""
+  };
   public creacion = false;
   public sesion = false;
   constructor(private loginService:LoginService) { }
@@ -22,7 +28,13 @@ export class RegisterUserComponent implements OnInit {
       respuesta =>{
           respuesta = respuesta.json()
           console.log(respuesta);
-          this.nuevoUsuario ={};
+          this.nuevoUsuario ={
+            "username":"",
+            "password":"",
+            "name":"",
+            "surname":"",
+            "email":""
+          };
           this.creacion = false;
           this.sesion = true;
       },

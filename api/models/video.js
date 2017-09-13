@@ -12,7 +12,25 @@ VideoModel.getVideoByCompetition = function(id,callback){
   console.log(id);
     if (connection)
     {
-        var sql = 'SELECT * FROM video WHERE url_master is not null and show_home = 1 and state_id = 1 and notify = 1  and active=0 order by createdAt desc;';
+        var sql = 'SELECT * FROM video WHERE url_master is not null and show_home = 1 and state_id = 1 and notify = 1  and active=0 and competition_id='+connection.escape(id.id);+' order by createdAt desc;';
+        connection.query(sql, function(error, row)
+        {
+            if(error)
+            {
+                callback(error, result);
+            }
+            else
+            {
+                callback(null, row);
+            }
+        });
+    }
+}
+VideoModel.getVideoByCompetitionAdmin = function(id,callback){
+  console.log(id);
+    if (connection)
+    {
+        var sql = 'SELECT * FROM video WHERE competition_id='+connection.escape(id.id);+' order by createdAt desc;';
         connection.query(sql, function(error, row)
         {
             if(error)

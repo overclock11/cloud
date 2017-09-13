@@ -27,9 +27,12 @@ export class CrudVideoComponent implements OnInit {
       }
     );
 
-    this.concursosService.getVideosByCompetitionID(this.id).subscribe(respuesta=>{
+    this.concursosService.getVideosByCompetitionIDAdmin(this.id).subscribe(respuesta=>{
       let videos = respuesta.json();
       this.listOfvideos = respuesta.json();
+      this.listOfvideos = this.listOfvideos.sort(function(uno,dos){
+      	return new Date(uno.createdAt)< new Date(dos.createdAt);
+      });
       console.log(this.listOfvideos);
     },error=>{
       console.log(error);

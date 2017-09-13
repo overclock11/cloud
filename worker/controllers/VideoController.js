@@ -14,8 +14,9 @@ exports.upload = function(req,res){
       cb(null, config.pathVideo.pathLogic)
     },
     filename: function (req, file, cb) {
-      nombre =file.originalname;
-      cb(null,file.originalname)
+      let numeroAleatorio = parseInt(Math.random()*10000);
+      nombre =numeroAleatorio+file.originalname;
+      cb(null,numeroAleatorio+file.originalname)
     }
   })
   let cargar = multer({ storage: storage, limits: { fileSize: 100000000 } }).single('video');
@@ -33,11 +34,17 @@ exports.upload = function(req,res){
 cron.schedule('*/2 * * * *', function(){
   console.log("cron ejecutandose");
   VideoModel.getVideoByNotProcess(function(error,data){
-    data.forEach(function (item) {
-      console.log(item.url);
-        urlOrigin = item.url.replace(config.pathVideo.path, '');
-        FfmpegController.convertVideoToMp4(item.id, urlOrigin, 'jlian92@gmail.com');
-    });
+    if (error) {
+      console.log(error);
+    }
+    else{
+      data.forEach(function (item) {
+          urlOrigin = item.url.replace(config.pathVideo.path, '');
+          console.log(item.id, urlOrigin, item.email);
+          FfmpegController.convertVideoToMp4(item.id, urlOrigin, item.email);
+      });
+    }
+
 
   })
 });
