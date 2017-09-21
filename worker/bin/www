@@ -82,6 +82,7 @@ function onError(error) {
  */
 
 function onListening() {
+  console.log("WORKER corriendo en puerto 3001");
   var addr = server.address();
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr

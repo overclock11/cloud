@@ -2,12 +2,13 @@ var VideoModel = require('../models/video');
 var nodemailer = require('nodemailer');
 var config = require('../config');
 
+
 // email sender function
 exports.sendEmail = function(id, emailUser, url_master){
 
     console.log("va a enviar correo a " + emailUser);
     // Definimos el transporter
-        var transporter = nodemailer.createTransport(config.configMail);
+        var transporter = nodemailer.createTransport(config.awsSES);
     // Definimos el email
     var mailOptions = {
         from: config.configMailFrom.from ,

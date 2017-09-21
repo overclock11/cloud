@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import {Http,Response} from '@angular/http';
 import {Observable} from 'rxjs/Rx';
+import configuracion from '../app.config';
 
 @Injectable()
 export class ConcursosService {
-  public base:string = "http://localhost:3000/api/competition/";
+  public base:string = "http://"+configuracion.endpoint+":3000/api/competition/";
   constructor(private http:Http) { }
 
   getAllCompetitionsAdmin(id): Observable<Response>{
@@ -29,10 +30,10 @@ export class ConcursosService {
     return this.http.post(this.base+"crear",concurso).catch((err)=>Observable.throw("Algo salio mal",err));
   }
   getVideosByCompetitionID(id:number):Observable<Response>{
-    return this.http.get("http://localhost:3000/api/videos/competition/"+id).catch((err)=>Observable.throw("Algo salio mal",err));
+    return this.http.get("http://"+configuracion.endpoint+":3000/api/videos/competition/"+id).catch((err)=>Observable.throw("Algo salio mal",err));
   }
   getVideosByCompetitionIDAdmin(id:number):Observable<Response>{
-    return this.http.get("http://localhost:3000/api/videos/competition/admin/"+id).catch((err)=>Observable.throw("Algo salio mal",err));
+    return this.http.get("http://"+configuracion.endpoint+":3000/api/videos/competition/admin/"+id).catch((err)=>Observable.throw("Algo salio mal",err));
   }
 
   deleteCompetition(id:number):Observable<Response>{
