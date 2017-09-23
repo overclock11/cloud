@@ -4,6 +4,18 @@ var mysql = require('mysql'),
 //creamos la conexion a nuestra base de datos con los datos de acceso de cada uno
 connection = mysql.createConnection(config.databases);
 
+
+//validar que conecto con rds
+connection.connect(function(err) {
+    if (err) {
+      console.error('error connecting: ' + err.stack);
+      return;
+    }
+  
+    console.log('connected as id ' + connection.threadId);
+  });
+  
+
 //creamos un objeto para ir almacenando todo lo que necesitemos
 var VideoModel = {};
 

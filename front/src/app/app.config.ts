@@ -1,4 +1,4 @@
 var configuracion = {
-  "endpoint":"35.163.86.10"
+  "endpoint":"localhost"
 };
 export default configuracion;

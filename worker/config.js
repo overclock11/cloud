@@ -1,11 +1,12 @@
 var config = {};
 
 config = {
-  	databases: {
-        host: 'localhost',
+    databases: {
+        host: 'cloud.cjjsg0nztt5v.us-west-2.rds.amazonaws.com',
         user: 'root',
-        password: 'root',
-        database: 'cloud'
+        password: 'administrador',
+        database: 'cloud',
+        port:3306
     },pathVideo: {
         path: 'http://localhost:3001/public/videos/',//35.163.86.10
         pathRender: 'http://35.163.86.10:3001/public/videos-render/',
