@@ -3,7 +3,7 @@
 -- Server version:               5.5.28 - MySQL Community Server (GPL)
 -- Server OS:                    Win32
 -- HeidiSQL version:             7.0.0.4053
--- Date/time:                    2017-09-13 16:36:57
+-- Date/time:                    2017-09-24 12:47:54
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `competition` (
   UNIQUE KEY `url` (`url`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
--- Dumping data for table cloud.competition: ~0 rows (approximately)
+-- Dumping data for table cloud.competition: ~2 rows (approximately)
 /*!40000 ALTER TABLE `competition` DISABLE KEYS */;
 INSERT INTO `competition` (`name`, `company`, `url`, `image`, `description`, `active`, `id`, `createdAt`, `updatedAt`, `url_image_banner`, `date_start`, `date_end`, `show_home`, `user_id`) VALUES
 	('Los simpson', 'Homerotes inc', 'homerotes concuros', NULL, 'Agrega tu simspmns favorito', 1, 1, '2017-09-13 17:57:25', NULL, 'http://www.ideal.es/noticias/201612/30/media/cortadas/homer-k42-U211027266521AQG-575x323@Ideal.jpg', '2017-09-01 05:00:00', '2017-09-30 05:00:00', 1, 58),
@@ -73,9 +73,9 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=latin1;
 
--- Dumping data for table cloud.user: ~8 rows (approximately)
+-- Dumping data for table cloud.user: ~18 rows (approximately)
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT INTO `user` (`username`, `name`, `surname`, `email`, `password`, `manager`, `active`, `id`, `createdAt`, `updatedAt`) VALUES
 	('Cris', 'Rows', 'frome', 'jlian92@hotmail.com', NULL, NULL, NULL, 56, NULL, NULL),
@@ -94,7 +94,8 @@ INSERT INTO `user` (`username`, `name`, `surname`, `email`, `password`, `manager
 	('Carm1elo', 'el vide1o de armelo', 'Vale1ncia', 'carm1elo@gmail.com', NULL, NULL, NULL, 72, '2017-09-13 13:28:17', NULL),
 	('El pibe', 'Pibitos', 'valderrama', 'lepibe@gmail.com', NULL, NULL, NULL, 73, '2017-09-13 13:31:51', NULL),
 	('Uno mas', 'Titulo uno ', 'de pibitos', 'unomasdepibitos@gmail.com', NULL, NULL, NULL, 74, '2017-09-13 13:45:11', NULL),
-	('Daniel', 'gmail.com', 'rugio', 'cansdai@gmail.com', NULL, NULL, NULL, 75, '2017-09-13 14:38:25', NULL);
+	('Daniel', 'gmail.com', 'rugio', 'cansdai@gmail.com', NULL, NULL, NULL, 75, '2017-09-13 14:38:25', NULL),
+	('muichos', 'simple', 'videos enbase', 'jlian92@gmail.com', NULL, NULL, NULL, 76, '2017-09-19 22:16:27', NULL);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 
@@ -115,9 +116,9 @@ CREATE TABLE IF NOT EXISTS `video` (
   `user_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `url` (`url`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
--- Dumping data for table cloud.video: ~0 rows (approximately)
+-- Dumping data for table cloud.video: ~9 rows (approximately)
 /*!40000 ALTER TABLE `video` DISABLE KEYS */;
 INSERT INTO `video` (`name`, `url`, `description`, `notify`, `active`, `id`, `createdAt`, `updatedAt`, `url_master`, `show_home`, `competition_id`, `state_id`, `user_id`) VALUES
 	('Mojon', 'http://localhost:3001/public/videos/eee.mov', 'Senor', 1, 0, 1, '2017-09-13 13:05:26', NULL, 'http://localhost:3001/public/videos-render/eee.mp4', 1, 1, 1, 69),
@@ -126,7 +127,9 @@ INSERT INTO `video` (`name`, `url`, `description`, `notify`, `active`, `id`, `cr
 	('Titulo uno ', 'http://localhost:3001/public/videos/37re221ad.MOV', 'unomasde pibitos si piibitos', 1, 0, 4, '2017-09-13 13:45:19', NULL, 'http://localhost:3001/public/videos-render/37re221ad.mp4', 1, 2, 1, 74),
 	('Julian', 'http://localhost:3001/public/videos/96re221ad.MOV', 'dasdadasdad', 1, 0, 5, '2017-09-13 13:50:06', NULL, 'http://localhost:3001/public/videos-render/96re221ad.mp4', 1, 2, 1, 56),
 	('gmail.com', 'http://localhost:3001/public/videos/6re221ad.MOV', 'daoskdopasdjkioasd', 1, 0, 6, '2017-09-13 14:41:04', NULL, 'http://localhost:3001/public/videos-render/6re221ad.mp4', 1, 1, 1, 75),
-	('Prueba de correo', 'http://localhost:3001/public/videos/3956eee.mov', 'Prueba de correo con envio dinamico', 1, 0, 7, '2017-09-13 14:49:23', NULL, 'http://localhost:3001/public/videos-render/3956eee.mp4', 1, 1, 1, 56);
+	('Prueba de correo', 'http://localhost:3001/public/videos/3956eee.mov', 'Prueba de correo con envio dinamico', 1, 0, 7, '2017-09-13 14:49:23', NULL, 'http://localhost:3001/public/videos-render/3956eee.mp4', 1, 1, 1, 56),
+	('simple', 'http://localhost:3001/public/videos/465eee.mov', 'email service aws', 1, 0, 8, '2017-09-19 22:16:27', NULL, 'http://localhost:3001/public/videos-render/465eee.mp4', 1, 1, 1, 76),
+	('En moto', 'http://localhost:3001/public/videos/6262eee.mov', 'La moto de randy marsh', 0, 0, 9, '2017-09-21 21:35:43', NULL, NULL, 0, 2, 1, 57);
 /*!40000 ALTER TABLE `video` ENABLE KEYS */;
 /*!40014 SET FOREIGN_KEY_CHECKS=1 */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
