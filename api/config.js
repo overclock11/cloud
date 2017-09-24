@@ -8,14 +8,14 @@ config = {
         database: 'cloud',
         port:3306          
     },pathVideo: {
-        path: 'http://localhost:3001/public/videos/',
+        path: 'http://35.163.86.10:3001/public/videos/',
         pathLogic: './public/videos',
         pathLogicConvert: './public/videos-render'
     },configMail: {
         service: 'Gmail',
         auth: {
             user: 'captuayonovoafredy@gmail.com',
-            pass: 'Ti94113010260'
+            pass: 'dasdas'
         }
     },configMailFrom: {
         from: 'captuayonovoafredy@gmail.com',

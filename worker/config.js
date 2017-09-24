@@ -8,7 +8,7 @@ config = {
         database: 'cloud',
         port:3306
     },pathVideo: {
-        path: 'http://localhost:3001/public/videos/',//35.163.86.10
+        path: 'http://35.163.86.10:3001/public/videos/',//35.163.86.10
         pathRender: 'http://35.163.86.10:3001/public/videos-render/',
         pathLogic: './public/videos',
         pathLogicOrigin: 'public/videos/',
@@ -17,7 +17,7 @@ config = {
         service: 'Gmail',
         auth: {
             user: 'captuayonovoafredy@gmail.com',
-            pass: 'Ti94113010260'
+            pass: 'sadsad'
         }
     },configMailFrom: {
         from: 'jlian92@gmail.com',
