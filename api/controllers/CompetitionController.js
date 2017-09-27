@@ -1,4 +1,13 @@
 var CompetitionModel = require('../models/competition');
+var Modelo = mongoose.model('Modelo');
+
+//funciones para Mongodb
+
+
+
+
+
+// funciones para MYSQL
 
 exports.url = function(req,res){
   console.log(req.params);
