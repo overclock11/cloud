@@ -5,14 +5,14 @@ var mysql = require('mysql'),
 connection = mysql.createConnection(config.databases);
 
 //validar que conecto a rds
-connection.connect(function(err) {
+/*connection.connect(function(err) {
     if (err) {
       console.error('error connecting: ' + err.stack);
       return;
     }
   
     console.log('connected as id ' + connection.threadId);
-  });
+});*/
   
 
 //creamos un objeto para ir almacenando todo lo que necesitemos

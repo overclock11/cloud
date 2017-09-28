@@ -1,11 +1,62 @@
+var mongoose = require('mongoose');
 var CompetitionModel = require('../models/competition');
 var Modelo = mongoose.model('Modelo');
 
 //funciones para Mongodb
+exports.mgetAllCompetitionsHome = function(req,res){
+  Modelo.find({"administrador.competition.active":1},function(err,datos){
+    if (err) {
+      console.log(err);
+    } else {
+      let competencias = datos.map((item)=>{
+        return item.administrador.competition;
+      })
+      res.status(200).json(competencias)
+    }
+  })
+}
+exports.murl = function(req,res){
+  Modelo.find({"administrador.competition.url":req.params.id},function(err,datos){
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("24",datos);
+      res.status(200).json(datos)
+    }
+  })
+}
+exports.mregisterCompetition = function(req,res){
+  let competition =  new Modelo({administrador:req.body.administrador})
+  competition.save(function(err, client) {
+    if(err) return res.send(500, err.message);
+    res.status(200).jsonp(client);
+  });  
+}
 
-
-
-
+exports.mgetAllCompetitionsAdmin = function(req,res){  
+  Modelo.find({"administrador.id":req.params.id},function(err,datos){
+    if (err) {
+      console.log(err);
+      res.status(500,err);
+    } else {
+      console.log(datos,"dats");
+      res.status(200).json(datos)
+    }
+  })
+}
+exports.mgetCompetitionsById = function (req,res){
+  Modelo.find({"administrador.competition._id":req.params.id},function(err,datos){
+    if (err) {
+      console.log(err);
+      res.status(500).json(err)
+    } else {
+      res.status(200).json(datos);
+    }
+  })
+}
+exports.mupdateCompetition = function(req,res){
+  
+}
 
 // funciones para MYSQL
 

@@ -7,8 +7,12 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var methodOverride = require("method-override");
 
+//incluir modelos aqui
+var modeloSmartools = require('./models/mongoModel')(app, mongoose);
+//
 var index = require('./routes/index');
 var users = require('./routes/users');
+
 
 var app = express();
 
@@ -55,10 +59,12 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-mongoose.connect('mongodb://localhost/smartools', function(err, res) {
-  if(err) throw err;
-  console.log('Connectado a mongo!! ');
- });
+mongoose.connect('mongodb://localhost/smartools', { useMongoClient: true, promiseLibrary: global.Promise })
+.then((datos)=>{
+  console.log("Se conecto a mongo");
+},(err)=>{
+  console.log(err);
+})
 
 
 module.exports = app;
