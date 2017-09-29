@@ -55,7 +55,38 @@ exports.mgetCompetitionsById = function (req,res){
   })
 }
 exports.mupdateCompetition = function(req,res){
-  
+  Modelo.find({"administrador.competition._id":req.params.id},function(err,datos){
+    if (err) {
+      console.log(err);
+      res.status(500).json(err)
+    } else {
+      let competition = new Modelo({
+        administrador:datos[0].administrador
+      });
+      competition.administrador.competition =req.body.administrador.competition;
+      competition.save(function(err){
+        if (err) {
+          res.status(500).json(err);
+        }
+        else{
+          res.status(200).json(competition);
+        }
+      })
+    }
+  })
+}
+
+exports.mdeleteCompetition = function(req,res){
+  console.log("elminando ",req.params.id);
+  Modelo.remove({"administrador.competition._id":req.params.id},function(err){
+    if (err) {
+      console.log("error",err);
+      res.status(500).json(err)
+    } else {
+      console.log("ok");
+      res.status(200).json({"status":200});
+    }
+  })
 }
 
 // funciones para MYSQL

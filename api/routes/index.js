@@ -23,13 +23,12 @@ router.route("/competition/competitions").get(CompetitionController.getAllCompet
 router.route("/competition/mcompetitions").get(CompetitionController.mgetAllCompetitionsHome);
 router.route("/competition/id/:id").get(CompetitionController.getCompetitionsById);
 router.route("/competition/mid/:id").get(CompetitionController.mgetCompetitionsById);
-
 router.route("/competition/update/:id").put(CompetitionController.updateCompetition);
 router.route("/competition/mupdate/:id").put(CompetitionController.mupdateCompetition);
-
 router.route("/competition/crear").post(CompetitionController.registerCompetition);
 router.route("/competition/mcrear").post(CompetitionController.mregisterCompetition);
 router.route("/competition/eliminar/:id").delete(CompetitionController.deleteCompetition);
+router.route("/competition/meliminar/:id").delete(CompetitionController.mdeleteCompetition);
 
 
 router.route("/videos/competition/:id").get(VideoController.getVideoByCompetition);
