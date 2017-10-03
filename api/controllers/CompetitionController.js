@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var CompetitionModel = require('../models/competition');
 var Modelo = mongoose.model('Modelo');
 
-//funciones para Mongodb
+//funciones para Mongodb despliegue D
 exports.mgetAllCompetitionsHome = function(req,res){
   Modelo.find({"administrador.competition.active":1},function(err,datos){
     if (err) {
@@ -89,8 +89,8 @@ exports.mdeleteCompetition = function(req,res){
   })
 }
 
-// funciones para MYSQL
 
+// funciones para MYSQL despliegue C
 exports.url = function(req,res){
   console.log(req.params);
   CompetitionModel.getByUrl(req.params,function(error,data){
