@@ -15,6 +15,7 @@ router.get('/', function(req, res)
  * Rutas mongo despliegue D
  */
 router.route("/usuario/mcrear").post(UserController.mcrear);
+router.route("/usuario/mlogin").post(UserController.mlogin);
 
 router.route("/competition/murl/:id").get(CompetitionController.murl);
 router.route("/competition/competitions/madmin/:id").get(CompetitionController.mgetAllCompetitionsAdmin);
@@ -28,7 +29,7 @@ router.route("/competition/meliminar/:id").delete(CompetitionController.mdeleteC
 /**
  * Rutas Mysql para el despliegue C
  */
-
+router.route("/usuario/crear").post(UserController.crear);
 router.route("/usuario/login").post(UserController.login);
 
 router.route("/competition/url/:id").get(CompetitionController.url);
