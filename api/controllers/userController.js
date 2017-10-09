@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var UserModel = require('../models/users');
 var Modelo = mongoose.model('Modelo');
+const uuidv4 = require('uuid/v4');
 /**
  * Funciones de Mongo
  */
@@ -14,7 +15,7 @@ exports.mcrear = function(req,res){
       password:req.body.password,
       manager:req.body.manager,
       active:req.body.active,
-      id:req.body.id,
+      id:uuidv4(),
       createdAt:new Date(),
       updatedAt:null,
       competition: new Array()
@@ -35,13 +36,16 @@ exports.mlogin = function(req,res){
     password:req.body.password
   }
   Modelo.find({"administrador.username":datosUsuario.username,"administrador.password":datosUsuario.password},function(error,data){
+    console.log(data.length);
     if (data.length>0) {
       let filtrar ={}
       filtrar.username = data[0].administrador.username;
       filtrar.name = data[0].administrador.name
       filtrar.email = data[0].administrador.email
-      filtrar.id = data[0]._id;
-      res.status(200).json(filtrar);
+      filtrar.id = data[0].administrador.id;
+      let datos = new Array();
+      datos.push(filtrar);
+      res.status(200).json(datos);
     }
     else{
       if (error) {

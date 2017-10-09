@@ -2,9 +2,22 @@ var VideoModel = require('../models/video');
 var config = require('../config');
 var multer  = require('multer')
 var ip = require("ip");
+var mongoose = require('mongoose');
+var Modelo = mongoose.model('Modelo');
+
+/**
+ * FUnciones para mongo 
+ */
+exports.mgetVideoByCompetition = function (req,res){
+  // recibe el id del concurso y lista todos sus videos
+  //show_home = 1 and state_id = 1 and notify = 1  and active=0
 
 
+}
 
+/**
+ * Funciones para Mysql
+ */
 exports.getVideoByCompetition = function(req,res){
   // recibe el id de la competencia y lista todos sus videos
   VideoModel.getVideoByCompetition(req.params,function(error,data){
