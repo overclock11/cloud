@@ -12,16 +12,16 @@ export class LoginService {
     return this.http.get(base).catch((err)=>Observable.throw("Algo salio mal",err));
   }
   registerUser(usuario:any):Observable<Response>{
-    let base = "http://"+configuracion.endpoint+":3000/api/usuario/crear";
+    let base = "http://"+configuracion.endpoint+":3000/api/usuario/mcrear";
     usuario.active=1;
     return this.http.post(base,usuario).catch((err)=>Observable.throw("Algo salio mal",err));
   }
   registrarParticipante(usuario:any):Observable<Response>{
-    let base = "http://"+configuracion.endpoint+":3000/api/usuario/crear";
+    let base = "http://"+configuracion.endpoint+":3000/api/usuario/mcrear";
     return this.http.post(base,usuario).catch((err)=>Observable.throw("Algo salio mal",err));
   }
   login(usuario:any):Observable<Response>{
-    let base = "http://"+configuracion.endpoint+":3000/api/usuario/login";
+    let base = "http://"+configuracion.endpoint+":3000/api/usuario/mlogin";
     return this.http.post(base,usuario).catch((err)=>Observable.throw("Algo salio mal",err));
   }
 

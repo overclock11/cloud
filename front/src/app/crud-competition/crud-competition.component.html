@@ -21,7 +21,6 @@
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th>#</th>
                   <th>Nombre</th>
                   <th>Compañia</th>
                   <th>Url</th>
@@ -31,7 +30,6 @@
               </thead>
               <tbody>
                 <tr *ngFor="let competition of listOfCompetitions  | paginate: { itemsPerPage: 10, currentPage: p } ">
-                  <td>{{competition.id}}</td>
                   <td>{{competition.name}}</td>
                   <td>{{competition.company}}</td>
                   <td>{{competition.url}}</td>

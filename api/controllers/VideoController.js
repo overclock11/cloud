@@ -6,12 +6,42 @@ var mongoose = require('mongoose');
 var Modelo = mongoose.model('Modelo');
 
 /**
- * FUnciones para mongo 
+ * Funciones para mongo 
  */
+
+
 exports.mgetVideoByCompetition = function (req,res){
   // recibe el id del concurso y lista todos sus videos
   //show_home = 1 and state_id = 1 and notify = 1  and active=0
+  let condiciones ={
+    "administrador.competition.id":req.params.id,
+    "administrador.competition.usuario.video.show_home":1,
+    "administrador.competition.usuario.video.state_id":1,
+    "administrador.competition.usuario.video.notify":1,
+    "administrador.competition.usuario.video.active":0
+  };
+  console.log(condiciones);
+  Modelo.find(condiciones,function(err,datos){
+    if (err) {
+      console.log(err);
+      res.status(500).json(err)
+    } else {
+      console.log(datos);
+      if(datos.length>0){
+        let videos = new Array();
+        for(var i=0;i<datos.length;i++){
+          for(var k=0;k<datos.length;k++){
+              videos.push(datos[0].administrador.competition.usuario[i].video[k]);
+          } 
+        }
+        res.status(200).json(videos);
+      }
+      else{
+        res.status(318).json({"mensaje":"No existen registros"});
+      }      
 
+    }
+  })
 
 }
 

@@ -9,25 +9,25 @@ export class ConcursosService {
   constructor(private http:Http) { }
 
   getAllCompetitionsAdmin(id): Observable<Response>{
-    return this.http.get(this.base+"competitions/admin/"+id).catch((err)=>Observable.throw("Algo salio mal",err));
+    return this.http.get(this.base+"competitions/madmin/"+id).catch((err)=>Observable.throw("Algo salio mal",err));
   }
   getCompetitionsHome(): Observable<Response>{
-    return this.http.get(this.base+"competitions").catch((err)=>Observable.throw("Algo salio mal",err));
+    return this.http.get(this.base+"mcompetitions").catch((err)=>Observable.throw("Algo salio mal",err));
   }
   getCompetitionByUrl(url:string): Observable<Response>{
-    return this.http.get(this.base+"url/"+url).catch((err)=>Observable.throw("Algo salio mal",err));
+    return this.http.get(this.base+"murl/"+url).catch((err)=>Observable.throw("Algo salio mal",err));
   }
   getCompetitionById(id:number): Observable<Response>{
-    return this.http.get(this.base+"id/"+id).catch((err)=>Observable.throw("Algo salio mal",err));
+    return this.http.get(this.base+"mid/"+id).catch((err)=>Observable.throw("Algo salio mal",err));
   }
   getCompetitionByIdString(id:string): Observable<Response>{
-    return this.http.get(this.base+"id/"+id).catch((err)=>Observable.throw("Algo salio mal",err));
+    return this.http.get(this.base+"mid/"+id).catch((err)=>Observable.throw("Algo salio mal",err));
   }
   updateCompetitionByID(concurso:any): Observable<Response>{
-    return this.http.put(this.base+"update/"+concurso.id,concurso).catch((err)=>Observable.throw("Algo salio mal",err));
+    return this.http.put(this.base+"mupdate/"+concurso.id,concurso).catch((err)=>Observable.throw("Algo salio mal",err));
   }
   registerCompetition(concurso:any):Observable<Response>{
-    return this.http.post(this.base+"crear",concurso).catch((err)=>Observable.throw("Algo salio mal",err));
+    return this.http.post(this.base+"mcrear",concurso).catch((err)=>Observable.throw("Algo salio mal",err));
   }
   getVideosByCompetitionID(id:number):Observable<Response>{
     return this.http.get("http://"+configuracion.endpoint+":3000/api/videos/competition/"+id).catch((err)=>Observable.throw("Algo salio mal",err));
@@ -37,7 +37,7 @@ export class ConcursosService {
   }
 
   deleteCompetition(id:number):Observable<Response>{
-    return this.http.delete(this.base+"eliminar/"+id).catch((err)=>Observable.throw("Algo salio mal",err));
+    return this.http.delete(this.base+"meliminar/"+id).catch((err)=>Observable.throw("Algo salio mal",err));
   }
 
 

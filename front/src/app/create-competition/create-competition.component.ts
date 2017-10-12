@@ -49,7 +49,7 @@ export class CreateCompetitionComponent implements OnInit {
       },
       error=>console.log(error)
     )
-    this.router.navigate(['/crud-competition']);
+    //this.router.navigate(['/crud-competition']);
   }
 
 }
