@@ -20,19 +20,22 @@ exports.mgetVideoByCompetition = function (req,res){
     "administrador.competition.usuario.video.notify":1,
     "administrador.competition.usuario.video.active":0
   };
-  console.log(condiciones);
   Modelo.find(condiciones,function(err,datos){
     if (err) {
       console.log(err);
       res.status(500).json(err)
     } else {
-      console.log(datos);
       if(datos.length>0){
         let videos = new Array();
-        for(var i=0;i<datos.length;i++){
-          for(var k=0;k<datos.length;k++){
-              videos.push(datos[0].administrador.competition.usuario[i].video[k]);
-          } 
+        let competencia = datos[0].administrador.competition;        
+        for(var i=0;i<competencia.length;i++){
+          let usuario = competencia[i].usuario;
+          for(var j=0;j<usuario.length;j++){
+           let video = usuario[j].video;
+           for(var k=0;k<video.length;k++){
+            videos.push(video[k]);
+           }
+          }
         }
         res.status(200).json(videos);
       }
