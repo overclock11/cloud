@@ -38,6 +38,25 @@ VideoModel.getVideoByNotProcess = function(callback){
     }
 }
 
+//validadmos si el video se esta procesando por algun worker
+VideoModel.getStateNotifite = function(id, callback){
+    if (connection)
+    {
+        var sql ="SELECT  v.id from video as v WHERE id = " + id + " url_master is null and show_home = 0 and state_id = 1 and notify = 0 limit 1";
+        connection.query(sql, function(error, row)
+        {
+            if(error)
+            {
+                callback(error, null);
+            }
+            else
+            {
+                callback(null, row);
+            }
+        });
+    }
+}
+
 VideoModel.updateConvertVideo = function(id,url_master,callback){
     if (connection)
     {
@@ -56,6 +75,26 @@ VideoModel.updateConvertVideo = function(id,url_master,callback){
         });
     }
 }
+
+VideoModel.updateNotifyConvertVideo = function(id,callback){
+    if (connection)
+    {
+        var sql = "UPDATE video SET notify = 1 where id = " + id + ";";
+        console.log(sql);
+        connection.query(sql, function(error, result)
+        {
+            if(error)
+            {
+                callback(error, result);
+            }
+            else
+            {
+                callback(null, result);
+            }
+        });
+    }
+}
+
 
 //exportamos el objeto para tenerlo disponible en la zona de rutas
 module.exports = VideoModel;

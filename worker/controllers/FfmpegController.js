@@ -5,6 +5,15 @@ var config = require('../config');
 // ffmpeg convert function
 exports.convertVideoToMp4 = function(id, urlOrigin, emailUser){
 
+VideoModel.updateNotifyConvertVideo(id, function(error, data_update_notify) {
+	if(data_update_notify) {
+  console.log("video actualizado porque entro al convert" + id);
+	} else {
+		console.log("Error update notify");
+	}
+});
+
+
 if (urlOrigin.indexOf(".mp4") > 0) {
 
 console.log("va a convertir el video"+urlOrigin);
