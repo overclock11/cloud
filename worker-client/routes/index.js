@@ -6,7 +6,7 @@ var VideoController = require('../controllers/VideoController');
 /* Mostramos el formualario para crear usuarios nuevos */
 router.get('/', function(req, res)
 {
-  res.render('index', { title: 'Servicio rest con nodejs, express 4 y mysql'});
+  res.render('index', { title: 'Servicio rest con nodejs, express 4 y mysql CLIENTE WORKER 3001'});
 });
 
 router.route("/videos/upload").post(VideoController.upload);
