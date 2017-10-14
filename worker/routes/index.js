@@ -9,7 +9,5 @@ router.get('/', function(req, res)
   res.render('index', { title: 'Servicio rest con nodejs, express 4 y mysql WORKER CON SEMAFORO 3002'});
 });
 
-router.route("/videos/upload").post(VideoController.upload);
-
 router.use('/api', router);
 module.exports = router;
