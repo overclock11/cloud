@@ -23,13 +23,14 @@ cron.schedule('*/2 * * * *', function(){
                   console.log(item.id, urlOrigin, item.email);
                   FfmpegController.convertVideoToMp4(item.id, urlOrigin, item.email);
                 }
-              }
+              });
             } else {
                console.log("video ya tomado");
             }
         });
       });
     }
+    
   })
 });
 
