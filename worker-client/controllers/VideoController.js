@@ -22,10 +22,10 @@ exports.upload = function(req,res){
   cargar(req,res,function(err){
     console.log(res);
     if (err) {
-      res.json(500,err);
+      res.status(500).json(err);
     }
     else{
-      res.json(200,{ruta:config.pathVideo.path+nombre});
+      res.status(200).json({ruta:config.pathVideo.path+nombre});
     }
   });
 }
