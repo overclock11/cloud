@@ -8,7 +8,7 @@ var VideoController = require('../controllers/VideoController');
 /* Mostramos el formualario para crear usuarios nuevos */
 router.get('/', function(req, res)
 {
-  res.render('index', { title: 'Servicio rest con nodejs, express 4 y mysql v3'});
+  res.render('index', { title: 'Servicio rest con nodejs, express 4 y mysql v4'});
 });
 
 router.route("/usuario/crear").post(UserController.crear);
