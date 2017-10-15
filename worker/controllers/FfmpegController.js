@@ -1,3 +1,4 @@
+var VideoModel = require('../models/video');
 var EmailController = require('../controllers/EmailController');
 var ffmpeg = require('ffmpeg');
 var config = require('../config');
