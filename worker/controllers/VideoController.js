@@ -6,7 +6,7 @@ var ip = require("ip");
 var cron = require('node-cron');
 var ffmpeg = require('ffmpeg');
 
-cron.schedule('*/2 * * * *', function(){
+cron.schedule('*/1 * * * *', function(){
   console.log("cron ejecutandose");
   VideoModel.getVideoByNotProcess(function(error,data){
     if (error) {
