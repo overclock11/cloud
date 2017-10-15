@@ -42,7 +42,7 @@ VideoModel.getVideoByNotProcess = function(callback){
 VideoModel.getStateNotifite = function(id, callback){
     if (connection)
     {
-        var sql ="SELECT  v.id from video as v WHERE id = " + id + " url_master is null and show_home = 0 and state_id = 1 and notify = 0 limit 1";
+        var sql ="SELECT  v.id from video as v WHERE id = " + id + " and url_master is null and show_home = 0 and state_id = 1 and notify = 0 limit 1";
         connection.query(sql, function(error, row)
         {
             if(error)
