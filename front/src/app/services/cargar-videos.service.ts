@@ -5,7 +5,7 @@ import configuracion from '../app.config';
 
 @Injectable()
 export class CargarVideosService {
-  public base:string = "http://"+configuracion.endpointWorker+":3000/api/videos/";
+  public base:string = "http://"+configuracion.endpointWorker+":3000/api/mvideos/";
   constructor(private http:Http) { }
 
 

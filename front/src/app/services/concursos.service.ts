@@ -30,10 +30,10 @@ export class ConcursosService {
     return this.http.post(this.base+"mcrear",concurso).catch((err)=>Observable.throw("Algo salio mal",err));
   }
   getVideosByCompetitionID(id:number):Observable<Response>{
-    return this.http.get("http://"+configuracion.endpoint+":3000/api/videos/competition/"+id).catch((err)=>Observable.throw("Algo salio mal",err));
+    return this.http.get("http://"+configuracion.endpoint+":3000/api/videos/mcompetition/"+id).catch((err)=>Observable.throw("Algo salio mal",err));
   }
   getVideosByCompetitionIDAdmin(id:number):Observable<Response>{
-    return this.http.get("http://"+configuracion.endpoint+":3000/api/videos/competition/admin/"+id).catch((err)=>Observable.throw("Algo salio mal",err));
+    return this.http.get("http://"+configuracion.endpoint+":3000/api/videos/competition/madmin/"+id).catch((err)=>Observable.throw("Algo salio mal",err));
   }
 
   deleteCompetition(id:number):Observable<Response>{
