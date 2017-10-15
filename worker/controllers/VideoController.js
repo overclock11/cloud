@@ -14,11 +14,13 @@ cron.schedule('*/1 * * * *', function(){
     }
     else{
       data.forEach(function (item) {
-        console.log(item);
+        console.log(item.id);
         VideoModel.getStateNotifite(item.id, function(error,data_validate) {
            if(data_validate) {
+            console.log(data_validate);
              data_validate.forEach(function (item_validate) {
-              if (item_validate.id == item) {
+              console.log(item_validate.id);
+              if (item_validate.id == item.id) {
                   console.log("video validado" + item.id);
                   urlOrigin = item.url.replace(config.pathVideo.path, '');
                   console.log(item.id, urlOrigin, item.email);
