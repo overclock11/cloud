@@ -25,4 +25,4 @@ config = {
 };
  
 module.exports = config;
- 
+

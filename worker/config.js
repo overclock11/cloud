@@ -10,9 +10,9 @@ config = {
     },pathVideo: {
         path: 'http://balanceadorcarga001-2004680552.us-west-2.elb.amazonaws.com:3001/public/videos/',//35.163.86.10
         pathRender: 'http://balanceadorcarga001-2004680552.us-west-2.elb.amazonaws.com:3001/public/videos-render/',
-        pathLogic: '/home/ec2-user/cloud/worker-client/public/videos',
-        pathLogicOrigin: '/home/ec2-user/cloud/worker-client/public/videos/',
-        pathLogicConvert: '/home/ec2-user/cloud/worker-client/public/videos-render/'
+        pathLogic: '/home/ec2-user/cloud/worker/public/videos',
+        pathLogicOrigin: '/home/ec2-user/cloud/worker/public/videos/',
+        pathLogicConvert: '/home/ec2-user/cloud/worker/public/videos-render/'
     },configMail: {
         service: 'Gmail',
         auth: {
