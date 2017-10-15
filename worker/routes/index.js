@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var VideoController = require('../controllers/VideoController');
+
 
 /* Mostramos el formualario para crear usuarios nuevos */
 router.get('/', function(req, res)
