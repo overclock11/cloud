@@ -14,6 +14,7 @@ cron.schedule('*/1 * * * *', function(){
     }
     else{
       data.forEach(function (item) {
+        console.log(item);
         VideoModel.getStateNotifite(item.id, function(error,data_validate) {
            if(data_validate) {
              data_validate.forEach(function (item_validate) {
