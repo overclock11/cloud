@@ -1,5 +1,5 @@
 var configuracion = {
-  "endpoint":"52.40.108.131",
-  "endpointWorker":"52.40.108.131"
+  "endpoint":" http://balanceadorcarga001-2004680552.us-west-2.elb.amazonaws.com",
+  "endpointWorker":"http://balanceadorcarga001-2004680552.us-west-2.elb.amazonaws.com"
 };
 export default configuracion;
