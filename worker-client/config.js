@@ -8,8 +8,8 @@ config = {
         database: 'cloud',
         port:3306
     },pathVideo: {
-        path: 'http://35.163.86.10:3001/public/videos/',//35.163.86.10
-        pathRender: 'http://35.163.86.10:3001/public/videos-render/',
+        path: 'http://balanceadorcarga001-2004680552.us-west-2.elb.amazonaws.com:3001/public/videos/',//35.163.86.10
+        pathRender: 'http://balanceadorcarga001-2004680552.us-west-2.elb.amazonaws.com:3001/public/videos-render/',
         pathLogic: './public/videos',
         pathLogicOrigin: 'public/videos/',
         pathLogicConvert: 'public/videos-render/'

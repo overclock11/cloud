@@ -8,7 +8,7 @@ config = {
         database: 'cloud',
         port:3306          
     },pathVideo: {
-        path: 'http://35.163.86.10:3001/public/videos/',
+        path: 'http://balanceadorcarga001-2004680552.us-west-2.elb.amazonaws.com:3001/public/videos/',
         pathLogic: './public/videos',
         pathLogicConvert: './public/videos-render'
     },configMail: {
