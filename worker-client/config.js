@@ -10,8 +10,10 @@ config = {
     },pathVideo: {
         path: 'http://35.163.86.10:3001/public/videos/',//35.163.86.10
         pathRender: 'http://35.163.86.10:3001/public/videos-render/',
-        pathS3: 'https://s3-us-west-2.amazonaws.com/cloud-proyecto3/videos/',//35.163.86.10
-        pathRenderS3: 'https://s3-us-west-2.amazonaws.com/cloud-proyecto3/videos-render',
+        pathS3: 'http://d2zsdt0a19wk6b.cloudfront.net/videos/',//35.163.86.10
+        pathRenderS3: 'http://d2zsdt0a19wk6b.cloudfront.net/videos-render',
+        //pathS3: 'https://s3-us-west-2.amazonaws.com/cloud-proyecto3/videos/',//35.163.86.10
+        //pathRenderS3: 'https://s3-us-west-2.amazonaws.com/cloud-proyecto3/videos-render',
         pathLogic: './public/videos',
         pathLogicOrigin: 'public/videos/',
         pathLogicConvert: 'public/videos-render/',
