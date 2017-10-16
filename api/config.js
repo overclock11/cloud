@@ -8,7 +8,7 @@ config = {
         database: 'cloud',
         port:3306          
     },pathVideo: {
-        path: 'http://35.163.86.10:3001/public/videos/',
+        path: 'http://34.212.210.50:3001/public/videos/',
         pathLogic: './public/videos',
         pathLogicConvert: './public/videos-render'
     },configMail: {
