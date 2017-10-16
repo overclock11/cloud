@@ -33,10 +33,12 @@ export class DetailcompetitionComponent implements OnInit {
     );
     this.concursosService.getCompetitionByUrl(this.url).subscribe(
       respuesta =>{
-          respuesta = respuesta.json();
-          console.log(respuesta);
-          this.listOfCompetitions = respuesta;
-          this.cargarVideosConcurso(this.listOfCompetitions[0].id);
+        respuesta = respuesta.json();
+        this.listaVideos =respuesta;
+        this.listaVideos = this.listaVideos.sort(function(uno,dos){
+          return new Date(uno.createdAt)< new Date(dos.createdAt);
+        });
+        console.log(this.listaVideos);
       },
       error=>console.log(error)
     )
@@ -61,7 +63,7 @@ export class DetailcompetitionComponent implements OnInit {
       }
     });
   }
-  cargarVideosConcurso(id){
+  /*cargarVideosConcurso(id){
     this.concursosService.getVideosByCompetitionID(id).subscribe(respuesta=>{
       this.listaVideos = respuesta.json();
       this.listaVideos = this.listaVideos.sort(function(uno,dos){
@@ -71,6 +73,6 @@ export class DetailcompetitionComponent implements OnInit {
     },error=>{
       console.log(error);
     });
-  }
+  }*/
 
 }
