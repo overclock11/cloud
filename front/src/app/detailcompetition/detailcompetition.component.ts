@@ -20,6 +20,7 @@ export class DetailcompetitionComponent implements OnInit {
   public creadoConExito;
   public listaVideos;
   public p:number=1;
+  public idcompetencia:string;
   constructor(private concursosService:ConcursosService,
     public dialog: MdDialog,
     private ruta:ActivatedRoute,
@@ -35,9 +36,16 @@ export class DetailcompetitionComponent implements OnInit {
       respuesta =>{
         respuesta = respuesta.json();
         this.listaVideos =respuesta;
-        this.listaVideos = this.listaVideos.sort(function(uno,dos){
-          return new Date(uno.createdAt)< new Date(dos.createdAt);
-        });
+        if(this.listaVideos.length==1 && Object.keys(this.listaVideos[0]).length==1){
+          this.idcompetencia= this.listaVideos[0].competitionId;
+          this.listaVideos = new Array();
+        }
+        else{
+          this.idcompetencia=this.listaVideos[0].competitionId;
+          this.listaVideos = this.listaVideos.sort(function(uno,dos){
+            return new Date(uno.createdAt)< new Date(dos.createdAt);
+          });
+        }
         console.log(this.listaVideos);
       },
       error=>console.log(error)
@@ -53,7 +61,7 @@ export class DetailcompetitionComponent implements OnInit {
     let dialogRef = this.dialog.open(RegistervideoComponent, {
       width: '80%',
       height:'70%',
-      data: { url: this.url, id: this.listOfCompetitions[0].id }
+      data: { url: this.url, id: this.idcompetencia}
     });
 
     dialogRef.afterClosed().subscribe(result => {

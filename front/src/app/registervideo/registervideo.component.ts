@@ -60,7 +60,7 @@ export class RegistervideoComponent implements OnInit {
         usuarioId = usuarioId.insertId;
     }
     else{
-      usuarioId = usuarioId[0].id;
+      usuarioId = usuarioId.id;
     }
     let fileBrowser = this.cargarVideov.nativeElement;
     if (fileBrowser.files && fileBrowser.files[0]) {
