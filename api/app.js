@@ -60,12 +60,29 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-mongoose.connect('mongodb://julian:julian@ec2-52-35-215-18.us-west-2.compute.amazonaws.com:27017/smartools', { useMongoClient: true, promiseLibrary: global.Promise })
+mongoose.connect('mongodb://localhost/smartools',
+    {
+        useMongoClient: true,
+        promiseLibrary: global.Promise
+    }
+)
+    .then((datos)=>{
+    console.log("Se conecto a mongo LOCAL");
+},(err)=>{
+    console.log(err);
+})
+
+/*mongoose.connect('mongodb://julian:julian@ec2-52-35-215-18.us-west-2.compute.amazonaws.com:27017/smartools',
+    {
+      useMongoClient: true,
+      promiseLibrary: global.Promise
+    }
+)
 .then((datos)=>{
-  console.log("Se conecto a mongo");
+  console.log("Se conecto a mongo AWS");
 },(err)=>{
   console.log(err);
-})
+})*/
 
 
 module.exports = app;

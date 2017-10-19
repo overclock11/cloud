@@ -21,7 +21,15 @@ config = {
         from: 'captuayonovoafredy@gmail.com',
         subject: 'Correo cargado exitosamesnte prueba 001',
         text: 'Correo convertido exitosamente, su video se encuentra disponible en la pagina oficial del concurso',
+    },configSqs:{
+        "auth":{
+            "accessKeyId": "AKIAJLQEV2Q7CTCX6UQQ",
+            "secretAccessKey": "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"
+        },
+        "url":"https://sqs.us-west-2.amazonaws.com/347718399261/Proyecto3.fifo",
+        "redisport":"6379"
     }
+
 };
  
 module.exports = config;

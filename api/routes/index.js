@@ -26,9 +26,9 @@ router.route("/competition/mcrear").post(CompetitionController.mregisterCompetit
 router.route("/competition/meliminar/:id").delete(CompetitionController.mdeleteCompetition);
 
 router.route("/videos/mcompetition/:id").get(VideoController.mgetVideoByCompetition);
-/*router.route("/videos/competition/madmin/:id").get(VideoController.mgetVideoByCompetitionAdmin);
-router.route("/mvideos/:id").get(VideoController.getVideoById).delete(VideoController.mdesactivarVideo);
-router.route("/videos/mcrear").post(VideoController.mregistrarVideo);*/
+router.route("/videos/competition/madmin/:id").get(VideoController.mgetVideoByCompetitionAdmin);
+router.route("/mvideos/:id").get(VideoController.mgetVideoById).delete(VideoController.mdesactivarVideo);
+router.route("/mvideos/crear").post(VideoController.mregistrarVideo);
 
 
 

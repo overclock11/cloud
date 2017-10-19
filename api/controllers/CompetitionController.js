@@ -22,36 +22,55 @@ exports.mgetAllCompetitionsHome = function(req,res){
   })
 }
 exports.murl = function(req,res){
-  Modelo.find({"administrador.competition.url":req.params.id},function(err,datos){
+    let condiciones ={
+        "administrador.competition.url":req.params.id
+    };
+  Modelo.find(condiciones,function(err,datos){
     if (err) {
       console.log(err);
+      res.status(500).json(err);
     } else {
       let datosFormateados = new Array();
       let tam = datos[0].administrador.competition;
+      let competitionId = datos[0].administrador.competition[0].id;
       for (var i = 0; i < tam.length; i++) {
         var usuario =datos[0].administrador.competition[i].usuario;
-        for(var j=0;j<usuario.length;j++){  
-          let videos = usuario[j];
-          for(var k=0;k<videos.video.length;k++){
-            let temp ={
-              "name":videos.video[k].name,
-              "url":videos.video[k].url,
-              "description":videos.video[k].description,
-              "notify":videos.video[k].notify,
-              "active":videos.video[k].active,
-              "id":videos.video[k].id,
-              "createdAt":videos.video[k].createdAt,
-              "updatedAt":videos.video[k].updatedAt,
-              "url_master":videos.video[k].url_master,
-              "show_home":videos.video[k].show_home,
-              "state_id":videos.video[k].state_id,
-              "user_id":usuario.id            
+        if(datos[0].administrador.competition[i].url===req.params.id){
+            for(var j=0;j<usuario.length;j++){
+                let videos = usuario[j];
+                for(var k=0;k<videos.video.length;k++){
+                    if(videos.video[k].active!==1 && videos.video[k].show_home===1 ){
+                        let temp ={
+                            "name":videos.video[k].name,
+                            "url":videos.video[k].url,
+                            "description":videos.video[k].description,
+                            "notify":videos.video[k].notify,
+                            "active":videos.video[k].active,
+                            "id":videos.video[k].id,
+                            "createdAt":videos.video[k].createdAt,
+                            "updatedAt":videos.video[k].updatedAt,
+                            "url_master":videos.video[k].url_master,
+                            "show_home":videos.video[k].show_home,
+                            "state_id":videos.video[k].state_id,
+                            "user_id":usuario.id,
+                            "competitionId":competitionId
+                        }
+                        datosFormateados.push(temp);
+                    }
+                }
             }
-            datosFormateados.push(temp);
-          }
         }
       }
-      res.status(200).json(datosFormateados);
+      if(datosFormateados.length>0){
+          res.status(200).json(datosFormateados);
+      }
+      else{
+          datosFormateados.push({
+            "competitionId":competitionId
+          });
+          res.status(200).json(datosFormateados);
+      }
+
     }
   })
 }
