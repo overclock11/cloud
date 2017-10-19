@@ -2,9 +2,10 @@ var mongoose = require('mongoose');
 var UserModel = require('../models/users');
 var Modelo = mongoose.model('Modelo');
 const uuidv4 = require('uuid/v4');
+const cacheconfig = require("../cacheconfig");
 
 var aws= require('aws-sdk');
-var elasticache = new aws.ElastiCache();
+var elasticache = new aws.ElastiCache(cacheconfig);
 
 /**
  * Funciones de Mongo
@@ -98,7 +99,16 @@ exports.mlogin = function(req,res){
       datos.push(filtrar);
 
       // cargar a redis aqui !
-        elasticache.addTagsToResource(datos, function (err, data) {
+      let redis = {
+        ResourceName: 'arn:aws:elasticache:us-west-2:::',
+        Tags: [ 
+          {
+            Key: 'datos',
+            Value: JSON.stringify(datos)
+          }          
+        ]        
+      };
+        elasticache.addTagsToResource(redis, function (err, data) {
             if (err) {
                 console.log(err, err.stack)
                 res.status(200).json(datos);
