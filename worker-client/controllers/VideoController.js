@@ -9,7 +9,7 @@ var multer  = require('multer'),
     fs = require('fs'),
     AWS = require('aws-sdk');
 
-AWS.config.loadFromPath('./s3_config.json');
+AWS.config.loadFromPath('../s3_config.json');
 var s3 = new AWS.S3( { params: {Bucket: 'cloud-proyecto3'} } )
 
 exports.upload = function(req,res){
