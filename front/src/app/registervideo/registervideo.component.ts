@@ -1,5 +1,5 @@
 import { Component, OnInit,Renderer, ElementRef } from '@angular/core';
-import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { Injectable,Inject } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {LoginService} from '../login.service';
@@ -30,8 +30,8 @@ export class RegistervideoComponent implements OnInit {
   public creacion;
 
   constructor(
-    public dialogRef: MdDialogRef<RegistervideoComponent>,
-    @Inject(MD_DIALOG_DATA) public data: any,
+    public dialogRef: MatDialogRef<RegistervideoComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
     private loginService:LoginService,
     private videoService:CargarVideosService
   ) { }

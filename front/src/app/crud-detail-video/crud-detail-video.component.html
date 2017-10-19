@@ -18,8 +18,8 @@
         </nav>
         <main class="col-sm-9 ml-sm-auto col-md-10 pt-3" role="main">
               <div class="col-md-12">
-                <md-card class="card-background-color animated rubberBand" *ngFor="let vi of video">
-                    <md-card-content>
+                <mat-card class="card-background-color animated rubberBand" *ngFor="let vi of video">
+                    <mat-card-content>
                       <div class="about-team-person text-center">
                           <div class="about-team-person-image">
                             <video style="width:100%;" controls>
@@ -38,15 +38,15 @@
                             <h4>{{vi.createdAt}}</h4>
                             <p>{{vi.description}}</p>
                             <p>Estado: {{vi.active ==null ||vi.active=="0" ? "Activo":"Inactivo" }}</p>
-                            <button md-icon-button color="accent" (click)="desactivarVideo()">
-                              <span mdTooltip="Eliminar del concurso!">
+                            <button mat-icon-button color="accent" (click)="desactivarVideo()">
+                              <span matTooltip="Eliminar del concurso!">
                                 <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
                               </span>
                             </button>
                       </div>
                         </div>
-                    </md-card-content>
-                </md-card>
+                    </mat-card-content>
+                </mat-card>
               </div>
         </main>
       </div>

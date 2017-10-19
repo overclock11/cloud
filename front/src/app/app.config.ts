@@ -1,6 +1,6 @@
 // variable de configuacion
 var configuracion = {
-  "endpoint":"35.160.162.174",
-  "endpointWorker":"35.160.162.174"
+  "endpoint":"localhost",
+  "endpointWorker":"localhost"
 };
 export default configuracion;

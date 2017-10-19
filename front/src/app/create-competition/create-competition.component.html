@@ -18,64 +18,64 @@
         </nav>
         <main class="col-sm-9 ml-sm-auto col-md-10 pt-3" role="main">
               <div class="col-md-12">                
-                <md-card class="card-background-color animated rubberBand">
+                <mat-card class="card-background-color animated rubberBand">
                   <form (ngSubmit)="registerCompetition()">
-                    <md-card-title>
+                    <mat-card-title>
                       Formulario de actualización
-                    </md-card-title>
-                    <md-card-content>
+                    </mat-card-title>
+                    <mat-card-content>
                       <div class="col-md-6">
-                        <md-form-field class="example-full-width">
-                          <input mdInput placeholder="Nombre de concurso" name="surname" type="text" [(ngModel)]="competition.name">
-                          <md-icon mdSuffix><i class="fa fa-address-book" aria-hidden="true"></i></md-icon>
-                        </md-form-field>
+                        <mat-form-field class="example-full-width">
+                          <input matInput placeholder="Nombre de concurso" name="surname" type="text" [(ngModel)]="competition.name">
+                          <mat-icon matSuffix><i class="fa fa-address-book" aria-hidden="true"></i></mat-icon>
+                        </mat-form-field>
                       </div>
 
                       <div class="col-md-6">
-                        <md-form-field class="example-full-width">
-                          <input mdInput placeholder="Nombre de Compañia impulsadora" name="company" type="text" [(ngModel)]="competition.company">
-                          <md-icon mdSuffix><i class="fa fa-address-book" aria-hidden="true"></i></md-icon>
-                        </md-form-field>
+                        <mat-form-field class="example-full-width">
+                          <input matInput placeholder="Nombre de Compañia impulsadora" name="company" type="text" [(ngModel)]="competition.company">
+                          <mat-icon matSuffix><i class="fa fa-address-book" aria-hidden="true"></i></mat-icon>
+                        </mat-form-field>
                       </div>
 
                       <div class="col-md-6">
-                        <md-form-field class="example-full-width">
-                          <input mdInput placeholder="URL concurso" name="url" type="text" [(ngModel)]="competition.url">
-                          <md-icon mdSuffix><i class="fa fa-address-book" aria-hidden="true"></i></md-icon>
-                        </md-form-field>
+                        <mat-form-field class="example-full-width">
+                          <input matInput placeholder="URL concurso" name="url" type="text" [(ngModel)]="competition.url">
+                          <mat-icon matSuffix><i class="fa fa-address-book" aria-hidden="true"></i></mat-icon>
+                        </mat-form-field>
                       </div>
 
                       <div class="col-md-6">
-                        <md-form-field class="example-full-width">
-                          <input mdInput placeholder="URL baner" name="urlImageBanner" type="text" [(ngModel)]="competition.url_image_banner">
-                          <md-icon mdSuffix><i class="fa fa-address-book" aria-hidden="true"></i></md-icon>
-                        </md-form-field>
+                        <mat-form-field class="example-full-width">
+                          <input matInput placeholder="URL baner" name="urlImageBanner" type="text" [(ngModel)]="competition.url_image_banner">
+                          <mat-icon matSuffix><i class="fa fa-address-book" aria-hidden="true"></i></mat-icon>
+                        </mat-form-field>
                       </div>
 
                       <div class="col-md-6">
-                        <md-form-field class="example-full-width">
-                          <input mdInput placeholder="Description" name="description" type="text" [(ngModel)]="competition.description">
-                          <md-icon mdSuffix><i class="fa fa-address-book" aria-hidden="true"></i></md-icon>
-                        </md-form-field>
+                        <mat-form-field class="example-full-width">
+                          <input matInput placeholder="Description" name="description" type="text" [(ngModel)]="competition.description">
+                          <mat-icon matSuffix><i class="fa fa-address-book" aria-hidden="true"></i></mat-icon>
+                        </mat-form-field>
                       </div>
                       <div class="col-md-6">
-                        <md-form-field>
-                          <input mdInput [mdDatepicker]="picker1" name="Fecha inicial" [(ngModel)]="competition.date_start" placeholder="Fecha inicial">
-                          <md-datepicker-toggle mdSuffix [for]="picker1"></md-datepicker-toggle>
-                          <md-datepicker #picker1></md-datepicker>
-                        </md-form-field>
+                        <mat-form-field>
+                          <input matInput [matDatepicker]="picker1" name="Fecha inicial" [(ngModel)]="competition.date_start" placeholder="Fecha inicial">
+                          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                          <mat-datepicker #picker1></mat-datepicker>
+                        </mat-form-field>
                       </div>
                       <div class="col-md-6">
-                        <md-form-field>
-                          <input mdInput [mdDatepicker]="picker" name="Fecha inicial" [(ngModel)]="competition.date_end" placeholder="Fecha Final">
-                          <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
-                          <md-datepicker #picker></md-datepicker>
-                        </md-form-field>
+                        <mat-form-field>
+                          <input matInput [matDatepicker]="picker" name="Fecha inicial" [(ngModel)]="competition.date_end" placeholder="Fecha Final">
+                          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                          <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
                       </div>
-                      <button md-raised-button color="primary" class="btn-block">Crear Concurso</button>
-                    </md-card-content>
+                      <button mat-raised-button color="primary" class="btn-block">Crear Concurso</button>
+                    </mat-card-content>
                   </form>
-                </md-card>
+                </mat-card>
               </div>
         </main>
       </div>

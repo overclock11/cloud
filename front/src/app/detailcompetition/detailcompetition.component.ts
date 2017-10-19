@@ -3,7 +3,7 @@ import {ConcursosService} from '../services/concursos.service';
 import { RouterLink,ActivatedRoute } from '@angular/router';
 import {RegistervideoComponent} from '../registervideo/registervideo.component';
 import { Injectable,Inject } from '@angular/core';
-import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AfterViewInit } from '@angular/core';
 
@@ -22,7 +22,7 @@ export class DetailcompetitionComponent implements OnInit {
   public p:number=1;
   public idcompetencia:string;
   constructor(private concursosService:ConcursosService,
-    public dialog: MdDialog,
+    public dialog: MatDialog,
     private ruta:ActivatedRoute,
     private sanitizer:DomSanitizer) { }
 

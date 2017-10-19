@@ -18,52 +18,52 @@
         </nav>
         <main class="col-sm-9 ml-sm-auto col-md-10 pt-3" role="main">
               <div class="col-md-12">
-                <md-progress-bar mode="indeterminate" *ngIf="update"></md-progress-bar>
-                <md-card class="card-background-color animated rubberBand">
+                <mat-progress-bar mode="indeterminate" *ngIf="update"></mat-progress-bar>
+                <mat-card class="card-background-color animated rubberBand">
                   <form (ngSubmit)="actualizarCompetitions()">
-                    <md-card-title>
+                    <mat-card-title>
                       Formulario de actualización
-                    </md-card-title>
-                    <md-card-content>
+                    </mat-card-title>
+                    <mat-card-content>
                       <div class="col-md-6">
-                        <md-form-field class="example-full-width">
-                          <input mdInput placeholder="Nombre de concurso" name="surname" type="text" [(ngModel)]="competition.name">
-                          <md-icon mdSuffix><i class="fa fa-address-book" aria-hidden="true"></i></md-icon>
-                        </md-form-field>
+                        <mat-form-field class="example-full-width">
+                          <input matInput placeholder="Nombre de concurso" name="surname" type="text" [(ngModel)]="competition.name">
+                          <mat-icon matSuffix><i class="fa fa-address-book" aria-hidden="true"></i></mat-icon>
+                        </mat-form-field>
                       </div>
 
                       <div class="col-md-6">
-                        <md-form-field class="example-full-width">
-                          <input mdInput placeholder="Nombre de Compañia impulsadora" name="company" type="text" [(ngModel)]="competition.company">
-                          <md-icon mdSuffix><i class="fa fa-address-book" aria-hidden="true"></i></md-icon>
-                        </md-form-field>
+                        <mat-form-field class="example-full-width">
+                          <input matInput placeholder="Nombre de Compañia impulsadora" name="company" type="text" [(ngModel)]="competition.company">
+                          <mat-icon matSuffix><i class="fa fa-address-book" aria-hidden="true"></i></mat-icon>
+                        </mat-form-field>
                       </div>
 
                       <div class="col-md-6">
-                        <md-form-field class="example-full-width">
-                          <input mdInput placeholder="URL concurso" name="url" type="text" [(ngModel)]="competition.url">
-                          <md-icon mdSuffix><i class="fa fa-address-book" aria-hidden="true"></i></md-icon>
-                        </md-form-field>
+                        <mat-form-field class="example-full-width">
+                          <input matInput placeholder="URL concurso" name="url" type="text" [(ngModel)]="competition.url">
+                          <mat-icon matSuffix><i class="fa fa-address-book" aria-hidden="true"></i></mat-icon>
+                        </mat-form-field>
                       </div>
 
                       <div class="col-md-6">
-                        <md-form-field class="example-full-width">
-                          <input mdInput placeholder="URL baner" name="urlImageBanner" type="text" [(ngModel)]="competition.url_image_banner">
-                          <md-icon mdSuffix><i class="fa fa-address-book" aria-hidden="true"></i></md-icon>
-                        </md-form-field>
+                        <mat-form-field class="example-full-width">
+                          <input matInput placeholder="URL baner" name="urlImageBanner" type="text" [(ngModel)]="competition.url_image_banner">
+                          <mat-icon matSuffix><i class="fa fa-address-book" aria-hidden="true"></i></mat-icon>
+                        </mat-form-field>
                       </div>
 
                       <div class="col-md-6">
-                        <md-form-field class="example-full-width">
-                          <input mdInput placeholder="Description" name="description" type="text" [(ngModel)]="competition.description">
-                          <md-icon mdSuffix><i class="fa fa-address-book" aria-hidden="true"></i></md-icon>
-                        </md-form-field>
+                        <mat-form-field class="example-full-width">
+                          <input matInput placeholder="Description" name="description" type="text" [(ngModel)]="competition.description">
+                          <mat-icon matSuffix><i class="fa fa-address-book" aria-hidden="true"></i></mat-icon>
+                        </mat-form-field>
                       </div>
 
-                      <button md-raised-button color="primary" class="btn-block">Actualizar</button>
-                    </md-card-content>
+                      <button mat-raised-button color="primary" class="btn-block">Actualizar</button>
+                    </mat-card-content>
                   </form>
-                </md-card>
+                </mat-card>
               </div>
         </main>
       </div>

@@ -7,9 +7,12 @@ import { AppComponent } from './app.component';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {MdButtonModule, MdCheckboxModule} from '@angular/material';
-import {MaterialModule,MdNativeDateModule} from '@angular/material';
+import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+import {MatNativeDateModule} from '@angular/material';
+import {MatInputModule} from '@angular/material';
 import { FormsModule , ReactiveFormsModule} from '@angular/forms';
+import {MatCardModule} from '@angular/material';
+import {MatDatepickerModule} from '@angular/material';
 
 
 import { HomeComponent } from './home/home.component';
@@ -53,10 +56,12 @@ import {NgxPaginationModule} from 'ngx-pagination';
     BrowserModule,
     BrowserAnimationsModule,
     NoopAnimationsModule,
-    MdButtonModule,
-    MdCheckboxModule,
-    MaterialModule,
-    MdNativeDateModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MatCardModule,
+    MatDatepickerModule,
     app_rountig,
     HttpModule,
     FormsModule,
