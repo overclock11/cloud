@@ -100,7 +100,7 @@ exports.mlogin = function(req,res){
 
       // cargar a redis aqui !
       let redis = {
-        ResourceName: 'arn:aws:elasticache:us-west-2:::',
+        ResourceName: 'arn:aws:es:us-west-2:347718399261:proyecto3.fawh4l.0001.usw2.cache.amazonaws.com/proyecto3',
         Tags: [ 
           {
             Key: 'datos',
