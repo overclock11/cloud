@@ -2,11 +2,15 @@ var mongoose = require('mongoose');
 var UserModel = require('../models/users');
 var Modelo = mongoose.model('Modelo');
 const uuidv4 = require('uuid/v4');
-const cacheconfig = require("../cacheconfig");
+/*const cacheconfig = require("../cacheconfig");
+var redis = require("redis");
+client = redis.createClient();
 
 var aws= require('aws-sdk');
-var elasticache = new aws.ElastiCache(cacheconfig);
+var elasticache = new aws.ElastiCache(cacheconfig);*/
 
+var redis = require("redis");
+var client = redis.createClient("6379", "proyecto3.fawh4l.0001.usw2.cache.amazonaws.com");
 /**
  * Funciones de Mongo
  */
@@ -99,25 +103,10 @@ exports.mlogin = function(req,res){
       datos.push(filtrar);
 
       // cargar a redis aqui !
-      let redis = {
-        ResourceName: 'arn:aws:es:us-west-2:347718399261:proyecto3.fawh4l.0001.usw2.cache.amazonaws.com/proyecto3',
-        Tags: [ 
-          {
-            Key: 'datos',
-            Value: JSON.stringify(datos)
-          }          
-        ]        
-      };
-        elasticache.addTagsToResource(redis, function (err, data) {
-            if (err) {
-                console.log(err, err.stack)
-                res.status(200).json(datos);
-            }
-            else{
-                console.log(data);
-                res.status(200).json(datos);
-            }
+        client.set('framework', 'AngularJS', function(err, reply) {
+            console.log(reply);
         });
+
     }
     else{
       if (error) {

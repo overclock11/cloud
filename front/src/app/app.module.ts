@@ -13,6 +13,7 @@ import {MatInputModule} from '@angular/material';
 import { FormsModule , ReactiveFormsModule} from '@angular/forms';
 import {MatCardModule} from '@angular/material';
 import {MatDatepickerModule} from '@angular/material';
+import {MatProgressBarModule} from '@angular/material';
 
 
 import { HomeComponent } from './home/home.component';
@@ -62,6 +63,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
     MatInputModule,
     MatCardModule,
     MatDatepickerModule,
+    MatProgressBarModule,
     app_rountig,
     HttpModule,
     FormsModule,
