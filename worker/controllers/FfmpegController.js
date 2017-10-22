@@ -7,21 +7,14 @@ var config = require('../config');
 exports.convertVideoToMp4 = function(id, urlOrigin, emailUser){
 
 
-VideoModel.getStateNotifite(item.id, function(error,data_validate) {
+VideoModel.getStateNotifite(id, function(error,data_validate) {
            if(data_validate) {
             console.log(data_validate);
              data_validate.forEach(function (item_validate) {
               console.log("entro al segundo for escenarioC");
               console.log(item_validate.id);
-              if (item_validate.id == item.id) {
+              if (item_validate.id == id) {
                   
-
-                  console.log("video validado" + item.id);
-                  urlOrigin = item.url.replace(config.pathVideo.path, '');
-                  console.log(item.id, urlOrigin, item.email);
-                  
-
-
 
                   
 if (urlOrigin.indexOf(".mp4") > 0) {
