@@ -15,7 +15,7 @@ aws.config.loadFromPath("./sqsconfig.json");
 
 var receipt  = "";
 
-cron.schedule('*/5 * * * *', function(){
+cron.schedule('*/1 * * * *', function(){
   console.log("cron ejecutandose");
 
   var sqs = new aws.SQS();

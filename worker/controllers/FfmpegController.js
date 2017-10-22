@@ -17,14 +17,7 @@ var s3 = new AWS.S3( { params: {Bucket: 'cloud-proyecto3'} } )
 exports.convertVideoToMp4 = function(message){
 	console.log("entro al convert");
 	urlOrigin = message.url.replace(config.pathVideo.pathS3, '');
-    originvideo = descargarVideo(urlOrigin, message);
-    console.log(originvideo);
-
-    if (originvideo != null) {
-    	console.log("entro al envio");
-    	convertVideo(urlOrigin,'captuayonovoafredy@gmail.com')
-    }
-
+    descargarVideo(urlOrigin, message);
     console.log("salio al convert");
 	
 };
@@ -48,21 +41,17 @@ exports.convertVideoToMp4 = function(message){
 	  }).on('error', function (err) {
 	  	console.log(err);
 	    deferred.reject(err);
-	    return null;
 	  }).on('finish', function () {
-	  	deferred.resolve(filepath)
+			deferred.resolve(filepath)
+			console.log("entro al envio");
+		    convertVideo(urlOrigin,'captuayonovoafredy@gmail.com')
 	  });
-	  return filepath;
 };
 
 
 // ffmpeg convert function
 function convertVideo(urlOrigin, emailUser){
-
-
-
 if (urlOrigin.indexOf(".mp4") > 0) {
-
 console.log("va a convertir el video"+urlOrigin);
 	try {
 		var process = new ffmpeg(config.pathVideo.pathLogicOrigin+urlOrigin);
@@ -76,7 +65,13 @@ console.log("va a convertir el video"+urlOrigin);
         else {
           		console.log('Video file: ' + file);
   				console.log("Video a convertido");
-  				//uploadVideo(urlOrigin);
+  				uploadToS3(file, urlOrigin, function (errupload, dataupload) {
+			        if (errupload) {
+			            console.error(err);  
+			        } else {
+			            console.error(dataupload);
+			        }
+			    });
   				EmailController.sendEmail(emailUser, config.pathVideo.pathRender+urlOrigin);
         }
 			});
@@ -106,7 +101,13 @@ try {
         else {
           		console.log('Video file: ' + file);
   				console.log("Video a convertido");
-				//uploadVideo(urlOrigin);
+				uploadToS3(file, urlOrigin, function (errupload, dataupload) {
+			        if (errupload) {
+			            console.error(err);  
+			        } else {
+			            console.error(dataupload);
+			        }
+			    });
   				EmailController.sendEmail(emailUser, config.pathVideo.pathRender+urlOrigin);
         }
 			});
@@ -121,32 +122,30 @@ try {
 
 };
 
-
- function uploadVideo(urlOrigin) {
- 	console.log("Cargo correctamente en el s3 arranco");
-	fs.readFile(config.pathVideo.pathLogicConvert+urlOrigin, function (err, data) {
-        if (err) throw err; // Something went wrong!
-        var s3bucket = new AWS.S3({params: {Bucket: 'mybucketname'}});
-        let storage = multerS3({
+function uploadToS3(file, destFileName, callback) {
+  var nombre
+  let numeroAleatorio = parseInt(Math.random()*10000);
+              
+  let storage = multerS3({
             s3: s3,
             bucket: 'cloud-proyecto3',
-            metadata: function (req, data, cb) {
-                cb(null, { fieldName: urlOrigin });
+            metadata: function (file, cb) {
+                cb(null, { fieldName: destFileName });
             },
-            key: function (req, data, cb) {
-                cb(null, config.pathVideo.pathLogicConvertS3 + urlOrigin)
+            key: function (file, cb) {
+                cb(null, config.pathVideo.pathLogicConvertS3 + destFileName)
             }
-		  })
+  })
 
-		  let cargar = multer({ storage: storage, limits: { fileSize: 100000000 } });
-		    if (err) {
-		        console.log("Error al cargar en el S3");
-		    }
-		    else{
-		        console.log("Cargo correctamente en el s3");
-		    }
-    });
-};
-
-
-
+  multer({ storage: storage, limits: { fileSize: 100000000 } });
+  cargar(function(err){
+    if (err) {
+        console.log("Error al cargar en el S3");
+   		return false;
+    }
+    else{
+        console.log("Cargo correctamente en el s3");
+        return false;
+    }
+  });
+}
