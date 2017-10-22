@@ -2,15 +2,9 @@ var mongoose = require('mongoose');
 var UserModel = require('../models/users');
 var Modelo = mongoose.model('Modelo');
 const uuidv4 = require('uuid/v4');
-/*const cacheconfig = require("../cacheconfig");
-var redis = require("redis");
-client = redis.createClient();
+/*var redis = require("redis");
+var client = redis.createClient("6379", "proyecto.fawh4l.0001.usw2.cache.amazonaws.com");*/
 
-var aws= require('aws-sdk');
-var elasticache = new aws.ElastiCache(cacheconfig);*/
-
-var redis = require("redis");
-var client = redis.createClient("6379", "proyecto3.fawh4l.0001.usw2.cache.amazonaws.com");
 /**
  * Funciones de Mongo
  */
@@ -87,37 +81,53 @@ exports.mcrear = function(req,res){
 }
 
 exports.mlogin = function(req,res){
-  let datosUsuario = {
-    username:req.body.username,
-    password:req.body.password
-  }
-  Modelo.find({"administrador.username":datosUsuario.username,"administrador.password":datosUsuario.password},function(error,data){
-    console.log(data.length);
-    if (data.length>0) {
-      let filtrar ={}
-      filtrar.username = data[0].administrador.username;
-      filtrar.name = data[0].administrador.name
-      filtrar.email = data[0].administrador.email
-      filtrar.id = data[0].administrador.id;
-      let datos = new Array();
-      datos.push(filtrar);
 
-      // cargar a redis aqui !
-        client.set('framework', 'AngularJS', function(err, reply) {
-            console.log(reply);
+  //consultar en redis
+    let llaveRedis =req.body.username+req.body.password;
+    let redisResult;
+  client.get(llaveRedis, function(err, reply) {
+      redisResult = reply;
+  });
+    if(redisResult===null){
+        //redis no tiene nada  debe consultarse en la base de datos
+        let datosUsuario = {
+            username:req.body.username,
+            password:req.body.password
+        };
+        Modelo.find({"administrador.username":datosUsuario.username,"administrador.password":datosUsuario.password},function(error,data){
+            console.log(data.length);
+            if (data.length>0) {
+                let filtrar ={}
+                filtrar.username = data[0].administrador.username;
+                filtrar.name = data[0].administrador.name
+                filtrar.email = data[0].administrador.email
+                filtrar.id = data[0].administrador.id;
+                let datos = new Array();
+                datos.push(filtrar);
+
+                // agregar a redis
+                client.set(llaveRedis, JSON.stringify(datos), function(err, reply) {
+                    console.log(reply,"guardado en redis");
+                    res.status(200).json(datos);
+                });
+            }
+            else{
+                if (error) {
+                    res.status(401).json(error);
+                }
+                else{
+                    res.status(401).json({"mensaje":"Usuario no valido"});
+                }
+            }
         });
-
     }
     else{
-      if (error) {
-        res.status(401).json(error);  
-      }
-      else{
-        res.status(401).json({"mensaje":"Usuario no valido"});  
-      }      
+        //redis tiene datos de sesion
+        res.status(200).json(redisResult);
     }
-  })
-}
+
+    };
+
 
 
 /**
