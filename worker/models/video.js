@@ -4,26 +4,76 @@ var mysql = require('mysql'),
 //creamos la conexion a nuestra base de datos con los datos de acceso de cada uno
 connection = mysql.createConnection(config.databases);
 
-
-//validar que conecto con rds
-connection.connect(function(err) {
-    if (err) {
-      console.error('error connecting: ' + err.stack);
-      return;
-    }
-  
-    console.log('connected as id ' + connection.threadId);
-  });
-  
-
 //creamos un objeto para ir almacenando todo lo que necesitemos
 var VideoModel = {};
 
-//obtenemos todos los videos sin procesar
-VideoModel.getVideoByNotProcess = function(callback){
+//obtenemos todos los videos
+VideoModel.getVideoByCompetition = function(id,callback){
+  console.log(id);
     if (connection)
     {
-        var sql ="SELECT u.email as email, v.name as name, v.url as url, v.description as description,v.notify as notify, v.active as active, v.id as id, v.createdAt as createdAt, v.updatedAt as updatedAt, v.url_master as url_master, v.show_home as show_home, v.competition_id as competition_id, v.state_id as state_id, v.user_id as user_id from video as v join user as u on(v.user_id=u.id) WHERE url_master is null and show_home = 0 and state_id = 1 and notify = 0 order by createdAt desc;";
+        var sql = 'SELECT * FROM video WHERE url_master is not null and show_home = 1 and state_id = 1 and notify = 1  and active=0 and competition_id='+connection.escape(id.id);+' order by createdAt desc;';
+        connection.query(sql, function(error, row)
+        {
+            if(error)
+            {
+                callback(error, result);
+            }
+            else
+            {
+                callback(null, row);
+            }
+        });
+    }
+}
+VideoModel.getVideoByCompetitionAdmin = function(id,callback){
+  console.log(id);
+    if (connection)
+    {
+        var sql = 'SELECT * FROM video WHERE competition_id='+connection.escape(id.id);+' order by createdAt desc;';
+        connection.query(sql, function(error, row)
+        {
+            if(error)
+            {
+                callback(error, result);
+            }
+            else
+            {
+                callback(null, row);
+            }
+        });
+    }
+}
+VideoModel.getVideoById = function(id,callback){
+  console.log(id);
+    if (connection)
+    {
+      var sql ="select v.name as nombreVideo,v.url_master as urlVideoConvertido,v.url as urlVideoOriginal,"+
+                "v.id as idVideo, v.active as videoActivo, v.show_home as videoShowHome, v.createdAt as videoCreado,"+
+                "v.description as videoDescripcion,"+
+                "u.username as usuarioNombre, u.surname as usuarioApellido, u.email usuarioEmail, u.id as usuarioId"+
+                " from video as v "+
+                "join user as u "+
+                "on(v.user_id=u.id) where v.id="+ connection.escape(id.id);
+        connection.query(sql, function(error, row)
+        {
+            if(error)
+            {
+                callback(error, null);
+            }
+            else
+            {
+                callback(null, row);
+            }
+        });
+    }
+}
+VideoModel.desactivarVideo = function(id,callback){
+  console.log(id);
+    if (connection)
+    {
+      var sql ="update video set active=1, show_home = 1 where id="+ connection.escape(id.id);
+      console.log(sql);
         connection.query(sql, function(error, row)
         {
             if(error)
@@ -38,22 +88,19 @@ VideoModel.getVideoByNotProcess = function(callback){
     }
 }
 
-VideoModel.updateConvertVideo = function(id,url_master,callback){
+VideoModel.insertVideo = function(videoData,callback){
     if (connection)
     {
-        var sql = "UPDATE video SET url_master = '"+ url_master +"', show_home = 1, notify = 1 where id = " + id + ";";
-        console.log(sql);
-        connection.query(sql, function(error, result)
+      connection.query('INSERT INTO video SET ?', videoData, function(error, result) {
+        if(error)
         {
-            if(error)
-            {
-                callback(error, result);
-            }
-            else
-            {
-                callback(null, result);
-            }
-        });
+            callback(error, null);
+        }
+        else
+        {
+            callback(null, result);
+        }
+      });
     }
 }
 

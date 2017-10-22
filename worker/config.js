@@ -8,11 +8,16 @@ config = {
         database: 'cloud',
         port:3306
     },pathVideo: {
-        path: 'http://35.163.86.10:3001/public/videos/',//35.163.86.10
-        pathRender: 'http://35.163.86.10:3001/public/videos-render/',
-        pathLogic: './public/videos',
+        path: 'http://balanceadorcarga001-2004680552.us-west-2.elb.amazonaws.com:3001/public/videos/',//35.163.86.10
+        pathRender: 'http://balanceadorcarga001-2004680552.us-west-2.elb.amazonaws.com:3001/public/videos-render/',
+        pathS3: 'http://d2zsdt0a19wk6b.cloudfront.net/videos/',//35.163.86.10
+        pathRenderS3: 'http://d2zsdt0a19wk6b.cloudfront.net/videos-render',
+        pathLogic: 'public/videos/',
         pathLogicOrigin: 'public/videos/',
-        pathLogicConvert: 'public/videos-render/'
+        pathLogicConvert: 'public/videos-render/',
+        pathLogicOriginS3: 'videos/',
+        pathLogicConvertS3: 'videos-render/'
+
     },configMail: {
         service: 'Gmail',
         auth: {
@@ -23,7 +28,14 @@ config = {
         from: 'jlian92@gmail.com',
         subject: '¡Tu video ya se encuentra en el home!',
         text: 'Ya puedes ir a la página principal del concurso y ver tu video en la lista.',
-    },awsSES:{
+    },configSqs:{
+        "auth":{
+            "accessKeyId": "AKIAJLQEV2Q7CTCX6UQQ",
+            "secretAccessKey": "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"
+        },
+        "url":"https://sqs.us-west-2.amazonaws.com/347718399261/Proyecto3.fifo",
+        "redisport":"6379"
+    }, awsSES:{
       host: 'email-smtp.us-west-2.amazonaws.com',
       port: 465,
       secure: true, // use TLS

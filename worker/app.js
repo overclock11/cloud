@@ -4,6 +4,12 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+var methodOverride = require("method-override");
+
+//incluir modelos aqui
+var modeloSmartools = require('./models/mongoModel')(app, mongoose);
+//
 
 var index = require('./routes/index');
 

@@ -4,7 +4,7 @@ var config = require('../config');
 
 
 // email sender function
-exports.sendEmail = function(id, emailUser, url_master){
+exports.sendEmail = function(emailUser, url_master){
 
     console.log("va a enviar correo a " + emailUser);
     // Definimos el transporter
@@ -23,15 +23,6 @@ exports.sendEmail = function(id, emailUser, url_master){
             console.log(error);
         } else {
             console.log("Email sent");
-
-            VideoModel.updateConvertVideo(id, url_master, function(error, data) {
-                if(data) {
-                   console.log("Update succes");
-                } else {
-                   console.log("Error update");
-
-                }
-              });
         }
     });
 };

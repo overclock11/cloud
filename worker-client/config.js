@@ -18,7 +18,7 @@ config = {
         pathLogicOrigin: 'public/videos/',
         pathLogicConvert: 'public/videos-render/',
         pathLogicOriginS3: 'videos/',
-        pathLogicConvertS3: 'public/videos-render/'
+        pathLogicConvertS3: 'videos-render/'
     },configMail: {
         service: 'Gmail',
         auth: {
