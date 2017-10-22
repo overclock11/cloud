@@ -23,7 +23,7 @@ var VideoModel = {};
 VideoModel.getVideoByNotProcess = function(callback){
     if (connection)
     {
-        var sql ="SELECT u.email as email, v.name as name, v.url as url, v.description as description,v.notify as notify, v.active as active, v.id as id, v.createdAt as createdAt, v.updatedAt as updatedAt, v.url_master as url_master, v.show_home as show_home, v.competition_id as competition_id, v.state_id as state_id, v.user_id as user_id from video as v join user as u on(v.user_id=u.id) WHERE url_master is null and show_home = 0 and state_id = 1 and notify = 0 order by createdAt desc;";
+        var sql ="SELECT u.email as email, v.name as name, v.url as url, v.description as description,v.notify as notify, v.active as active, v.id as id, v.createdAt as createdAt, v.updatedAt as updatedAt, v.url_master as url_master, v.show_home as show_home, v.competition_id as competition_id, v.state_id as state_id, v.user_id as user_id from video as v join user as u on(v.user_id=u.id) WHERE url_master is null and show_home = 0 and state_id = 1 and notify = 0 order by RAND() LIMIT 2;";
         connection.query(sql, function(error, row)
         {
             if(error)
