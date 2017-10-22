@@ -85,57 +85,60 @@ exports.mlogin = function (req, res) {
     //consultar en redis
     let llaveRedis = req.body.username + req.body.password;
     var redisResult = null;
+    console.log("llave de consulta en redis",llaveRedis);
     client.get(llaveRedis, function (err, reply) {
         console.log("consulta a redis", reply);
         redisResult = reply;
         console.log("redis result = ", redisResult);
-    });
-    if (redisResult===null) {
-        //redis no tiene nada  debe consultarse en la base de datos
-        let datosUsuario = {
-            username: req.body.username,
-            password: req.body.password
-        };
-        console.log("objeto de consutal en mongo", datosUsuario);
-        Modelo.find({
-            "administrador.username": datosUsuario.username,
-            "administrador.password": datosUsuario.password
-        }, function (error, data) {
-            console.log("resultado de consulta en mongo", data.length);
-            if (data.length > 0)
-            {
-                let filtrar = {};
-                filtrar.username = data[0].administrador.username;
-                filtrar.name = data[0].administrador.name;
-                filtrar.email = data[0].administrador.email;
-                filtrar.id = data[0].administrador.id;
-                let datos = [];
-                datos.push(filtrar);
 
-                // agregar a redis
-                console.log("agregando a redis");
-                client.set(llaveRedis, JSON.stringify(datos), function (err, reply) {
-                    console.log(reply, "guardado en redis");
-                    res.status(200).json(datos);
-                });
-            }
-            else {
-                if (error) {
-                    console.log("datos < 0 ");
-                    res.status(401).json(error);
+        if (redisResult===null) {
+            //redis no tiene nada  debe consultarse en la base de datos
+            let datosUsuario = {
+                username: req.body.username,
+                password: req.body.password
+            };
+            console.log("objeto de consutal en mongo", datosUsuario);
+            Modelo.find({
+                "administrador.username": datosUsuario.username,
+                "administrador.password": datosUsuario.password
+            }, function (error, data) {
+                console.log("resultado de consulta en mongo", data.length);
+                if (data.length > 0)
+                {
+                    let filtrar = {};
+                    filtrar.username = data[0].administrador.username;
+                    filtrar.name = data[0].administrador.name;
+                    filtrar.email = data[0].administrador.email;
+                    filtrar.id = data[0].administrador.id;
+                    let datos = [];
+                    datos.push(filtrar);
+
+                    // agregar a redis
+                    console.log("agregando a redis");
+                    client.set(llaveRedis, JSON.stringify(datos), function (err, reply) {
+                        console.log(reply, "guardado en redis");
+                        res.status(200).json(datos);
+                    });
                 }
                 else {
-                    console.log("usuario no valido");
-                    res.status(401).json({"mensaje": "Usuario no valido"});
+                    if (error) {
+                        console.log("datos < 0 ");
+                        res.status(401).json(error);
+                    }
+                    else {
+                        console.log("usuario no valido");
+                        res.status(401).json({"mensaje": "Usuario no valido"});
+                    }
                 }
-            }
-        });
-    }
-    else {
-        //redis tiene datos de sesion
-        console.log("respeusta cuando redis tiene datos", redisResult);
-        res.status(200).json(redisResult);
-    }
+            });
+        }
+        else {
+            //redis tiene datos de sesion
+            console.log("respeusta cuando redis tiene datos", redisResult);
+            res.status(200).json(redisResult);
+        }
+    });
+
 };
 
 
