@@ -135,7 +135,7 @@ exports.mlogin = function (req, res) {
         else {
             //redis tiene datos de sesion
             console.log("respeusta cuando redis tiene datos", redisResult);
-            res.status(200).json(redisResult);
+            res.status(200).json(JSON.parse(redisResult));
         }
     });
 
