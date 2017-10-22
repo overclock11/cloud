@@ -2,8 +2,8 @@ var mongoose = require('mongoose');
 var UserModel = require('../models/users');
 var Modelo = mongoose.model('Modelo');
 const uuidv4 = require('uuid/v4');
-/*var redis = require("redis");
-var client = redis.createClient("6379", "proyecto.fawh4l.0001.usw2.cache.amazonaws.com");*/
+var redis = require("redis");
+var client = redis.createClient("6379", "proyecto.fawh4l.0001.usw2.cache.amazonaws.com");
 
 /**
  * Funciones de Mongo
@@ -84,18 +84,22 @@ exports.mlogin = function(req,res){
 
   //consultar en redis
     let llaveRedis =req.body.username+req.body.password;
-    let redisResult;
+    let redisResult=null;
   client.get(llaveRedis, function(err, reply) {
+	console.log("consulta a redis",reply);
       redisResult = reply;
+	console.log("redis result = ",redisResult);
+
   });
-    if(redisResult===null){
+    if(redisResult){
         //redis no tiene nada  debe consultarse en la base de datos
         let datosUsuario = {
             username:req.body.username,
             password:req.body.password
         };
+	console.log("objeto de consutal en mongo",datosUsuario);
         Modelo.find({"administrador.username":datosUsuario.username,"administrador.password":datosUsuario.password},function(error,data){
-            console.log(data.length);
+            console.log("resultado de consulta en mongo",data.length);
             if (data.length>0) {
                 let filtrar ={}
                 filtrar.username = data[0].administrador.username;
@@ -106,6 +110,7 @@ exports.mlogin = function(req,res){
                 datos.push(filtrar);
 
                 // agregar a redis
+		console.log("agregando a redis");
                 client.set(llaveRedis, JSON.stringify(datos), function(err, reply) {
                     console.log(reply,"guardado en redis");
                     res.status(200).json(datos);
@@ -113,9 +118,11 @@ exports.mlogin = function(req,res){
             }
             else{
                 if (error) {
+			console.log("datos < 0 ");
                     res.status(401).json(error);
                 }
                 else{
+			console.log("usuario no valido");
                     res.status(401).json({"mensaje":"Usuario no valido"});
                 }
             }
@@ -123,10 +130,11 @@ exports.mlogin = function(req,res){
     }
     else{
         //redis tiene datos de sesion
-        res.status(200).json(redisResult);
+	console.log("respeusta cuando redis tiene datos",redisresult);
+        res.status(200).json({});
     }
 
-    };
+  };
 
 
 
