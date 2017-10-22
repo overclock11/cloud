@@ -2,8 +2,9 @@ var mongoose = require('mongoose');
 var UserModel = require('../models/users');
 var Modelo = mongoose.model('Modelo');
 const uuidv4 = require('uuid/v4');
+const config = require("../config");
 var redis = require("redis");
-var client = redis.createClient("6379", "proyecto.fawh4l.0001.usw2.cache.amazonaws.com");
+var client = redis.createClient(config.configRedis.port,config.configRedis.endpoint);
 
 /**
  * Funciones de Mongo
