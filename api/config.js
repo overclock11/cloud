@@ -28,6 +28,9 @@ config = {
         },
         "url":"https://sqs.us-west-2.amazonaws.com/347718399261/Proyecto3.fifo",
         "redisport":"6379"
+    },configRedis:{
+        port:"6379",
+        "endpoint":"proyecto.fawh4l.0001.usw2.cache.amazonaws.com"
     }
 
 };

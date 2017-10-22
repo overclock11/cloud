@@ -4,6 +4,7 @@ var ip = require("ip");
 var mongoose = require('mongoose');
 var Modelo = mongoose.model('Modelo');
 var aws= require('aws-sdk');
+const uuidv4 = require('uuid/v4');
 /**
  * Funciones para mongo 
  */
@@ -158,6 +159,7 @@ exports.mregistrarVideo = function(req,res){
         "administrador.competition.id":req.body.competition_id
     };
     Modelo.find(condiciones,function(err,datos){
+        req.body.id = uuidv4();
         if (err) {
             console.log(err);
             res.status(500).json(err)
@@ -179,7 +181,8 @@ exports.mregistrarVideo = function(req,res){
                                     "active":0,
                                     "notify":0,
                                     "url_master":null,
-                                    "createdAt":new Date()
+                                    "createdAt":new Date(),
+                                    "id":req.body.id
                                 });
                                 mensajeCola = {
                                     "name":req.body.name,
@@ -192,7 +195,8 @@ exports.mregistrarVideo = function(req,res){
                                     "active":0,
                                     "notify":0,
                                     "url_master":null,
-                                    "createdAt":new Date()
+                                    "createdAt":new Date(),
+                                    "id":req.body.id
                                 }
                             }
                         }
