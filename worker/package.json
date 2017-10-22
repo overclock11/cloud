@@ -24,6 +24,7 @@
     "nodemailer": "^4.1.0",
     "q": "^1.5.1",
     "s3-download": "^1.0.0",
+    "s3fs": "^2.5.0",
     "serve-favicon": "~2.4.2",
     "sqs-consumer": "^3.7.0"
   }

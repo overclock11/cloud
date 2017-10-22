@@ -2,24 +2,30 @@ var VideoModel = require('../models/video');
 var EmailController = require('../controllers/EmailController');
 var ffmpeg = require('ffmpeg');
 var config = require('../config');
-var multer  = require('multer'), multerS3 = require('multer-s3'), AWS = require('aws-sdk');
+var S3FS = require('s3fs');
 var fs = require('fs'),
 	http = require('http'),
     path = require('path'),
     Q = require('q');
 
-
-
+var AWS = require('aws-sdk');
 AWS.config.loadFromPath('./s3_config.json');
-var s3 = new AWS.S3( { params: {Bucket: 'cloud-proyecto3'} } )
+var s3 = new AWS.S3( { params: {Bucket: 'cloud-proyecto3/videos-render'} } );
+
+
 
 // ffmpeg convert function
 exports.convertVideoToMp4 = function(message){
+
+
+
 	console.log("entro al convert");
 	urlOrigin = message.url.replace(config.pathVideo.pathS3, '');
     descargarVideo(urlOrigin, message);
     console.log("salio al convert");
-	
+
+
+
 };
 
 
@@ -60,19 +66,22 @@ console.log("va a convertir el video"+urlOrigin);
 			.save(config.pathVideo.pathLogicConvert+urlOrigin, function (error, file) {
         console.log(error);
 			  if (error){
-          console.log(error);
-        }
-        else {
+		          console.log(error);
+	        	}
+		        else {
           		console.log('Video file: ' + file);
   				console.log("Video a convertido");
-  				uploadToS3(file, urlOrigin, function (errupload, dataupload) {
-			        if (errupload) {
-			            console.error(err);  
-			        } else {
-			            console.error(dataupload);
+  				
+
+  				uploadToS3(file, urlOrigin, function (err, data) {
+			        if (err) {
+			            console.error(err);
 			        }
+			        console.error("File uploaded to S3: ");
+			        EmailController.sendEmail(emailUser, config.pathVideo.pathRender+urlOrigin);
 			    });
-  				EmailController.sendEmail(emailUser, config.pathVideo.pathRender+urlOrigin);
+
+  				
         }
 			});
 			}, function (err) {
@@ -101,15 +110,14 @@ try {
         else {
           		console.log('Video file: ' + file);
   				console.log("Video a convertido");
-				uploadToS3(file, urlOrigin, function (errupload, dataupload) {
-			        if (errupload) {
-			            console.error(err);  
-			        } else {
-			            console.error(dataupload);
+				uploadToS3(urlOrigin, urlOrigin, function (err, data) {
+			        if (err) {
+			            console.error(err);
 			        }
-			    });
-  				EmailController.sendEmail(emailUser, config.pathVideo.pathRender+urlOrigin);
-        }
+			        console.error("File uploaded to S3: ");
+			        EmailController.sendEmail(emailUser, config.pathVideo.pathRender+urlOrigin);
+			    });  				
+        	}
 			});
 			}, function (err) {
 				console.log('Error: ' + err);
@@ -122,30 +130,16 @@ try {
 
 };
 
-function uploadToS3(file, destFileName, callback) {
-  var nombre
-  let numeroAleatorio = parseInt(Math.random()*10000);
-              
-  let storage = multerS3({
-            s3: s3,
-            bucket: 'cloud-proyecto3',
-            metadata: function (file, cb) {
-                cb(null, { fieldName: destFileName });
-            },
-            key: function (file, cb) {
-                cb(null, config.pathVideo.pathLogicConvertS3 + destFileName)
-            }
-  })
-
-  multer({ storage: storage, limits: { fileSize: 100000000 } });
-  cargar(function(err){
-    if (err) {
-        console.log("Error al cargar en el S3");
-   		return false;
-    }
-    else{
-        console.log("Cargo correctamente en el s3");
-        return false;
-    }
-  });
+function uploadToS3(urlOrigin, destFileName, callback) {
+    s3
+        .upload({
+            ACL: 'public-read', 
+            Body: fs.createReadStream(config.pathVideo.pathLogicConvert+urlOrigin), 
+            Key: destFileName.toString(),
+            ContentType: 'application/octet-stream' // force download if it's accessed as a top location
+        })
+        // http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3/ManagedUpload.html#httpUploadProgress-event
+        .on('httpUploadProgress', function(evt) { console.log(evt); })
+        // http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3/ManagedUpload.html#send-property
+        .send(callback);
 }
