@@ -16,7 +16,11 @@ cron.schedule('*/1 * * * *', function(){
       data.forEach(function (item) {
         console.log("entro al for escenarioC");
         console.log(item.id);
-        FfmpegController.convertVideoToMp4(item.id, urlOrigin, item.email);
+
+                  urlOrigin = item.url.replace(config.pathVideo.path, '');
+                  console.log(item.id, urlOrigin, item.email);
+                  FfmpegController.convertVideoToMp4(item.id, urlOrigin, item.email);
+        
       });
     } 
   });
