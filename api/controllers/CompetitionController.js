@@ -10,7 +10,7 @@ exports.mgetAllCompetitionsHome = function(req,res){
     if (err) {
       console.log(err);
     } else {
-      var element = new Array();
+      var element =[];
       let competencias = datos.map((item,index)=>{
         return item.administrador.competition;
       })
@@ -20,7 +20,7 @@ exports.mgetAllCompetitionsHome = function(req,res){
       res.status(200).json(element)
     }
   })
-}
+};
 exports.murl = function(req,res){
     let condiciones ={
         "administrador.competition.url":req.params.id
@@ -73,7 +73,7 @@ exports.murl = function(req,res){
 
     }
   })
-}
+};
 exports.mregisterCompetition = function(req,res){
   req.body.id = uuidv4();
   req.body.active=1;
