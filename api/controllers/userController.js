@@ -23,8 +23,8 @@ exports.mcrear = function (req, res) {
             for (var i = 0; i < tam; i++) {
                 var usuario = concurso[0].administrador.competition[i].usuario;
                 if (concurso[0].administrador.competition[i].id === req.body.competition_id) {
+                    competitionPos = i;
                     for (var j = 0; j < usuario.length; j++) {
-                        competitionPos = i;
                         if (usuario[j].email === req.body.email) {
                             // el usuario existe
                             usuarioId = usuario[j];
@@ -42,7 +42,7 @@ exports.mcrear = function (req, res) {
                 //si no existe lo crea y responde el id
                 let nuevousuario = req.body;
                 nuevousuario.id = uuidv4();
-                nuevousuario.video = new Array();
+                nuevousuario.video = [];
                 concurso[0].administrador.competition[competitionPos].usuario.push(nuevousuario);
                 Modelo.update({"_id": concurso[0]._id}, concurso[0], function (err, datos) {
                     if (err) {

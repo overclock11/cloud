@@ -59,24 +59,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-try {
-  
-} catch (error) {
-  
-}
-/*mongoose.connect('mongodb://localhost/smartools',
-    {
-        useMongoClient: true,
-        promiseLibrary: global.Promise
-    }
-)
-    .then((datos)=>{
-    console.log("Se conecto a mongo LOCAL");
-},(err)=>{
-    console.log(err);
-})*/
-
 mongoose.connect('mongodb://julian:julian@ec2-50-112-185-187.us-west-2.compute.amazonaws.com:27017/smartools',
     {
       useMongoClient: true,
