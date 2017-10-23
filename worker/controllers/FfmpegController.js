@@ -147,8 +147,9 @@ function convertVideo(urlOrigin, message, emailUser) {
                                     console.error(err);
                                 }
                                 console.error("File uploaded to S3: ");
+                                console.error(urlOrigin);
                                 //actualizar url y todfo lotro
-                                actualizarUrlMaster(message, urlOrigin).then(() => {
+                                actualizarUrlMaster(message, config.pathVideo.pathLogicConvertS3 + urlOrigin).then(() => {
                                     EmailController.sendEmail(emailUser, config.pathVideo.pathRender + urlOrigin);
                                 }, (err) => {
                                     res.status(500).json(err);
@@ -191,11 +192,17 @@ function actualizarUrlMaster(message, urlOrigin) {
                         for (var k = 0; k < datos[0].administrador.competition[i].usuario[j].video.length; k++) {
                             if (datos[0].administrador.competition[i].usuario[j].video[k].id === message.id)
                             {
-                                datos[0].administrador.competition[i].usuario[j].video[k].url_master = config.pathVideo.pathLogicConvertS3.urlOrigin;
+                                console.log("no entro al if del update");
+                                console.log(urlOrigin);
+                                datos[0].administrador.competition[i].usuario[j].video[k].url_master = urlOrigin;
                                 datos[0].administrador.competition[i].usuario[j].video[k].show_home = 1;
                                 datos[0].administrador.competition[i].usuario[j].video[k].state_id = 0;
                                 datos[0].administrador.competition[i].usuario[j].video[k].notify = 1;
-                            }
+
+                                
+                            } else  {
+                                console.log("no entro al if del update");
+                                }
                         }
                     }
 
