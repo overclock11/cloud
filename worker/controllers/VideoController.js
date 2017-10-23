@@ -38,7 +38,7 @@ cron.schedule('*/1 * * * *', function () {
                 // Now this is where you'd do something with this message
                 convertVideo(body);  // whatever you wanna do
                 // Clean up after yourself... delete this message from the queue, so it's not executed again
-                //removeFromQueue(message);  // We'll do this in a second
+                removeFromQueue(message);  // We'll do this in a second
             }
         }
     });
