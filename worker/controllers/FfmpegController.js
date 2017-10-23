@@ -149,7 +149,7 @@ function convertVideo(urlOrigin, message, emailUser) {
                                 console.error("File uploaded to S3: ");
                                 console.error(urlOrigin);
                                 //actualizar url y todfo lotro
-                                actualizarUrlMaster(message, config.pathVideo.pathLogicConvertS3 + urlOrigin).then(() => {
+                                actualizarUrlMaster(message, config.pathVideo.pathRenderS3 + urlOrigin).then(() => {
                                     EmailController.sendEmail(emailUser, config.pathVideo.pathRender + urlOrigin);
                                 }, (err) => {
                                     res.status(500).json(err);
@@ -192,7 +192,7 @@ function actualizarUrlMaster(message, urlOrigin) {
                         for (var k = 0; k < datos[0].administrador.competition[i].usuario[j].video.length; k++) {
                             if (datos[0].administrador.competition[i].usuario[j].video[k].id === message.id)
                             {
-                                console.log("no entro al if del update");
+                                console.log("si entro al if del update");
                                 console.log(urlOrigin);
                                 datos[0].administrador.competition[i].usuario[j].video[k].url_master = urlOrigin;
                                 datos[0].administrador.competition[i].usuario[j].video[k].show_home = 1;
