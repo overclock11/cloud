@@ -189,13 +189,9 @@ function actualizarUrlMaster(message, urlOrigin) {
                 for (var i = 0; i < tam.length; i++) {
                     for (var j = 0; j < datos[0].administrador.competition[i].usuario.length; j++) {
                         for (var k = 0; k < datos[0].administrador.competition[i].usuario[j].video.length; k++) {
-                            if (datos[0].administrador.competition[i].usuario[j].video[k].id === message.id &&
-                                datos[0].administrador.competition[i].usuario[j].video[k].url_master === null &&
-                                datos[0].administrador.competition[i].usuario[j].video[k].show_home === 0 &&
-                                datos[0].administrador.competition[i].usuario[j].video[k].state_id === 1 &&
-                                datos[0].administrador.competition[i].usuario[j].video[k].notify === 0)
+                            if (datos[0].administrador.competition[i].usuario[j].video[k].id === message.id)
                             {
-                                datos[0].administrador.competition[i].usuario[j].video[k].url_master = urlOrigin;
+                                datos[0].administrador.competition[i].usuario[j].video[k].url_master = config.pathVideo.pathLogicConvertS3.urlOrigin;
                                 datos[0].administrador.competition[i].usuario[j].video[k].show_home = 1;
                                 datos[0].administrador.competition[i].usuario[j].video[k].state_id = 0;
                                 datos[0].administrador.competition[i].usuario[j].video[k].notify = 1;
