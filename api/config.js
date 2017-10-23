@@ -30,7 +30,7 @@ config = {
         "redisport":"6379"
     },configRedis:{
         port:"6379",
-        "endpoint":"localhost"
+        endpoint:"proyecto.fawh4l.0001.usw2.cache.amazonaws.com"
     }
 
 };
