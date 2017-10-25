@@ -102,15 +102,28 @@ function convertVideo(urlOrigin, message, emailUser) {
                         else {
                             console.log('Video file: ' + file);
                             console.log("Video a convertido");
-
-
-                            uploadToS3(file, urlOrigin, function (err, data) {
+                            uploadToS3(urlOrigin, urlOrigin, function (err, data) {
                                 if (err) {
                                     console.error(err);
                                 }
                                 console.error("File uploaded to S3: ");
-                                EmailController.sendEmail(emailUser, config.pathVideo.pathRender + urlOrigin);
+                                console.error(urlOrigin);
+                                //actualizar url y todfo lotro
+                                actualizarUrlMaster(message, config.pathVideo.pathRenderS3 + urlOrigin).then(() => {
+                                    EmailController.sendEmail(emailUser, config.pathVideo.pathRender + urlOrigin);
+                                }, (err) => {
+                                    res.status(500).json(err);
+                                });
+
                             });
+
+//                            uploadToS3(file, urlOrigin, function (err, data) {
+//                                if (err) {
+//                                    console.error(err);
+//                                }
+//                                console.error("File uploaded to S3: ");
+//                                EmailController.sendEmail(emailUser, config.pathVideo.pathRender + urlOrigin);
+//                            });
 
 
                         }
