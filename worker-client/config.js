@@ -26,11 +26,7 @@ config = {
     },awsSES:{
       host: 'email-smtp.us-west-2.amazonaws.com',
       port: 465,
-      secure: true, // use TLS
-      auth: {
-          user: 'AKIAJHJZGAOLDE377F2Q',
-          pass: 'AqXF2gbx+XwUI7yNSsgRAPhWtq6iHoiEg7lxPYkzUyZk'
-      }
+      secure: true
     }
 };
 
